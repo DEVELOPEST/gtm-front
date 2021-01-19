@@ -1,0 +1,13 @@
+// Here you can add other styles
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container {
+  input {
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+    border-radius: 2px;
+    min-height: 36px;
+  }
+}
