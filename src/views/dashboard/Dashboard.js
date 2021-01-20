@@ -11,6 +11,7 @@ import {
 } from '@coreui/react'
 
 import MainChart from '../charts/MainChart.js'
+import ExampleChart from '../charts/ExampleChart.js'
 import {useStoreActions, useStoreState} from "easy-peasy";
 
 const Dashboard = () => {
@@ -90,6 +91,7 @@ const Dashboard = () => {
             </CCol>
           </CRow>
           <MainChart style={{height: '300px', marginTop: '40px'}}/>
+          <ExampleChart />
         </CCardBody>
       </CCard>
 
