@@ -1,0 +1,9 @@
+[ver:1,total:3060,branch:graph-tests]
+src/views/charts/ExampleChart.js:2115,1611165600:1050,1611169200:1065,m
+src/api/index.js:380,1611136800:180,1611140400:60,1611165600:90,1611169200:50,m
+src/views/charts/MainChart.js:210,1611140400:180,1611165600:30,r
+.gtm/com.intellij.javascript.nodejs.npm.InstallNodeLocalDependenciesAction$InstallDepsRunProfile@65bb2c97.app:180,1611165600:180,r
+src/views/charts/ActivityChart.js:110,1611169200:50,1611172800:60,m
+node_modules/recharts/src/shape/Curve.tsx:30,1611165600:30,r
+src/models/timelineModel.js:20,1611169200:20,r
+node_modules/recharts/types/cartesian/YAxis.d.ts:15,1611169200:15,r
