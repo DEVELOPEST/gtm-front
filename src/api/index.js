@@ -13,7 +13,9 @@ api.fetch = opts => axios
   .then(response => response.data);
 
 api.getTimeline = params => api.fetch(
-    {url: `/api/test_group/timeline?start=${params.start}&end=${params.end}&interval=${params.interval}&timezone=${params.timezone}`, method: 'GET'});
+    {url: `/api/iti0102-2020/timeline?start=${params.start}&end=${params.end}&interval=${params.interval}&timezone=${params.timezone}`, method: 'GET'});
+api.getActivityTimeline = params => api.fetch(
+    {url: `/api/iti0102-2020/activity?start=${params.start}&end=${params.end}&interval=${params.interval}&timezone=${params.timezone}`, method: 'GET'});
 api.getGroups = () => api.fetch({url: `/api/groups`, method: 'GET'});
 
 export default api;

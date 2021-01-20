@@ -13,8 +13,8 @@ import {
 import {useStoreState} from "easy-peasy";
 import React from "react";
 
-const ExampleChart = () => {
-    const {data} = useStoreState(state => state.timeline)
+const ActivityChart = () => {
+    const {data} = useStoreState(state => state.activity_timeline)
     return (
         //     <ResponsiveContainer width="100%" height="100%" >
                 <ComposedChart width={1300} height={400} data={data}>
@@ -39,4 +39,4 @@ const ExampleChart = () => {
     )
 }
 
-export default ExampleChart;
+export default ActivityChart;
