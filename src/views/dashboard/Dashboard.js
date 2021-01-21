@@ -13,6 +13,7 @@ import {
 import MainChart from '../charts/MainChart.js'
 import ExampleChart from '../charts/ExampleChart.js'
 import {useStoreActions, useStoreState} from "easy-peasy";
+import ActivityChart from "../charts/ActivityChart";
 
 const Dashboard = () => {
   const {groups, chosenGroup, loading} = useStoreState(state => state.groups)
@@ -23,6 +24,7 @@ const Dashboard = () => {
 
   const {startDate} = useStoreState(state => state.timeline)
   const {fetchTimeline, setStartDate} = useStoreActions(actions => actions.timeline)
+  const {fetchActivityTimeline} = useStoreActions(actions => actions.activityTimeline)
 
 
   useEffect(() => {
@@ -40,6 +42,10 @@ const Dashboard = () => {
   useEffect(() => {
     fetchTimeline(chosenInterval)
   }, [startDate])
+
+  useEffect(() => {
+    fetchActivityTimeline(chosenInterval)
+  }, [chosenInterval])
 
   const getIntervalOptions = () => {
     return intervals.map(function(obj) {return {label: obj, value: obj}})
@@ -68,9 +74,9 @@ const Dashboard = () => {
                 }
               </div>
             </CCol>
-            <CCol className="col-12 col-sm-12 col-md-4 col-lg-3">
+            <CCol className="col-12 col-sm-12 col-md-3 col-lg-3">
               <div className="form-group">
-                <label>Date:</label>
+                <label>Start date:</label>
                 <ReactDatePicker
                     className="w-100"
                     selected={startDate}
@@ -80,7 +86,17 @@ const Dashboard = () => {
             </CCol>
             <CCol className="col-12 col-sm-12 col-md-3 col-lg-3">
               <div className="form-group">
-                <label>Period:</label>
+                <label>End date:</label>
+                <ReactDatePicker
+                    className="w-100"
+                    selected={startDate}
+                    onChange={date => setStartDate(date)}
+                />
+              </div>
+            </CCol>
+            <CCol className="col-12 col-sm-12 col-md-3 col-lg-3">
+              <div className="form-group">
+                <label>Interval:</label>
                 <SelectDropdown
                     options={getIntervalOptions()}
                     onChange={value => setChosenInterval(value[0].value)}
@@ -90,8 +106,9 @@ const Dashboard = () => {
               </div>
             </CCol>
           </CRow>
-          <MainChart style={{height: '300px', marginTop: '40px'}}/>
+          {/*<MainChart style={{height: '300px', marginTop: '40px'}}/>*/}
           <ExampleChart />
+          <ActivityChart />
         </CCardBody>
       </CCard>
 

@@ -1,12 +1,7 @@
 import {
     Area,
     Bar,
-    CartesianGrid,
     ComposedChart,
-    Line,
-    LineChart,
-    ResponsiveContainer,
-    Tooltip,
     XAxis,
     YAxis
 } from "recharts";
@@ -28,7 +23,7 @@ const ExampleChart = () => {
                             <stop offset="95%" stopColor="#b31414" stopOpacity={0.2}/>
                         </linearGradient>
                     </defs>
-                    <XAxis dataKey="name"/>
+                    <XAxis dataKey="label"/>
                     <YAxis yAxisId="left" tickCount={10} tickLine={false} axisLine={false} />
                     <YAxis yAxisId="right" orientation='right' tickCount={10} tickLine={false} axisLine={false} allowDecimals={false}/>
                     <Area yAxisId="left" type="monotoneX" dataKey="time" stroke="#0f7dfa" fill="url(#colorUvBlue)"/>
