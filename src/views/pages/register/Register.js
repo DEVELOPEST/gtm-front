@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {
   CButton,
   CCard,
@@ -14,8 +14,59 @@ import {
   CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import {useStoreActions, useStoreState} from "easy-peasy";
+import CustomLoader from "../../../reusable/CustomLoader";
+
+import {
+  emailValidation,
+  passwordValidation,
+  passwordRepeatValidation
+} from "../../../utils/inputValidations"
 
 const Register = () => {
+
+  const {loading, errors} = useStoreState(state => state.auth)
+  const {register, setErrors} = useStoreActions(actions => actions.auth)
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordRepeat, setPasswordRepeat] = useState('');
+  const [emailErrors, setEmailErrors] = useState([]);
+  const [passwordErrors, setPasswordErrors] = useState([]);
+  const [passwordRepeatErrors, setPasswordRepeatErrors] = useState([]);
+
+  useEffect(() => {
+    // setErrors([])
+  })
+
+  const onClickRegister = () => {
+    if (emailErrors.length === 0 && passwordErrors.length === 0 && passwordRepeatErrors.length === 0) {
+      register(
+          {
+            'user': {
+              'email': email,
+              'password': password
+            }
+          }
+      )
+    }
+  }
+
+  const handleChangeEmail = value => {
+    setEmail(value)
+    setEmailErrors(emailValidation(value))
+  }
+
+  const handleChangePassword = value => {
+    setPassword(value)
+    setPasswordErrors(passwordValidation(value))
+  }
+
+  const handleChangePasswordRepeat = value => {
+    setPasswordRepeat(value)
+    setPasswordRepeatErrors(passwordRepeatValidation(password, value))
+  }
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -28,47 +79,65 @@ const Register = () => {
                   <p className="text-muted">Create your account</p>
                   <CInputGroup className="mb-3">
                     <CInputGroupPrepend>
-                      <CInputGroupText>
-                        <CIcon name="cil-user" />
-                      </CInputGroupText>
-                    </CInputGroupPrepend>
-                    <CInput type="text" placeholder="Username" autoComplete="username" />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupPrepend>
                       <CInputGroupText>@</CInputGroupText>
                     </CInputGroupPrepend>
-                    <CInput type="text" placeholder="Email" autoComplete="email" />
+                    <CInput
+                        className={(emailErrors.length === 0 ? "" : " red-border")}
+                        onChange={event => handleChangeEmail(event.target.value)}
+                        type="text"
+                        placeholder="Email"
+                        autoComplete="email" />
+
                   </CInputGroup>
+                  {emailErrors.map((value) => {
+                    return <small className="form-text text-muted color-red mb-2">{value}</small>
+                  })}
                   <CInputGroup className="mb-3">
                     <CInputGroupPrepend>
                       <CInputGroupText>
                         <CIcon name="cil-lock-locked" />
                       </CInputGroupText>
                     </CInputGroupPrepend>
-                    <CInput type="password" placeholder="Password" autoComplete="new-password" />
+                    <CInput
+                        className={(passwordErrors.length === 0 ? "" : " red-border")}
+                        onChange={event => handleChangePassword(event.target.value)}
+                        type="password"
+                        placeholder="Password"
+                        autoComplete="new-password" />
+
                   </CInputGroup>
-                  <CInputGroup className="mb-4">
+                  {passwordErrors.map((value) => {
+                    return <div><small className="form-text text-muted color-red mb-2">{value}</small></div>
+                  })}
+                  <CInputGroup className="mb-3">
                     <CInputGroupPrepend>
                       <CInputGroupText>
                         <CIcon name="cil-lock-locked" />
                       </CInputGroupText>
                     </CInputGroupPrepend>
-                    <CInput type="password" placeholder="Repeat password" autoComplete="new-password" />
+                    <CInput
+                        className={(passwordRepeatErrors.length === 0 ? "" : " red-border")}
+                        onChange={event => handleChangePasswordRepeat(event.target.value)}
+                        type="password"
+                        placeholder="Repeat password"
+                        autoComplete="new-password" />
+
                   </CInputGroup>
-                  <CButton color="success" block>Create Account</CButton>
+                  {passwordRepeatErrors.map((value) => {
+                    return <small className="form-text text-muted color-red mb-3">{value}</small>
+                  })}
+                      {
+                        loading
+                            ?
+                            <div className='row justify-content-center'>
+                              <div className='col small-loader-container' >
+                                <CustomLoader />
+                              </div>
+                            </div>
+                            : <CButton onClick={onClickRegister} color="primary" block>Create Account</CButton>
+                      }
                 </CForm>
               </CCardBody>
-              <CCardFooter className="p-4">
-                <CRow>
-                  <CCol xs="12" sm="6">
-                    <CButton className="btn-facebook mb-1" block><span>facebook</span></CButton>
-                  </CCol>
-                  <CCol xs="12" sm="6">
-                    <CButton className="btn-twitter mb-1" block><span>twitter</span></CButton>
-                  </CCol>
-                </CRow>
-              </CCardFooter>
             </CCard>
           </CCol>
         </CRow>

@@ -10,7 +10,7 @@ const ExampleChart = () => {
                     <XAxis dataKey="name"/>
                     <YAxis
                     />
-                    <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
+                    <CartesianGrid vertical={false} />
                     <Line type="monotone" dataKey="time" stroke="#8884d8" />
                     <Bar type="monotone" dataKey="time" stroke="#8884d8" />
                 </ComposedChart>

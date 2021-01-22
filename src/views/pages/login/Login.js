@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import {
   CButton,
@@ -15,8 +15,42 @@ import {
   CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import {useStoreActions, useStoreState} from "easy-peasy";
+import CustomLoader from "../../../reusable/CustomLoader";
+import {
+  emailValidation,
+  passwordValidation,
+} from "../../../utils/inputValidations"
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailErrors, setEmailErrors] = useState([]);
+  const [passwordErrors, setPasswordErrors] = useState([]);
+
+  const {loading, errors} = useStoreState(state => state.auth)
+  const {login, setErrors} = useStoreActions(actions => actions.auth)
+
+  useEffect(() => {
+    setErrors([])
+  })
+
+  const onClickLogin = () => {
+    if (emailErrors.length === 0 && passwordErrors.length === 0 ) {
+      login({'email': email, 'password': password})
+    }
+  }
+
+  const handleChangeEmail = value => {
+    setEmail(value)
+    setEmailErrors(emailValidation(value))
+  }
+
+  const handleChangePassword = value => {
+    setPassword(value)
+    setPasswordErrors(passwordValidation(value))
+  }
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -31,22 +65,46 @@ const Login = () => {
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
                         <CInputGroupText>
-                          <CIcon name="cil-user" />
+                          @
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="Username" autoComplete="username" />
+                      <CInput
+                          className={(emailErrors.length === 0 ? "" : " red-border")}
+                          onChange={event => handleChangeEmail(event.target.value)}
+                          type="text"
+                          placeholder="Email"
+                          autoComplete="email" />
                     </CInputGroup>
-                    <CInputGroup className="mb-4">
+                    {emailErrors.map((value) => {
+                      return <small className="form-text text-muted color-red mb-2">{value}</small>
+                    })}
+                    <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
                         <CInputGroupText>
                           <CIcon name="cil-lock-locked" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="password" placeholder="Password" autoComplete="current-password" />
+                      <CInput
+                          className={(passwordErrors.length === 0 ? "" : " red-border")}
+                          onChange={event => handleChangePassword(event.target.value)}
+                          type="password"
+                          placeholder="Password"
+                          autoComplete="current-password" />
                     </CInputGroup>
+                    {passwordErrors.map((value) => {
+                      return <div><small className="form-text text-muted color-red mb-3">{value}</small></div>
+                    })}
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4">Login</CButton>
+                        {
+                          loading
+                              ?
+                                <div className='col small-loader-container' >
+                                  <CustomLoader />
+                                </div>
+
+                              : <CButton onClick={onClickLogin} color="primary" className="px-4">Login</CButton>
+                        }
                       </CCol>
                       <CCol xs="6" className="text-right">
                         <CButton color="link" className="px-0">Forgot password?</CButton>
