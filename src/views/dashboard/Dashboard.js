@@ -25,9 +25,6 @@ const Dashboard = () => {
   const {startDate} = useStoreState(state => state.timeline)
   const {fetchTimeline, setStartDate} = useStoreActions(actions => actions.timeline)
 
-  console.log(hasAnyRole(["LECTURER", "USER"]))
-
-
   useEffect(() => {
     fetchGroups()
   }, [fetchGroups])

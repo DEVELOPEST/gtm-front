@@ -19,12 +19,10 @@ const authModel = {
         actions.setLoading(true)
         await api.login(payload)
             .then(data => {
-                console.log(data)
                 setAuthHeader(data.jwt);
                 localStorage.setItem('token', data.jwt)
             })
             .catch(err => {
-                console.log(err)
                 actions.setErrors(err);
             })
         actions.setLoading(false)
@@ -35,12 +33,10 @@ const authModel = {
         actions.setLoading(true)
         await api.register(payload)
             .then(data => {
-                console.log(data)
                 setAuthHeader(data);
                 localStorage.setItem('token', data)
             })
             .catch(err => {
-                console.log(err)
                 actions.setErrors(err);
             })
         actions.setLoading(false)
@@ -50,12 +46,10 @@ const authModel = {
 
         await api.fetchToken()
             .then(data => {
-                console.log(data)
                 setAuthHeader(data);
                 localStorage.setItem('token', data)
             })
             .catch(err => {
-                console.log(err)
                 actions.setErrors(err);
             })
     }),
