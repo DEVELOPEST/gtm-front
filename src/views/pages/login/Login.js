@@ -31,10 +31,6 @@ const Login = () => {
   const {loading, errors} = useStoreState(state => state.auth)
   const {login, setErrors} = useStoreActions(actions => actions.auth)
 
-  useEffect(() => {
-    setErrors([])
-  })
-
   const onClickLogin = () => {
     if (emailErrors.length === 0 && passwordErrors.length === 0 ) {
       login({'email': email, 'password': password})

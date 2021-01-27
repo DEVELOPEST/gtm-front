@@ -13,6 +13,7 @@ import {
 import MainChart from '../charts/MainChart.js'
 import ExampleChart from '../charts/ExampleChart.js'
 import {useStoreActions, useStoreState} from "easy-peasy";
+import {hasAnyRole} from "../../Auth";
 
 const Dashboard = () => {
   const {groups, chosenGroup, loading} = useStoreState(state => state.groups)
@@ -23,6 +24,8 @@ const Dashboard = () => {
 
   const {startDate} = useStoreState(state => state.timeline)
   const {fetchTimeline, setStartDate} = useStoreActions(actions => actions.timeline)
+
+  console.log(hasAnyRole(["LECTURER", "USER"]))
 
 
   useEffect(() => {
