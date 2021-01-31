@@ -19,11 +19,10 @@ const Dashboard = () => {
   const {groups, chosenGroup, loading} = useStoreState(state => state.groups)
   const {fetchGroups, setChosenGroup} = useStoreActions(actions => actions.groups)
 
-  const {intervals, chosenInterval} = useStoreState(state => state.intervals)
-  const {setChosenInterval} = useStoreActions(actions => actions.intervals)
+  const {startDate, endDate, intervals, chosenInterval} = useStoreState(state => state.dashboardInputs)
+  const {setChosenInterval, setStartDate, setEndDate} = useStoreActions(actions => actions.dashboardInputs)
 
-  const {startDate} = useStoreState(state => state.timeline)
-  const {fetchTimeline, setStartDate} = useStoreActions(actions => actions.timeline)
+  const {fetchTimeline} = useStoreActions(actions => actions.timeline)
   const {fetchActivityTimeline} = useStoreActions(actions => actions.activityTimeline)
 
   useEffect(() => {
@@ -32,25 +31,24 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
-      fetchTimeline(chosenInterval)
+      fetchTimeline()
+      fetchActivityTimeline()
     }
   }, [groups])
 
   useEffect(() => {
     if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
-      fetchTimeline(chosenInterval)
+      fetchTimeline()
+      fetchActivityTimeline()
     }
   }, [chosenInterval])
 
   useEffect(() => {
     if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
-      fetchTimeline(chosenInterval)
+      fetchTimeline()
+      fetchActivityTimeline()
     }
   }, [startDate])
-
-  useEffect(() => {
-    fetchActivityTimeline(chosenInterval)
-  }, [chosenInterval])
 
   const getIntervalOptions = () => {
     return intervals.map(function(obj) {return {label: obj, value: obj}})
@@ -94,8 +92,8 @@ const Dashboard = () => {
                 <label>End date:</label>
                 <ReactDatePicker
                     className="w-100"
-                    selected={startDate}
-                    onChange={date => setStartDate(date)}
+                    selected={endDate}
+                    onChange={date => setEndDate(date)}
                 />
               </div>
             </CCol>
@@ -111,8 +109,18 @@ const Dashboard = () => {
               </div>
             </CCol>
           </CRow>
+        </CCardBody>
+      </CCard>
+      <CCard>
+        <CCardBody>
           {/*<MainChart style={{height: '300px', marginTop: '40px'}}/>*/}
+          <h3>Example Chart</h3>
           <ExampleChart />
+        </CCardBody>
+      </CCard>
+      <CCard>
+        <CCardBody>
+          <h3>Activity Chart</h3>
           <ActivityChart />
         </CCardBody>
       </CCard>

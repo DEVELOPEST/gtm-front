@@ -1,5 +1,5 @@
 import { action, thunk } from 'easy-peasy';
-import {formatDate, getStartDate, getEndDate, getRequestInterval} from '../utils/dateUtils'
+import {TALLINN_TIMEZONE} from "../constants";
 
 const ActivityTimelineModel = {
     data: [],
@@ -8,8 +8,6 @@ const ActivityTimelineModel = {
     usersData: [],
     addedLinesData: [],
     removedLinesData: [],
-    startDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
-    endDate: new Date(new Date().getFullYear() + 1, new Date().getMonth(), 1),
     error: '',
     loading: false,
     setData: action((store, payload) => {
@@ -30,27 +28,24 @@ const ActivityTimelineModel = {
     setRemovedLinesData: action((store, payload) => {
         store.removedLinesData = payload;
     }),
-    setStartDate: action((store, payload) => {
-        store.startDate = payload;
-    }),
     setError: action((store, payload) => {
         store.error = payload;
     }),
     setLoading: action((store, payload) => {
         store.loading = payload;
     }),
-    fetchActivityTimeline: thunk(async (actions, interval, { injections, getState }) => {
+    fetchActivityTimeline: thunk(async (actions, payload, { injections, getStoreState }) => {
         const { api } = injections;
-        const {startDate} = getState(state => state.activityTimeline);
-        const {endDate} = getState(state => state.activityTimeline);
+        const {startDate, endDate, chosenInterval} = getStoreState().dashboardInputs;
+        const {chosenGroup} = getStoreState().groups;
         let dto = {
             start: Math.floor(startDate.getTime() / 1000),
             end: Math.floor(endDate.getTime() / 1000),
-            interval: getRequestInterval(interval),
-            timezone: "Europe/Tallinn"
+            interval: chosenInterval.toUpperCase(),
+            timezone: TALLINN_TIMEZONE
         }
         actions.setLoading(true)
-        await api.getActivityTimeline(dto)
+        await api.getActivityTimeline(dto, chosenGroup)
             .then(data => {
                 actions.setData(data.activityTimeline)
                 actions.setTimeData(data.activityTimeline.map(item => Math.floor(item.time / 60 / 6) / 10))

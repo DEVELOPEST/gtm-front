@@ -1,12 +1,13 @@
-import { action, thunk } from 'easy-peasy';
-import {formatDate, getStartDate, getEndDate, getRequestInterval} from '../utils/dateUtils'
+import {action, thunk, useStoreState} from 'easy-peasy';
+import {formatDate} from '../utils/dateUtils'
+import {startOfDay} from 'date-fns';
+import {TALLINN_TIMEZONE} from "../constants";
 
 const TimelineModel = {
     data: [],
     timeData: [],
     labelsData: [],
     usersData: [],
-    startDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
     error: '',
     loading: false,
     setData: action((store, payload) => {
@@ -21,26 +22,25 @@ const TimelineModel = {
     setUsersData: action((store, payload) => {
         store.usersData = payload;
     }),
-    setStartDate: action((store, payload) => {
-        store.startDate = payload;
-    }),
     setError: action((store, payload) => {
         store.error = payload;
     }),
     setLoading: action((store, payload) => {
         store.loading = payload;
     }),
-    fetchTimeline: thunk(async (actions, interval, { injections, getState }) => {
+    fetchTimeline: thunk(async (actions, interval, {injections, getStoreState}) => {
         const { api } = injections;
-        const {startDate} = getState(state => state.timeline);
+        const {startDate, endDate, chosenInterval} = getStoreState().dashboardInputs;
+        const {chosenGroup} = getStoreState().groups;
+
         let dto = {
-            start: Math.floor(getStartDate(startDate, interval).getTime() / 1000),
-            end: Math.floor(getEndDate(startDate, interval).getTime() / 1000),
-            interval: getRequestInterval(interval),
-            timezone: "Europe/Tallinn"
+            start: Math.floor(startOfDay(startDate).getTime() / 1000),
+            end: Math.floor(startOfDay(endDate).getTime() / 1000),
+            interval: chosenInterval.toUpperCase(),
+            timezone: TALLINN_TIMEZONE
         }
         actions.setLoading(true)
-        await api.getTimeline(dto)
+        await api.getTimeline(dto, chosenGroup)
             .then(data => {
                 actions.setData(data.timeline)
                 actions.setTimeData(data.timeline.map(item => Math.floor(item.time / 60 / 6) / 10))
