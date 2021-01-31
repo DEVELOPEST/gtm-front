@@ -24,7 +24,6 @@ const sidebarModel = {
         await api.getGroups()
             .then(data => {
                 actions.setGroups(data.groups)
-                console.log(data.groups)
                 if (data.groups.length > 0) {
                     actions.setChosenGroup(data.groups[0])
                 }
