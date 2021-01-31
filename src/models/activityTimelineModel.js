@@ -8,8 +8,8 @@ const ActivityTimelineModel = {
     usersData: [],
     addedLinesData: [],
     removedLinesData: [],
-    startDate: new Date(new Date().getFullYear() - 1, new Date().getMonth(), 1),
-    endDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+    startDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+    endDate: new Date(new Date().getFullYear() + 1, new Date().getMonth(), 1),
     error: '',
     loading: false,
     setData: action((store, payload) => {

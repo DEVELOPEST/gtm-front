@@ -1,7 +1,8 @@
 import {
     Area,
     Bar,
-    ComposedChart,
+    ComposedChart, ResponsiveContainer,
+    Tooltip,
     XAxis,
     YAxis
 } from "recharts";
@@ -11,8 +12,8 @@ import React from "react";
 const ActivityChart = () => {
     const {data} = useStoreState(state => state.activityTimeline)
     return (
-        //     <ResponsiveContainer width="100%" height="100%" >
-                <ComposedChart width={1300} height={400} data={data}>
+        <ResponsiveContainer width="100%" height={400} >
+                <ComposedChart data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                     <defs>
                         <linearGradient id="colorUvBlue" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="5%" stopColor="#0f7dfa" stopOpacity={0.7}/>
@@ -27,16 +28,15 @@ const ActivityChart = () => {
                             <stop offset="95%" stopColor="#00b000" stopOpacity={0.0}/>
                         </linearGradient>
                     </defs>
+                    <Tooltip />
                     <XAxis dataKey="label"/>
                     <YAxis yAxisId="left" tickCount={10} tickLine={false} axisLine={false} />
-                    <YAxis yAxisId="right" orientation='right' tickCount={10} tickLine={false} axisLine={false} allowDecimals={false}/>
                     <YAxis yAxisId="right-lines" orientation='right' tickCount={10} tickLine={false} axisLine={false} allowDecimals={false}/>
-                    {/*<Bar yAxisId="right" type="monotone" dataKey="users" stroke="#f04037" fill="url(#colorUvRed)"/>*/}
                     <Area yAxisId="left" type="monotoneX" dataKey="time" stroke="#0f7dfa" fill="url(#colorUvBlue)"/>
                     <Area yAxisId="right-lines" type="monotoneX" dataKey="linesAdded" stroke="#00bf16" fill="url(#colorUvGreen)"/>
                     <Area yAxisId="right-lines" type="monotoneX" dataKey="linesRemoved" stroke="#bf0000" fill="url(#colorUvRed)"/>
                 </ComposedChart>
-        //     </ResponsiveContainer>
+        </ResponsiveContainer>
 
     )
 }
