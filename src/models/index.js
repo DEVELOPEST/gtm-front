@@ -3,6 +3,8 @@ import timelineModel from './timelineModel';
 import groupsModel from './groupsModel';
 import intervalsModel from './intervalsModel';
 import authModel from './authModel';
+import usersModel from './usersModel';
+import rolesModel from './rolesModel';
 
 const storeModel = {
     sidebar: sidebarModel,
@@ -10,6 +12,8 @@ const storeModel = {
     groups: groupsModel,
     intervals: intervalsModel,
     auth: authModel,
+    users: usersModel,
+    roles: rolesModel,
 }
 
 export default storeModel;

@@ -13,7 +13,6 @@ import {
 import MainChart from '../charts/MainChart.js'
 import ExampleChart from '../charts/ExampleChart.js'
 import {useStoreActions, useStoreState} from "easy-peasy";
-import {hasAnyRole} from "../../Auth";
 
 const Dashboard = () => {
   const {groups, chosenGroup, loading} = useStoreState(state => state.groups)
@@ -30,15 +29,21 @@ const Dashboard = () => {
   }, [fetchGroups])
 
   useEffect(() => {
-    fetchTimeline(chosenInterval)
+    if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
+      fetchTimeline(chosenInterval)
+    }
   }, [groups])
 
   useEffect(() => {
-    fetchTimeline(chosenInterval)
+    if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
+      fetchTimeline(chosenInterval)
+    }
   }, [chosenInterval])
 
   useEffect(() => {
-    fetchTimeline(chosenInterval)
+    if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
+      fetchTimeline(chosenInterval)
+    }
   }, [startDate])
 
   const getIntervalOptions = () => {

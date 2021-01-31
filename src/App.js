@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './scss/style.scss';
-import {AnyUserRoute, NonUserRoute, UserRoute} from "./Auth";
+import {AnyUserRoute, NonUserRoute} from "./Auth";
 
 const loading = (
     <div className="pt-3 text-center">
@@ -19,11 +19,10 @@ const Page404 = React.lazy(() => import('./views/pages/page404/Page404'));
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
 
 class App extends Component {
-
   render() {
     return (
         <HashRouter>
-          <React.Suspense fallback={loading}>
+            <React.Suspense fallback={loading}>
             <Switch>
               <NonUserRoute exact path="/login" name="Login Page" component={props => <Login {...props}/>}  />
               <NonUserRoute exact path="/register" name="Register Page" component={props => <Register {...props}/>} />

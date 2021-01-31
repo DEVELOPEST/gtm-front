@@ -21,6 +21,7 @@ const authModel = {
             .then(data => {
                 setAuthHeader(data.jwt);
                 localStorage.setItem('token', data.jwt)
+                window.location.reload()
             })
             .catch(err => {
                 actions.setErrors(err);
@@ -35,6 +36,7 @@ const authModel = {
             .then(data => {
                 setAuthHeader(data);
                 localStorage.setItem('token', data)
+                window.location.reload()
             })
             .catch(err => {
                 actions.setErrors(err);
@@ -54,5 +56,4 @@ const authModel = {
             })
     }),
 };
-
 export default authModel;
