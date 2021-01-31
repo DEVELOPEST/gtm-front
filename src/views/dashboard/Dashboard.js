@@ -26,21 +26,26 @@ const Dashboard = () => {
   const {fetchTimeline, setStartDate} = useStoreActions(actions => actions.timeline)
   const {fetchActivityTimeline} = useStoreActions(actions => actions.activityTimeline)
 
-
   useEffect(() => {
     fetchGroups()
   }, [fetchGroups])
 
   useEffect(() => {
-    fetchTimeline(chosenInterval)
+    if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
+      fetchTimeline(chosenInterval)
+    }
   }, [groups])
 
   useEffect(() => {
-    fetchTimeline(chosenInterval)
+    if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
+      fetchTimeline(chosenInterval)
+    }
   }, [chosenInterval])
 
   useEffect(() => {
-    fetchTimeline(chosenInterval)
+    if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
+      fetchTimeline(chosenInterval)
+    }
   }, [startDate])
 
   useEffect(() => {
