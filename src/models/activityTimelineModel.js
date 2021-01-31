@@ -13,21 +13,6 @@ const ActivityTimelineModel = {
     setData: action((store, payload) => {
         store.data = payload;
     }),
-    setTimeData: action((store, payload) => {
-        store.timeData = payload;
-    }),
-    setLabelsData: action((store, payload) => {
-        store.labelsData = payload;
-    }),
-    setUsersData: action((store, payload) => {
-        store.usersData = payload;
-    }),
-    setAddedLinesData: action((store, payload) => {
-        store.addedLinesData = payload;
-    }),
-    setRemovedLinesData: action((store, payload) => {
-        store.removedLinesData = payload;
-    }),
     setError: action((store, payload) => {
         store.error = payload;
     }),
@@ -48,11 +33,6 @@ const ActivityTimelineModel = {
         await api.getActivityTimeline(dto, chosenGroup)
             .then(data => {
                 actions.setData(data.activityTimeline)
-                actions.setTimeData(data.activityTimeline.map(item => Math.floor(item.time / 60 / 6) / 10))
-                actions.setLabelsData(data.activityTimeline.map(item => item.label))
-                actions.setUsersData(data.activityTimeline.map(item => item.users))
-                actions.setAddedLinesData(data.activityTimeline.map(item => item.linesAdded))
-                actions.setRemovedLinesData(data.activityTimeline.map(item => item.linesRemoved))
             })
             .catch(err => {
                 actions.setError(err)

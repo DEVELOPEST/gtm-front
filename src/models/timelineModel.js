@@ -13,15 +13,6 @@ const TimelineModel = {
     setData: action((store, payload) => {
         store.data = payload;
     }),
-    setTimeData: action((store, payload) => {
-        store.timeData = payload;
-    }),
-    setLabelsData: action((store, payload) => {
-        store.labelsData = payload;
-    }),
-    setUsersData: action((store, payload) => {
-        store.usersData = payload;
-    }),
     setError: action((store, payload) => {
         store.error = payload;
     }),
@@ -43,9 +34,6 @@ const TimelineModel = {
         await api.getTimeline(dto, chosenGroup)
             .then(data => {
                 actions.setData(data.timeline)
-                actions.setTimeData(data.timeline.map(item => Math.floor(item.time / 60 / 6) / 10))
-                actions.setLabelsData(data.timeline.map(item => formatDate(Date.parse(item.start), interval)))
-                actions.setUsersData(data.timeline.map(item => item.users))
             })
             .catch(err => {
                 actions.setError(err)
