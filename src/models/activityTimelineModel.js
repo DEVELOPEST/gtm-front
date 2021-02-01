@@ -23,6 +23,7 @@ const ActivityTimelineModel = {
         const { api } = injections;
         const {startDate, endDate, chosenInterval} = getStoreState().dashboardInputs;
         const {chosenGroup} = getStoreState().groups;
+        console.log(chosenGroup)
         let dto = {
             start: Math.floor(startDate.getTime() / 1000),
             end: Math.floor(endDate.getTime() / 1000),
@@ -30,7 +31,7 @@ const ActivityTimelineModel = {
             timezone: TALLINN_TIMEZONE
         }
         actions.setLoading(true)
-        await api.getActivityTimeline(dto, chosenGroup)
+        await api.getActivityTimeline({'dto': dto,'group': chosenGroup.name})
             .then(data => {
                 actions.setData(data.activityTimeline)
             })

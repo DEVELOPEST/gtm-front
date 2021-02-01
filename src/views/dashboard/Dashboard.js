@@ -30,11 +30,12 @@ const Dashboard = () => {
   }, [fetchGroups])
 
   useEffect(() => {
-    if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
+
+    if (chosenGroup !== '' && chosenInterval !== '' && startDate !== '') {
       fetchTimeline()
       fetchActivityTimeline()
     }
-  }, [groups])
+  }, [chosenGroup])
 
   useEffect(() => {
     if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
@@ -55,7 +56,7 @@ const Dashboard = () => {
   }
 
   const getGroupOptions = () => {
-    return groups.map(function(obj) {return {label: obj.name, value: obj.id}})
+    return groups.map(function(obj) {return {label: obj.name, value: obj.id, name: obj.name}})
   }
 
   return (
@@ -70,7 +71,7 @@ const Dashboard = () => {
                   loading && groups.length > 0 ? "loading" :
                     <SelectDropdown
                     options={getGroupOptions()}
-                    onChange={value => setChosenGroup(value)}
+                    onChange={value => setChosenGroup(value[0])}
                     searchable={false}
                     values={getGroupOptions().filter(option => option.label === chosenGroup.name)}
                     />

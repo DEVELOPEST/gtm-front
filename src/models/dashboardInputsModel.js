@@ -1,4 +1,4 @@
-import { action, thunk } from 'easy-peasy';
+import { action } from 'easy-peasy';
 
 const dashboardInputsModel = {
     startDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
@@ -9,11 +9,9 @@ const dashboardInputsModel = {
     loading: false,
     setStartDate: action((store, payload) => {
         store.startDate = payload;
-        console.log("startDate")
     }),
     setEndDate: action((store, payload) => {
         store.endDate = payload;
-        console.log("endDate")
     }),
     setChosenInterval: action((store, payload) => {
         store.chosenInterval = payload;

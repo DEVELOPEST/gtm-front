@@ -1,5 +1,4 @@
-import {action, thunk, useStoreState} from 'easy-peasy';
-import {formatDate} from '../utils/dateUtils'
+import {action, thunk} from 'easy-peasy';
 import {startOfDay} from 'date-fns';
 import {TALLINN_TIMEZONE} from "../constants";
 
@@ -23,7 +22,6 @@ const TimelineModel = {
         const { api } = injections;
         const {startDate, endDate, chosenInterval} = getStoreState().dashboardInputs;
         const {chosenGroup} = getStoreState().groups;
-
         let dto = {
             start: Math.floor(startOfDay(startDate).getTime() / 1000),
             end: Math.floor(startOfDay(endDate).getTime() / 1000),
@@ -31,7 +29,7 @@ const TimelineModel = {
             timezone: TALLINN_TIMEZONE
         }
         actions.setLoading(true)
-        await api.getTimeline(dto, chosenGroup)
+        await api.getTimeline({ "dto" : dto, 'group': chosenGroup.name})
             .then(data => {
                 actions.setData(data.timeline)
             })
