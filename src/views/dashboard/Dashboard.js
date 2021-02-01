@@ -13,36 +13,41 @@ import {
 import MainChart from '../charts/MainChart.js'
 import ExampleChart from '../charts/ExampleChart.js'
 import {useStoreActions, useStoreState} from "easy-peasy";
+import ActivityChart from "../charts/ActivityChart";
 
 const Dashboard = () => {
   const {groups, chosenGroup, loading} = useStoreState(state => state.groups)
   const {fetchGroups, setChosenGroup} = useStoreActions(actions => actions.groups)
 
-  const {intervals, chosenInterval} = useStoreState(state => state.intervals)
-  const {setChosenInterval} = useStoreActions(actions => actions.intervals)
+  const {startDate, endDate, intervals, chosenInterval} = useStoreState(state => state.dashboardInputs)
+  const {setChosenInterval, setStartDate, setEndDate} = useStoreActions(actions => actions.dashboardInputs)
 
-  const {startDate} = useStoreState(state => state.timeline)
-  const {fetchTimeline, setStartDate} = useStoreActions(actions => actions.timeline)
+  const {fetchTimeline} = useStoreActions(actions => actions.timeline)
+  const {fetchActivityTimeline} = useStoreActions(actions => actions.activityTimeline)
 
   useEffect(() => {
     fetchGroups()
   }, [fetchGroups])
 
   useEffect(() => {
-    if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
-      fetchTimeline(chosenInterval)
+
+    if (chosenGroup !== '' && chosenInterval !== '' && startDate !== '') {
+      fetchTimeline()
+      fetchActivityTimeline()
     }
-  }, [groups])
+  }, [chosenGroup])
 
   useEffect(() => {
     if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
-      fetchTimeline(chosenInterval)
+      fetchTimeline()
+      fetchActivityTimeline()
     }
   }, [chosenInterval])
 
   useEffect(() => {
     if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
-      fetchTimeline(chosenInterval)
+      fetchTimeline()
+      fetchActivityTimeline()
     }
   }, [startDate])
 
@@ -51,7 +56,7 @@ const Dashboard = () => {
   }
 
   const getGroupOptions = () => {
-    return groups.map(function(obj) {return {label: obj.name, value: obj.id}})
+    return groups.map(function(obj) {return {label: obj.name, value: obj.id, name: obj.name}})
   }
 
   return (
@@ -66,16 +71,16 @@ const Dashboard = () => {
                   loading && groups.length > 0 ? "loading" :
                     <SelectDropdown
                     options={getGroupOptions()}
-                    onChange={value => setChosenGroup(value)}
+                    onChange={value => setChosenGroup(value[0])}
                     searchable={false}
                     values={getGroupOptions().filter(option => option.label === chosenGroup.name)}
                     />
                 }
               </div>
             </CCol>
-            <CCol className="col-12 col-sm-12 col-md-4 col-lg-3">
+            <CCol className="col-12 col-sm-12 col-md-3 col-lg-3">
               <div className="form-group">
-                <label>Date:</label>
+                <label>Start date:</label>
                 <ReactDatePicker
                     className="w-100"
                     selected={startDate}
@@ -85,7 +90,17 @@ const Dashboard = () => {
             </CCol>
             <CCol className="col-12 col-sm-12 col-md-3 col-lg-3">
               <div className="form-group">
-                <label>Period:</label>
+                <label>End date:</label>
+                <ReactDatePicker
+                    className="w-100"
+                    selected={endDate}
+                    onChange={date => setEndDate(date)}
+                />
+              </div>
+            </CCol>
+            <CCol className="col-12 col-sm-12 col-md-3 col-lg-3">
+              <div className="form-group">
+                <label>Interval:</label>
                 <SelectDropdown
                     options={getIntervalOptions()}
                     onChange={value => setChosenInterval(value[0].value)}
@@ -95,8 +110,19 @@ const Dashboard = () => {
               </div>
             </CCol>
           </CRow>
-          <MainChart style={{height: '300px', marginTop: '40px'}}/>
+        </CCardBody>
+      </CCard>
+      <CCard>
+        <CCardBody>
+          {/*<MainChart style={{height: '300px', marginTop: '40px'}}/>*/}
+          <h3>Example Chart</h3>
           <ExampleChart />
+        </CCardBody>
+      </CCard>
+      <CCard>
+        <CCardBody>
+          <h3>Activity Chart</h3>
+          <ActivityChart />
         </CCardBody>
       </CCard>
 
