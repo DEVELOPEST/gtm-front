@@ -1,0 +1,8 @@
+[ver:1,total:1800,branch:feature/FRONT-28]
+src/views/charts/SubdirsChart.js:1450,1612378800:1330,1612465200:120,m
+src/constants.js:120,1612378800:120,m
+src/models/subdirsTimelineModel.js:95,1612378800:95,r
+src/views/dashboard/Dashboard.js:60,1612465200:60,m
+src/views/charts/ExampleChart.js:40,1612465200:40,m
+src/views/charts/ActivityChart.js:20,1612465200:20,m
+node_modules/recharts/types/component/Tooltip.d.ts:15,1612378800:15,r
