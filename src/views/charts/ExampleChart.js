@@ -1,7 +1,7 @@
 import {
     Area,
     Bar,
-    ComposedChart, ResponsiveContainer,
+    ComposedChart, ResponsiveContainer, Tooltip,
     XAxis,
     YAxis
 } from "recharts";
@@ -23,6 +23,7 @@ const ExampleChart = () => {
                             <stop offset="95%" stopColor="#b31414" stopOpacity={0.2}/>
                         </linearGradient>
                     </defs>
+                    <Tooltip />
                     <XAxis dataKey="label"/>
                     <YAxis yAxisId="left" tickCount={10} tickLine={false} axisLine={false} />
                     <YAxis yAxisId="right" orientation='right' tickCount={10} tickLine={false} axisLine={false} allowDecimals={false} />

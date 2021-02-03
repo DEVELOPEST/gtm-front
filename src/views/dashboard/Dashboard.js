@@ -10,10 +10,10 @@ import {
   CRow,
 } from '@coreui/react'
 
-import MainChart from '../charts/MainChart.js'
 import ExampleChart from '../charts/ExampleChart.js'
 import {useStoreActions, useStoreState} from "easy-peasy";
 import ActivityChart from "../charts/ActivityChart";
+import SubdirsChart from "../charts/SubdirsChart";
 
 const Dashboard = () => {
   const {groups, chosenGroup, loading} = useStoreState(state => state.groups)
@@ -23,6 +23,7 @@ const Dashboard = () => {
   const {setChosenInterval, setStartDate, setEndDate} = useStoreActions(actions => actions.dashboardInputs)
 
   const {fetchTimeline} = useStoreActions(actions => actions.timeline)
+  const {fetchSubdirsTimeline} = useStoreActions(actions => actions.subdirsTimeline)
   const {fetchActivityTimeline} = useStoreActions(actions => actions.activityTimeline)
 
   useEffect(() => {
@@ -32,22 +33,25 @@ const Dashboard = () => {
   useEffect(() => {
 
     if (chosenGroup !== '' && chosenInterval !== '' && startDate !== '') {
-      fetchTimeline()
-      fetchActivityTimeline()
+      fetchTimeline();
+      fetchActivityTimeline();
+      fetchSubdirsTimeline();
     }
   }, [chosenGroup])
 
   useEffect(() => {
     if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
-      fetchTimeline()
-      fetchActivityTimeline()
+      fetchTimeline();
+      fetchActivityTimeline();
+      fetchSubdirsTimeline();
     }
   }, [chosenInterval])
 
   useEffect(() => {
     if (groups.length !== 0 && chosenInterval !== '' && startDate !== '') {
-      fetchTimeline()
-      fetchActivityTimeline()
+      fetchTimeline();
+      fetchActivityTimeline();
+      fetchSubdirsTimeline();
     }
   }, [startDate])
 
@@ -72,7 +76,7 @@ const Dashboard = () => {
                     <SelectDropdown
                     options={getGroupOptions()}
                     onChange={value => setChosenGroup(value[0])}
-                    searchable={false}
+                    searchable={true}
                     values={getGroupOptions().filter(option => option.label === chosenGroup.name)}
                     />
                 }
@@ -114,7 +118,6 @@ const Dashboard = () => {
       </CCard>
       <CCard>
         <CCardBody>
-          {/*<MainChart style={{height: '300px', marginTop: '40px'}}/>*/}
           <h3>Example Chart</h3>
           <ExampleChart />
         </CCardBody>
@@ -125,8 +128,12 @@ const Dashboard = () => {
           <ActivityChart />
         </CCardBody>
       </CCard>
-
-
+      <CCard>
+        <CCardBody>
+          <h3>Subdirs Chart</h3>
+          <SubdirsChart />
+        </CCardBody>
+      </CCard>
     </>
   )
 }

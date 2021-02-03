@@ -10,3 +10,16 @@ export const LECTURER = 'LECTURER';
 export const ADMIN = 'ADMIN';
 
 export const TALLINN_TIMEZONE = 'Europe/Tallinn';
+
+export const GRAPH_COLORS = [
+    "#0066CC",
+    "#e07508",
+    "#17de17",
+    "#cd1d1d",
+    "#42A5F5",
+    "#e04411",
+    "#700f99",
+    "#006600",
+    "#a1117e",
+    "#0000CC"
+]
