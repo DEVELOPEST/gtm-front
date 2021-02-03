@@ -1,0 +1,5 @@
+[ver:1,total:1200,branch:feature/FRONT-28]
+src/constants.js:520,1612378800:520,m
+src/views/charts/SubdirsChart.js:500,1612357200:120,1612378800:380,m
+src/views/dashboard/Dashboard.js:160,1612357200:160,r
+node_modules/recharts/types/component/Tooltip.d.ts:20,1612357200:20,r
