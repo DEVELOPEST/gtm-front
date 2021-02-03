@@ -14,7 +14,6 @@ const SubdirsChart = () => {
     const {data, paths} = useStoreState(state => state.subdirsTimeline)
     const getPathData = (data, path) => {
         if (data.directories[path] == null) return 0;
-        //if (data.directories[path].time < 0.1) return null;
         return data.directories[path].time;
     };
     const getColor = (i) => {
@@ -28,21 +27,19 @@ const SubdirsChart = () => {
 
     // TODO: Move to some other file...
     const CustomTooltip = (props) => {
-        const {active, payload, external, label} = props;
+        const {active, payload} = props;
         if (active && payload != null) {
             const style = {
                 padding: 6,
                 backgroundColor: '#fff',
                 border: '1px solid #ccc',
             };
-            //console.log(payload)
             const currData = payload.filter((entry) => (entry?.value || 0) !== 0);
 
             return (
                 <div className="area-chart-tooltip" style={style}>
                     {
                         currData.map((entry) => {
-                            console.log(entry)
                             return <p style={{color: entry?.color}}>{entry?.name + ' : '}<em>{entry?.value}</em></p>
                         })
                     }
@@ -67,12 +64,12 @@ const SubdirsChart = () => {
                             name={path}
                             dataKey={(e) => getPathData(e, path)}
                             fill={getColor(i)}
-                            stroke={getColor(i)}/>)
+                            stroke={getColor(i)}
+                            fillOpacity="0.9"/>)
                     })
                 }
             </AreaChart>
         </ResponsiveContainer>
-
     )
 }
 

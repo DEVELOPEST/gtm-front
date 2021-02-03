@@ -10,7 +10,7 @@ import {
   CRow,
 } from '@coreui/react'
 
-import ExampleChart from '../charts/ExampleChart.js'
+import TimelineChart from '../charts/TimelineChart.js'
 import {useStoreActions, useStoreState} from "easy-peasy";
 import ActivityChart from "../charts/ActivityChart";
 import SubdirsChart from "../charts/SubdirsChart";
@@ -76,7 +76,7 @@ const Dashboard = () => {
                     <SelectDropdown
                     options={getGroupOptions()}
                     onChange={value => setChosenGroup(value[0])}
-                    searchable={true}
+                    searchable={false}
                     values={getGroupOptions().filter(option => option.label === chosenGroup.name)}
                     />
                 }
@@ -118,8 +118,8 @@ const Dashboard = () => {
       </CCard>
       <CCard>
         <CCardBody>
-          <h3>Example Chart</h3>
-          <ExampleChart />
+          <h3>Time Chart</h3>
+          <TimelineChart />
         </CCardBody>
       </CCard>
       <CCard>

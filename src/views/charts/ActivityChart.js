@@ -1,7 +1,7 @@
 import {
     Area,
-    Bar,
-    ComposedChart, ResponsiveContainer,
+    ComposedChart,
+    ResponsiveContainer,
     Tooltip,
     XAxis,
     YAxis

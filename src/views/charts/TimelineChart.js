@@ -1,14 +1,16 @@
 import {
     Area,
     Bar,
-    ComposedChart, ResponsiveContainer, Tooltip,
+    ComposedChart,
+    ResponsiveContainer,
+    Tooltip,
     XAxis,
     YAxis
 } from "recharts";
 import {useStoreState} from "easy-peasy";
 import React from "react";
 
-const ExampleChart = () => {
+const TimelineChart = () => {
     const {data} = useStoreState(state => state.timeline)
     return (
             <ResponsiveContainer width="100%" height={400} >
@@ -35,4 +37,4 @@ const ExampleChart = () => {
     )
 }
 
-export default ExampleChart;
+export default TimelineChart;
