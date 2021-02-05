@@ -3,11 +3,6 @@ import {TALLINN_TIMEZONE} from "../constants";
 
 const ActivityTimelineModel = {
     data: [],
-    timeData: [],
-    labelsData: [],
-    usersData: [],
-    addedLinesData: [],
-    removedLinesData: [],
     error: '',
     loading: false,
     setData: action((store, payload) => {
