@@ -30,7 +30,7 @@ const User = ({match}) => {
         <CRow>
         {userLoading
             ? <CustomLoader />
-            :
+            : (
                 <CCol lg={6}>
                     <CCard>
                         <CCardHeader>
@@ -38,7 +38,7 @@ const User = ({match}) => {
                         </CCardHeader>
                         <CCardBody>
                             <table className="table table-striped table-hover">
-                                {user ?
+                                {user &&
                                     <tbody>
                                         <tr>
                                             <td>email:</td>
@@ -60,12 +60,12 @@ const User = ({match}) => {
                                             </td>
                                         </tr>
                                     </tbody>
-                                    : ''
                                 }
                             </table>
                         </CCardBody>
                     </CCard>
                 </CCol>
+            )
 
         }
             {userLoading
