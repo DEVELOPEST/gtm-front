@@ -70,7 +70,7 @@ const User = ({match}) => {
         }
             {userLoading
                 ? <CustomLoader />
-                : user && user.roles && user.roles.includes('LECTURER') ?
+                : (user && user.roles && user.roles.includes('LECTURER') &&
                     <CCol lg={6}>
                         <CCard>
                             <CCardHeader>
@@ -78,7 +78,7 @@ const User = ({match}) => {
                             </CCardHeader>
                             <CCardBody>
                                 <table className="table table-striped table-hover">
-                                    {user ?
+                                    {user &&
                                         <tbody>
                                         <tr>
                                             <td>email:</td>
@@ -89,14 +89,12 @@ const User = ({match}) => {
                                             <td><strong>{user.roles && user.roles.join(", ")}</strong></td>
                                         </tr>
                                         </tbody>
-
-                                        : ''
                                     }
                                 </table>
                             </CCardBody>
                         </CCard>
                     </CCol>
-                    : ''
+                )
             }
         </CRow>
 
