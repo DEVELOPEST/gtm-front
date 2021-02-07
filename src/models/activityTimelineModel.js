@@ -1,8 +1,7 @@
-import {action, thunk} from 'easy-peasy';
-import {startOfDay} from 'date-fns';
+import { action, thunk } from 'easy-peasy';
 import {TALLINN_TIMEZONE} from "../constants";
 
-const TimelineModel = {
+const ActivityTimelineModel = {
     data: [],
     error: '',
     loading: false,
@@ -15,20 +14,21 @@ const TimelineModel = {
     setLoading: action((store, payload) => {
         store.loading = payload;
     }),
-    fetchTimeline: thunk(async (actions, interval, {injections, getStoreState}) => {
+    fetchActivityTimeline: thunk(async (actions, payload, { injections, getStoreState }) => {
         const { api } = injections;
         const {startDate, endDate, chosenInterval} = getStoreState().dashboardInputs;
         const {chosenGroup} = getStoreState().groups;
+        console.log(chosenGroup)
         let dto = {
-            start: Math.floor(startOfDay(startDate).getTime() / 1000),
-            end: Math.floor(startOfDay(endDate).getTime() / 1000),
+            start: Math.floor(startDate.getTime() / 1000),
+            end: Math.floor(endDate.getTime() / 1000),
             interval: chosenInterval.toUpperCase(),
             timezone: TALLINN_TIMEZONE
         }
         actions.setLoading(true)
-        await api.getTimeline({ "dto" : dto, 'group': chosenGroup.name})
+        await api.getActivityTimeline({'dto': dto,'group': chosenGroup.name})
             .then(data => {
-                actions.setData(data.timeline)
+                actions.setData(data.activityTimeline)
             })
             .catch(err => {
                 actions.setError(err)
@@ -37,4 +37,4 @@ const TimelineModel = {
     }),
 };
 
-export default TimelineModel;
+export default ActivityTimelineModel;
