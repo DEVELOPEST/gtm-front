@@ -1,0 +1,15 @@
+[ver:1,total:5640,branch:feature/FRONT-33]
+deploy/nginx/nginx.conf:2500,1612713600:580,1612717200:1020,1612720800:900,m
+Dockerfile:1035,1612713600:1035,m
+src/constants.js:570,1612710000:120,1612713600:210,1612717200:240,m
+.eslintcache:390,1612713600:390,r
+src/api/index.js:270,1612710000:60,1612713600:210,r
+.github/workflows/deploy.yaml:216,1612720800:216,m
+.dockerignore:165,1612713600:165,m
+src/views/dashboard/Dashboard.js:150,1612548000:150,r
+src/App.js:120,1612713600:120,r
+.github/workflows/build.yaml:84,1612720800:84,m
+.gitignore:60,1612710000:60,m
+node_modules/axios/index.d.ts:30,1612713600:30,r
+src/views/charts/TimelineChart.js:30,1612548000:30,r
+src/routes/routes.js:20,1612713600:20,r
