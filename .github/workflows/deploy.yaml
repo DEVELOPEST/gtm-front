@@ -31,7 +31,7 @@ jobs:
             --name ${{ env.CONTAINER_NAME }}     \
             --restart=always                     \
             -p 80:80                             \
-            -d ghcr.io/developest/gtm-api:latest
+            -d ghcr.io/developest/gtm-front:latest
           sudo docker ps
   clean-up:
     name: Clean up
