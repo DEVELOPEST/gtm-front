@@ -26,6 +26,15 @@ const Users = () => {
     const currentPage = Number(queryPage && queryPage[1] ? queryPage[1] : 1)
     const [page, setPage] = useState(currentPage > maxPage ? maxPage : currentPage)
 
+    const getBadge = status => {
+        switch (status) {
+            case 'LECTURER': return 'success'
+            case 'USER': return 'secondary'
+            case 'ADMIN': return 'danger'
+            default: return 'primary'
+        }
+    }
+
     const pageChange = newPage => {
         if (newPage > maxPage) {
             newPage = maxPage
@@ -58,22 +67,25 @@ const Users = () => {
                         <CDataTable
                             items={users}
                             fields={[
-                                { key: 'email', _classes: 'font-weight-bold' },
-                                'roles',
-                                ''
+                                { key: 'email', _classes: 'font-weight-bold w-50' },
+                                { key: 'roles', _classes: 'font-weight-bold w-50' },
                             ]}
                             hover
                             striped
                             itemsPerPage={itemsPerPage}
                             activePage={page}
+                            clickableRows
+                            onRowClick={(item) => history.push(`/users/${item.id}`)}
                             scopedSlots = {{
-                                '':
+                                'roles':
                                     (item)=>(
                                         <td>
-                                            {item.roles.includes('LECTURER') ? '' :
-                                                <button onClick={() => handleClick(item.id)} className="btn btn-info float-right" color="info">Add
-                                                    Lecturer role</button>
-                                            }
+                                            {item.roles.map((value) => {
+                                                return <CBadge className='mr-2' color={getBadge(value)}>
+                                                    {value}
+                                                </CBadge>
+                                            })}
+
                                         </td>
                                     )
                             }}

@@ -20,6 +20,17 @@ const rolesModel = {
             })
         actions.setLoading(false)
     }),
+    removeRole: thunk(async (actions, userId, { injections }) => {
+        const { api } = injections;
+
+        actions.setLoading(true)
+        await api.removeRole({"user": userId, role: 2})
+            .then(() => {})
+            .catch(err => {
+                actions.setError(err)
+            })
+        actions.setLoading(false)
+    }),
 };
 
 export default rolesModel;
