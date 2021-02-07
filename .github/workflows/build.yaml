@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - feature/FRONT-33
 jobs:
   build:
     runs-on: ubuntu-latest
