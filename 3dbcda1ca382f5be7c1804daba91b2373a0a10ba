@@ -1,0 +1,15 @@
+[ver:1,total:9240,branch:feature/FRONT-29]
+src/views/users/GroupAccess.js:6282,1612720800:507,1612724400:730,1612728000:1790,1612731600:2235,1612735200:1020,m
+src/models/groupAccessModel.js:918,1612720800:91,1612724400:30,1612728000:65,1612731600:470,1612735200:262,m
+src/api/index.js:778,1612720800:225,1612731600:235,1612735200:318,m
+src/views/users/User.js:354,1612720800:156,1612724400:8,1612728000:110,1612735200:80,m
+src/models/groupAccessModel.js:345,1612720800:345,r
+src/views/profile/ChangePassword.js:270,1612706400:270,r
+src/views/dashboard/Dashboard.js:81,1612706400:30,1612720800:51,r
+src/views/users/Users.js:75,1612720800:75,r
+src/models/index.js:40,1612720800:40,m
+.gtm/1612723059.event:40,1612720800:40,d
+src/routes/adminRoutes.js:15,1612720800:15,r
+src/models/rolesModel.js:15,1612720800:15,r
+node_modules/@coreui/react/src/index.d.ts:15,1612728000:15,r
+src/views/charts/SubdirsChart.js:12,1612724400:12,r
