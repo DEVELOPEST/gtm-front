@@ -13,9 +13,11 @@ import {
   CLink
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import {hasAnyRole} from '../Auth';
 
 // routes config
-import routes from '../routes'
+import routes from '../routes/routes'
+import TheHeaderSettingsDropdown from "./TheHeaderSettingsDropdown";
 
 const TheHeader = () => {
   const {sidebarShow} = useStoreState(state => state.sidebar)
@@ -51,10 +53,17 @@ const TheHeader = () => {
         <CHeaderNavItem className="px-3" >
           <CHeaderNavLink to="/dashboard">Dashboard</CHeaderNavLink>
         </CHeaderNavItem>
+          {hasAnyRole(['ADMIN'])
+              ? <CHeaderNavItem  className="px-3">
+                  <CHeaderNavLink to="/users">Users</CHeaderNavLink>
+              </CHeaderNavItem>
+              : ""
+          }
+
       </CHeaderNav>
 
       <CHeaderNav className="px-3">
-
+          <TheHeaderSettingsDropdown/>
       </CHeaderNav>
 
       <CSubheader className="px-3 justify-content-between">
@@ -62,6 +71,9 @@ const TheHeader = () => {
           className="border-0 c-subheader-nav m-0 px-0 px-md-3"
           routes={routes}
         />
+          <div className="d-md-down-none mfe-2 c-subheader-nav">
+
+          </div>
       </CSubheader>
     </CHeader>
   )

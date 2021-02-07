@@ -1,0 +1,46 @@
+name: Deploy
+on:
+  workflow_run:
+    workflows: ["Build"]
+    branches: ["master"]
+    types:
+      - completed
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: self-hosted
+    env:
+      CONTAINER_NAME: 'gtm-front'
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GH_TOKEN }}
+      - name: Docker pull
+        run: |
+          sudo docker pull ghcr.io/developest/gtm-front:latest
+      - name: Stop old container
+        run: |
+          sudo docker stop ${{ env.CONTAINER_NAME }} || true
+          sudo docker rm ${{ env.CONTAINER_NAME }} || true
+      - name: Run new container
+        run: |
+          sudo docker run                        \
+            --name ${{ env.CONTAINER_NAME }}     \
+            --restart=always                     \
+            -p 80:80                             \
+            -d ghcr.io/developest/gtm-api:latest
+          sudo docker ps
+  clean-up:
+    name: Clean up
+    needs: ['Deploy']
+    runs-on: self-hosted
+    steps:
+      - name: Docker prune
+        run: |
+          sudo docker system prune -af
+      - name: Show running containers
+        run: |
+          sudo docker ps
