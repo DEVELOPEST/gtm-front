@@ -1,0 +1,4 @@
+[ver:1,total:300,branch:feature/FRONT-32]
+src/views/profile/ChangePassword.js:162,1612706400:162,r
+src/models/index.js:120,1612706400:120,m
+.gitignore:18,1612706400:18,r
