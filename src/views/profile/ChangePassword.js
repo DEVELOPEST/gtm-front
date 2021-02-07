@@ -8,7 +8,7 @@ import {
     CCol,
     CFormGroup, CInput,
     CInputGroup, CInputGroupAppend,
-    CInputGroupText,
+    CInputGroupText, CLabel,
     CRow
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
@@ -75,32 +75,35 @@ const ChangePassword = () => {
                         </CAlert>
                         }
                             <CFormGroup>
+                                <CLabel >Old Password</CLabel>
                                 <CInputGroup>
                                     <CInput
                                         value={oldPassword}
                                         onChange={event => setOldPassword(event.target.value)}
                                         valid={getOldPasswordValid()}
                                         type="password"
-                                        placeholder="Old password" />
+                                        placeholder="Insert old password" />
                                     <CInputGroupAppend>
                                         <CInputGroupText><CIcon name="cil-asterisk" /></CInputGroupText>
                                     </CInputGroupAppend>
                                 </CInputGroup>
                             </CFormGroup>
                             <CFormGroup>
+                                <CLabel >New Password</CLabel>
                                 <CInputGroup>
                                     <CInput
                                         value={newPassword}
                                         onChange={event => setNewPassword(event.target.value)}
                                         valid={getNewPasswordValid()}
                                         type="password"
-                                        placeholder="New Password" />
+                                        placeholder="Insert new password" />
                                     <CInputGroupAppend>
                                         <CInputGroupText><CIcon name="cil-asterisk" /></CInputGroupText>
                                     </CInputGroupAppend>
                                 </CInputGroup>
                             </CFormGroup>
                             <CFormGroup>
+                                <CLabel >Repeat New Password</CLabel>
                                 <CInputGroup>
                                     <CInput
                                         value={newPasswordRepeat}
@@ -108,7 +111,7 @@ const ChangePassword = () => {
                                         invalid={getNewPasswordRepeatValid(false)}
                                         valid={getNewPasswordRepeatValid(true)}
                                         type="password"
-                                        placeholder="Repeat New Password" />
+                                        placeholder="Repeat new password" />
                                     <CInputGroupAppend>
                                         <CInputGroupText><CIcon name="cil-asterisk" /></CInputGroupText>
                                     </CInputGroupAppend>
