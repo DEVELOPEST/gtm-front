@@ -1,0 +1,8 @@
+[ver:1,total:2520,branch:feature/FRONT-34]
+deploy/nginx/nginx.conf:1380,1612789200:570,1612792800:330,1612807200:480,m
+src/views/charts/TimelineChart.js:470,1612807200:470,m
+src/constants.js:180,1612789200:30,1612792800:150,m
+.github/workflows/deploy.yaml:180,1612720800:180,r
+.github/workflows/remove-old-artifacts.yaml:150,1612807200:150,m
+node_modules/recharts/types/cartesian/Bar.d.ts:140,1612807200:140,r
+node_modules/recharts/types/cartesian/YAxis.d.ts:20,1612807200:20,r
