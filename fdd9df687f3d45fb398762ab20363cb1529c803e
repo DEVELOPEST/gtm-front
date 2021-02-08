@@ -1,0 +1,4 @@
+[ver:1,total:60,branch:feature/FRONT-29]
+src/models/groupAccessModel.js:20,1612782000:20,m
+src/views/users/User.js:20,1612782000:20,r
+src/models/rolesModel.js:20,1612782000:20,r
