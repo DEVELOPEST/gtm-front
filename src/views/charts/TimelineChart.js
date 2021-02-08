@@ -26,11 +26,11 @@ const TimelineChart = () => {
                         </linearGradient>
                     </defs>
                     <Tooltip />
-                    <XAxis dataKey="label"/>
+                    <XAxis dataKey="label" padding={{ left: 26, right: 26 }}/>
                     <YAxis yAxisId="left" tickCount={10} tickLine={false} axisLine={false} />
                     <YAxis yAxisId="right" orientation='right' tickCount={10} tickLine={false} axisLine={false} allowDecimals={false} />
                     <Area yAxisId="left" type="monotoneX" dataKey="time" stroke="#0f7dfa" fill="url(#colorUvBlue)" />
-                    <Bar yAxisId="right" type="monotone" dataKey="users" stroke="#f04037" fill="url(#colorUvRed)" />
+                    <Bar yAxisId="right" dataKey="users" stroke="#f04037" fill="url(#colorUvRed)" />
                 </ComposedChart>
             </ResponsiveContainer>
 
