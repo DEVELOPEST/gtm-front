@@ -23,7 +23,6 @@ const groupAccessModel = {
         actions.setLoading(true)
         await api.fetchUserAccessibleGroups(userId)
             .then(data => {
-                actions.setAccessibleGroups([]);
                 actions.setAccessibleGroups(data.groups);
             })
             .catch(err => {
@@ -37,7 +36,6 @@ const groupAccessModel = {
         actions.setLoading(true)
         await api.fetchUserNotAccessibleGroups(userId)
             .then(data => {
-                actions.setNotAccessibleGroups([]);
                 actions.setNotAccessibleGroups(data.groups);
             })
             .catch(err => {
