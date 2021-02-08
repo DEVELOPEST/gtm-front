@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import { CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react'
 import {useStoreActions, useStoreState} from "easy-peasy";
 import CustomLoader from "../../reusable/CustomLoader";
+import GroupAccess from "./GroupAccess";
 
 
 const User = ({match}) => {
@@ -27,11 +28,11 @@ const User = ({match}) => {
     }
 
     return (
-        <CRow>
+        <CRow className='justify-content-center'>
         {userLoading
             ? <CustomLoader />
             : (
-                <CCol lg={6}>
+                <CCol sm={10}>
                     <CCard>
                         <CCardHeader>
                             User id: {match.params.id}
@@ -70,31 +71,7 @@ const User = ({match}) => {
         }
             {userLoading
                 ? <CustomLoader />
-                : (user && user.roles && user.roles.includes('LECTURER') &&
-                    <CCol lg={6}>
-                        <CCard>
-                            <CCardHeader>
-                                User accesses:
-                            </CCardHeader>
-                            <CCardBody>
-                                <table className="table table-striped table-hover">
-                                    {user &&
-                                        <tbody>
-                                        <tr>
-                                            <td>email:</td>
-                                            <td><strong>{user.email}</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Roles:</td>
-                                            <td><strong>{user.roles && user.roles.join(", ")}</strong></td>
-                                        </tr>
-                                        </tbody>
-                                    }
-                                </table>
-                            </CCardBody>
-                        </CCard>
-                    </CCol>
-                )
+                : user && user.roles && user.roles.includes('LECTURER') && <GroupAccess userId={match.params.id} />
             }
         </CRow>
 

@@ -23,6 +23,13 @@ api.getSubdirsTimeline = params => api.fetch(
 
 // Groups
 api.getGroups = () => api.fetch({url: `/api/groups`, method: 'GET'});
+api.fetchUserAccessibleGroups = userId => api.fetch({url: `/api/groups/accessible/user/${userId}`, method: 'GET'});
+api.fetchUserNotAccessibleGroups = userId => api.fetch({url: `/api/groups/not-accessible/user/${userId}`, method: 'GET'});
+
+// Groups rights add/remove
+api.removeRights = params => api.fetch({url: `/api/group_accesses`, data: params, method: 'DELETE'});
+api.addRights = params => api.fetch({url: `/api/group_accesses`, data: params, method: 'POST'});
+api.toggleRecursiveRights = params => api.fetch({url: `/api/group_accesses/toggle`, data: params, method: 'PUT'});
 
 // Users
 api.getUsers = () => api.fetch({url: `/api/users`, method: 'GET'});
@@ -37,5 +44,6 @@ api.login = params => api.fetch({url: `/api/auth/login`, data: params, method: '
 api.register = params => api.fetch({url: `/api/auth/register`, data: params, method: 'POST'});
 api.fetchToken = () => api.fetch({url: `/api/auth/token`, method: 'GET'});
 api.changePassword = params => api.fetch({url: `/api/auth/password`, data: params, method: 'PUT'});
+
 
 export default api;
