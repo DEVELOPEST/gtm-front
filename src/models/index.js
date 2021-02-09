@@ -9,6 +9,7 @@ import userModel from './userModel';
 import rolesModel from './rolesModel';
 import passwordChangeModel from './passwordChangeModel';
 import dashboardInputsModel from './dashboardInputsModel';
+import groupAccessModel from './groupAccessModel';
 
 const storeModel = {
     sidebar: sidebarModel,
@@ -22,6 +23,7 @@ const storeModel = {
     roles: rolesModel,
     passwordChange: passwordChangeModel,
     dashboardInputs: dashboardInputsModel,
+    groupAccess: groupAccessModel,
 }
 
 export default storeModel;
