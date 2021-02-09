@@ -1,0 +1,8 @@
+[ver:1,total:1800,branch:feature/FRONT-34]
+public/index.html:480,1612875600:480,m
+deploy/nginx/nginx.conf:360,1612854000:180,1612875600:180,m
+public/manifest.json:330,1612875600:330,m
+package.json:180,1612875600:180,m
+.github/workflows/remove-old-artifacts.yaml:180,1612810800:180,r
+public/logo.svg:150,1612875600:150,m
+src/views/charts/TimelineChart.js:120,1612875600:120,r
