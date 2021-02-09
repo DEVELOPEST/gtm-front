@@ -1,6 +1,7 @@
 {
   "name": "testapp",
   "version": "0.1.0",
+  "homepage": "/services/gtm/front/",
   "private": true,
   "dependencies": {
     "@coreui/chartjs": "^2.0.0",
