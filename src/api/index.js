@@ -20,6 +20,10 @@ api.getActivityTimeline = params => api.fetch(
 api.getSubdirsTimeline = params => api.fetch(
     {url: `/api/${params.group}/subdirs-timeline?start=${params.dto.start}&end=${params.dto.end}&interval=${params.dto.interval}&timezone=${params.dto.timezone}&depth=${params.dto.depth}`, method: 'GET'});
 
+// Leaderboards
+api.getGroupStats = params => api.fetch(
+    {url: `/api/groups/${params.group}/stats?start=${params.dto.start}&end=${params.dto.end}&depth=${params.dto.depth}`, method: 'GET'});
+
 
 // Groups
 api.getGroups = () => api.fetch({url: `/api/groups`, method: 'GET'});

@@ -11,6 +11,12 @@ const _nav =  [
   {
     _tag: 'CSidebarNavDivider',
     className: 'm-2'
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Leaderboard',
+    to: '/leaderboard',
+    // icon: <CIcon name="cil-chart" customClasses="c-sidebar-nav-icon"/>,
   }
 ]
 

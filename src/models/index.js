@@ -10,12 +10,14 @@ import rolesModel from './rolesModel';
 import passwordChangeModel from './passwordChangeModel';
 import dashboardInputsModel from './dashboardInputsModel';
 import groupAccessModel from './groupAccessModel';
+import leaderboardModel from './leaderboardModel';
 
 const storeModel = {
     sidebar: sidebarModel,
     timeline: timelineModel,
     activityTimeline: activityTimelineModel,
     subdirsTimeline: subdirsTimelineModel,
+    leaderboard: leaderboardModel,
     groups: groupsModel,
     auth: authModel,
     users: usersModel,
