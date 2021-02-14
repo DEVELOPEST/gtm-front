@@ -1,16 +1,12 @@
 import {CCard, CCardBody, CCardHeader} from '@coreui/react';
 import UsersLeaderboard from './UsersLeaderboard';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useStoreActions} from 'easy-peasy';
 import FilesLeaderboard from './FilesLeaderboard';
 import {GroupInputsContainer} from '../../reusable';
 
 const Leaderboard = () => {
-    const {fetchGroupStats} = useStoreActions(actions => actions.leaderboard)
-
-    // useEffect(() => {
-    //     fetchGroupStats();
-    // }, [])
+    const {fetchGroupStats} = useStoreActions((actions) => actions.leaderboard);
 
     return <>
         <GroupInputsContainer onInputChanged={() => fetchGroupStats()}/>

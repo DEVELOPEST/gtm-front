@@ -38,6 +38,7 @@ const SubDirsChart = () => {
 
             return (
                 <div className="area-chart-tooltip" style={style}>
+                    <p>{dateFormatter(currData[0]?.payload?.start)}</p>
                     {
                         currData.map((entry) => {
                             return <p style={{color: entry?.color}}>{entry?.name + ' : '}<em>{entry?.value}</em></p>

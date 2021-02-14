@@ -1,3 +1,5 @@
+import "react-datepicker/dist/react-datepicker.css";
+
 import {CCard, CCardBody, CCol, CRow} from '@coreui/react';
 import SelectDropdown from 'react-dropdown-select';
 import ReactDatePicker from 'react-datepicker';
@@ -54,9 +56,9 @@ const GroupInputsContainer = (onInputChanged) => {
                                 loading && groups.length > 0 ? "loading" :
                                     <SelectDropdown
                                         options={getGroupOptions()}
-                                        onChange={value => setChosenGroup(value[0])}
+                                        onChange={(value) => setChosenGroup(value[0])}
                                         searchable={false}
-                                        values={getGroupOptions().filter(option => option.label === chosenGroup.name)}
+                                        values={getGroupOptions().filter((option) => option.name === chosenGroup.name)}
                                     />
                             }
                         </div>

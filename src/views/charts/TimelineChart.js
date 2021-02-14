@@ -31,7 +31,7 @@ const TimelineChart = () => {
                             <stop offset="95%" stopColor="#b31414" stopOpacity={0.2}/>
                         </linearGradient>
                     </defs>
-                    <Tooltip />
+                    <Tooltip labelFormatter={(t) => dateFormatter(t) }/>
                     <XAxis padding={{ left: 26, right: 26 }} dataKey="start" tickFormatter={dateFormatter}/>
                     <YAxis yAxisId="left" tickCount={10} tickLine={false} axisLine={false} />
                     <YAxis yAxisId="right" orientation='right' tickCount={10} tickLine={false} axisLine={false} allowDecimals={false} />
