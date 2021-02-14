@@ -23,16 +23,15 @@ const leaderboardModel = {
     const {startDate, endDate} = getStoreState().dashboardInputs;
     const {chosenGroup} = getStoreState().groups;
     let dto = {
-        start: 0, // Math.floor(startOfDay(startDate).getTime() / 1000),
+        start: Math.floor(startOfDay(startDate).getTime() / 1000),
         end: Math.floor(startOfDay(endDate).getTime() / 1000),
         depth: 2,
     }
     actions.setLoading(true)
-    await api.getGroupStats({ "dto" : dto, 'group': 'iti0102-2020'}) //chosenGroup.name})
+    await api.getGroupStats({ "dto" : dto, 'group': chosenGroup.name})
         .then(data => {
             actions.setUsers(data.users);
             actions.setFiles(data.files);
-            console.log(data.users)
         })
         .catch(err => {
             actions.setError(err)

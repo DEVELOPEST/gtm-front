@@ -17,7 +17,7 @@ api.getTimeline = params => api.fetch(
     {url: `/api/${params.group}/timeline?start=${params.dto.start}&end=${params.dto.end}&interval=${params.dto.interval}&timezone=${params.dto.timezone}`, method: 'GET'});
 api.getActivityTimeline = params => api.fetch(
     {url: `/api/${params.group}/activity?start=${params.dto.start}&end=${params.dto.end}&interval=${params.dto.interval}&timezone=${params.dto.timezone}`, method: 'GET'});
-api.getSubdirsTimeline = params => api.fetch(
+api.getSubDirsTimeline = params => api.fetch(
     {url: `/api/${params.group}/subdirs-timeline?start=${params.dto.start}&end=${params.dto.end}&interval=${params.dto.interval}&timezone=${params.dto.timezone}&depth=${params.dto.depth}`, method: 'GET'});
 
 // Leaderboards

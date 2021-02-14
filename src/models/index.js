@@ -2,7 +2,7 @@ import sidebarModel from './sidebarModel';
 import timelineModel from './timelineModel';
 import groupsModel from './groupsModel';
 import activityTimelineModel from './activityTimelineModel'
-import subdirsTimelineModel from './subdirsTimelineModel'
+import subDirsTimelineModel from './subDirsTimelineModel'
 import authModel from './authModel';
 import usersModel from './usersModel';
 import userModel from './userModel';
@@ -16,7 +16,7 @@ const storeModel = {
     sidebar: sidebarModel,
     timeline: timelineModel,
     activityTimeline: activityTimelineModel,
-    subdirsTimeline: subdirsTimelineModel,
+    subDirsTimeline: subDirsTimelineModel,
     leaderboard: leaderboardModel,
     groups: groupsModel,
     auth: authModel,

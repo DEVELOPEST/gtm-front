@@ -10,8 +10,8 @@ import {useStoreState} from "easy-peasy";
 import React from "react";
 import {GRAPH_COLORS} from "../../constants";
 
-const SubdirsChart = () => {
-    const {data, paths} = useStoreState(state => state.subdirsTimeline)
+const SubDirsChart = () => {
+    const {data, paths} = useStoreState(state => state.subDirsTimeline)
     const getPathData = (data, path) => {
         if (data.directories[path] == null) return 0;
         return data.directories[path].time;
@@ -73,4 +73,4 @@ const SubdirsChart = () => {
     )
 }
 
-export default SubdirsChart;
+export default SubDirsChart;

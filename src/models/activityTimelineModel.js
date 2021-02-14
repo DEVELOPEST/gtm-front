@@ -18,7 +18,6 @@ const ActivityTimelineModel = {
         const { api } = injections;
         const {startDate, endDate, chosenInterval} = getStoreState().dashboardInputs;
         const {chosenGroup} = getStoreState().groups;
-        console.log(chosenGroup)
         let dto = {
             start: Math.floor(startDate.getTime() / 1000),
             end: Math.floor(endDate.getTime() / 1000),

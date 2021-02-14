@@ -3,15 +3,17 @@ import UsersLeaderboard from './UsersLeaderboard';
 import React, {useEffect} from 'react';
 import {useStoreActions} from 'easy-peasy';
 import FilesLeaderboard from './FilesLeaderboard';
+import {GroupInputsContainer} from '../../reusable';
 
 const Leaderboard = () => {
     const {fetchGroupStats} = useStoreActions(actions => actions.leaderboard)
 
-    useEffect(() => {
-        fetchGroupStats();
-    }, [])
+    // useEffect(() => {
+    //     fetchGroupStats();
+    // }, [])
 
     return <>
+        <GroupInputsContainer onInputChanged={() => fetchGroupStats()}/>
         <CCard>
             <CCardHeader>
                 <h3>Users</h3>
