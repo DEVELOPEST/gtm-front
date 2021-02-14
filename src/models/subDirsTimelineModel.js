@@ -2,7 +2,7 @@ import {action, thunk} from 'easy-peasy';
 import {startOfDay} from 'date-fns';
 import {TALLINN_TIMEZONE} from "../constants";
 
-const SubdirsTimelineModel = {
+const SubDirsTimelineModel = {
     data: [],
     paths: [],
     error: '',
@@ -20,11 +20,11 @@ const SubdirsTimelineModel = {
     setLoading: action((store, payload) => {
         store.loading = payload;
     }),
-    fetchSubdirsTimeline: thunk(async (actions, interval, {injections, getStoreState}) => {
+    fetchSubDirsTimeline: thunk(async (actions, interval, {injections, getStoreState}) => {
         const { api } = injections;
         const {startDate, endDate, chosenInterval} = getStoreState().dashboardInputs;
         const {chosenGroup} = getStoreState().groups;
-        const {depth} = getStoreState().subdirsTimeline;
+        const {depth} = getStoreState().subDirsTimeline;
         let dto = {
             start: Math.floor(startOfDay(startDate).getTime() / 1000),
             end: Math.floor(startOfDay(endDate).getTime() / 1000),
@@ -33,7 +33,7 @@ const SubdirsTimelineModel = {
             depth: depth
         }
         actions.setLoading(true)
-        await api.getSubdirsTimeline({ "dto" : dto, 'group': chosenGroup.name})
+        await api.getSubDirsTimeline({ "dto" : dto, 'group': chosenGroup.name})
             .then(data => {
                 actions.setData(data.data);
                 actions.setPaths(data.paths);
@@ -45,4 +45,4 @@ const SubdirsTimelineModel = {
     }),
 };
 
-export default SubdirsTimelineModel;
+export default SubDirsTimelineModel;
