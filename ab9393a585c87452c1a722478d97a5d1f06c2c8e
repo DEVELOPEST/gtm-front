@@ -1,0 +1,15 @@
+[ver:1,total:3540,branch:feature/FRONT-36]
+src/reusable/GroupInputsContainer.js:1077,1613307600:753,1613311200:324,m
+src/views/charts/TimelineChart.js:600,1613307600:600,m
+src/views/charts/SubDirsChart.js:450,1613307600:450,m
+src/views/leaderboard/UsersLeaderboard.js:344,1613311200:344,m
+src/models/groupsModel.js:258,1613307600:258,m
+src/views/leaderboard/FilesLeaderboard.js:247,1613311200:247,m
+src/models/index.js:240,1613307600:240,r
+src/utils/badgeUtils.js:93,1613311200:93,m
+src/views/leaderboard/Leaderboard.js:90,1613307600:90,m
+src/store/store.js:60,1613307600:60,r
+node_modules/recharts/src/cartesian/Area.tsx:30,1613307600:30,r
+src/models/timelineModel.js:27,1613307600:27,r
+node_modules/react-dropdown-select/types.d.ts:12,1613307600:12,r
+src/views/dashboard/Dashboard.js:12,1613311200:12,m
