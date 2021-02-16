@@ -1,4 +1,4 @@
-import { action, thunk } from 'easy-peasy';
+import {action, thunk} from 'easy-peasy';
 
 const sidebarModel = {
     groups: [],
@@ -17,14 +17,15 @@ const sidebarModel = {
     setLoading: action((store, payload) => {
         store.loading = payload;
     }),
-    fetchGroups: thunk(async (actions, _payload, { injections }) => {
+    fetchGroups: thunk(async (actions, _payload, { injections, getStoreState }) => {
         const { api } = injections;
+        const { chosenGroup } = getStoreState().groups;
 
         actions.setLoading(true)
         await api.getGroups()
             .then(data => {
                 actions.setGroups(data.groups)
-                if (data.groups.length > 0) {
+                if (data.groups.length > 0 && chosenGroup === '') {
                     actions.setChosenGroup(data.groups[0])
                 }
             })

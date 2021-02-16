@@ -3,7 +3,7 @@ import React from "react";
 export const isDev = process.env.NODE_ENV === 'development';
 export const origin = 'https://cs.ttu.ee/services/gtm/'  // window && window.location && window.location.origin;
 
-export const baseURL = isDev ? 'https://cs.ttu.ee/services/gtm/' : origin;
+export const baseURL = isDev ? 'http://localhost:8000/services/gtm/' : origin;
 
 export const USER = 'USER';
 export const LECTURER = 'LECTURER';
