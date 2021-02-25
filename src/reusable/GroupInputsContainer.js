@@ -14,10 +14,6 @@ const GroupInputsContainer = (onInputChanged) => {
     const {setChosenInterval, setStartDate, setEndDate} = useStoreActions(actions => actions.dashboardInputs)
 
     useEffect(() => {
-        fetchGroups()
-    }, [fetchGroups])
-
-    useEffect(() => {
         onInputChanged.onInputChanged();
     }, [chosenGroup])
 
@@ -32,6 +28,10 @@ const GroupInputsContainer = (onInputChanged) => {
     useEffect(() => {
         onInputChanged.onInputChanged();
     }, [endDate])
+
+    useEffect(() => {
+        fetchGroups()
+    }, [])
 
     const getIntervalOptions = () => {
         return intervals.map(function (obj) {
