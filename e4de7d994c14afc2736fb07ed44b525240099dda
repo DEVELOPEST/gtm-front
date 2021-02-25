@@ -1,0 +1,6 @@
+[ver:1,total:1200,branch:feature/FRONT-39]
+src/views/pages/login/Login.js:620,1614268800:620,m
+src/constants.js:300,1613052000:300,r
+src/views/users/User.js:210,1614268800:210,r
+node_modules/@coreui/react/src/index.d.ts:40,1614268800:40,r
+src/routes/routes.js:30,1614268800:30,r
