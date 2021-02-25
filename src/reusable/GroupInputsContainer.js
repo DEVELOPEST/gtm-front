@@ -15,23 +15,7 @@ const GroupInputsContainer = (onInputChanged) => {
 
     useEffect(() => {
         fetchGroups()
-    }, [fetchGroups])
-
-    useEffect(() => {
-        onInputChanged.onInputChanged();
-    }, [chosenGroup])
-
-    useEffect(() => {
-        onInputChanged.onInputChanged();
-    }, [chosenInterval])
-
-    useEffect(() => {
-        onInputChanged.onInputChanged();
-    }, [startDate])
-
-    useEffect(() => {
-        onInputChanged.onInputChanged();
-    }, [endDate])
+    }, [])
 
     const getIntervalOptions = () => {
         return intervals.map(function (obj) {

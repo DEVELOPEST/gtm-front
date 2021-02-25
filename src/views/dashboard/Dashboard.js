@@ -8,6 +8,7 @@ import ActivityChart from "../charts/ActivityChart";
 import SubDirsChart from "../charts/SubDirsChart";
 import {GroupInputsContainer} from '../../reusable';
 import {useStoreActions, useStoreState} from 'easy-peasy';
+import {useEffect} from "react";
 
 const Dashboard = () => {
     const {chosenGroup} = useStoreState((state) => state.groups)
@@ -25,9 +26,25 @@ const Dashboard = () => {
         }
     }
 
+    useEffect(() => {
+        inputChangedCallback();
+    }, [chosenGroup])
+
+    useEffect(() => {
+        inputChangedCallback();
+    }, [chosenInterval])
+
+    useEffect(() => {
+        inputChangedCallback();
+    }, [startDate])
+
+    useEffect(() => {
+        inputChangedCallback();
+    }, [endDate])
+
   return (
     <>
-      <GroupInputsContainer onInputChanged={inputChangedCallback} />
+      <GroupInputsContainer />
       <CCard>
         <CCardBody>
           <h3>Time and Users</h3>
