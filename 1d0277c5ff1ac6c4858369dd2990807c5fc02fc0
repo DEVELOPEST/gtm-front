@@ -1,0 +1,7 @@
+[ver:1,total:1200,branch:feature/FRONT-42]
+src/views/dashboard/Dashboard.js:476,1614268800:332,1614272400:144,m
+src/reusable/GroupInputsContainer.js:397,1614268800:268,1614272400:129,m
+src/models/groupsModel.js:187,1614268800:160,1614272400:27,r
+src/views/users/User.js:120,1614268800:120,r
+src/views/pages/register/Register.js:10,1614268800:10,r
+src/containers/TheLayout.js:10,1614268800:10,r
