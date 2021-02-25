@@ -13,6 +13,34 @@ const GroupInputsContainer = (onInputChanged) => {
     const {startDate, endDate, intervals, chosenInterval} = useStoreState(state => state.dashboardInputs)
     const {setChosenInterval, setStartDate, setEndDate} = useStoreActions(actions => actions.dashboardInputs)
 
+    const {fetchTimeline} = useStoreActions((actions) => actions.timeline)
+    const {fetchSubDirsTimeline: fetchSubDirsTimeline} = useStoreActions((actions) => actions.subDirsTimeline)
+    const {fetchActivityTimeline} = useStoreActions((actions) => actions.activityTimeline)
+
+    const inputChangedCallback = () => {
+        if (chosenGroup !== '' && chosenInterval !== '' && startDate !== '' && endDate !== '') {
+            fetchTimeline();
+            fetchActivityTimeline();
+            fetchSubDirsTimeline();
+        }
+    }
+
+    useEffect(() => {
+        inputChangedCallback();
+    }, [chosenGroup])
+
+    useEffect(() => {
+        inputChangedCallback();
+    }, [chosenInterval])
+
+    useEffect(() => {
+        inputChangedCallback();
+    }, [startDate])
+
+    useEffect(() => {
+        inputChangedCallback();
+    }, [endDate])
+
     useEffect(() => {
         fetchGroups()
     }, [])
