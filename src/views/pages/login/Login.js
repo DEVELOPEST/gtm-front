@@ -47,6 +47,12 @@ const Login = () => {
     setPasswordErrors(passwordValidation(value))
   }
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      onClickLogin()
+    }
+  }
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -68,6 +74,7 @@ const Login = () => {
                           className={(emailErrors.length === 0 ? "" : " red-border")}
                           onChange={event => handleChangeEmail(event.target.value)}
                           type="text"
+                          onKeyDown={event => handleKeyDown(event)}
                           placeholder="Email"
                           autoComplete="email" />
                     </CInputGroup>
@@ -83,6 +90,7 @@ const Login = () => {
                       <CInput
                           className={(passwordErrors.length === 0 ? "" : " red-border")}
                           onChange={event => handleChangePassword(event.target.value)}
+                          onKeyDown={event => handleKeyDown(event)}
                           type="password"
                           placeholder="Password"
                           autoComplete="current-password" />
@@ -99,7 +107,7 @@ const Login = () => {
                                   <CustomLoader />
                                 </div>
 
-                              : <CButton onClick={onClickLogin} color="primary" className="px-4">Login</CButton>
+                              : <CButton onClick={onClickLogin}  color="primary" className="px-4">Login</CButton>
                         }
                       </CCol>
                       <CCol xs="6" className="text-right">
