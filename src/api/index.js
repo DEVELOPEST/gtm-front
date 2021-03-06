@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  baseURL,
+    baseURL,
 } from "../constants";
 
 const api = {};

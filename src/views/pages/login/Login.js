@@ -21,8 +21,13 @@ import {
   emailValidation,
   passwordValidation,
 } from "../../../utils/inputValidations"
+import setAuthHeader from "../../../utils/setAuthHeader";
+import Redirect from "react-router-dom/es/Redirect";
+import GitHubLogo from '../../../assets/icons/GitHubLogo.png'
+import GitLabLogo from '../../../assets/icons/GitLabLogo.png'
+import TalTechLogo from '../../../assets/icons/TalTechLogo.png'
 
-const Login = () => {
+const Login = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailErrors, setEmailErrors] = useState([]);
@@ -30,6 +35,14 @@ const Login = () => {
 
   const {loading, errors} = useStoreState(state => state.auth)
   const {login, setErrors} = useStoreActions(actions => actions.auth)
+
+  const queryString = require('query-string');
+  const parsed = queryString.parse(props.location.search);
+  if (parsed && parsed.token) {
+    setAuthHeader(parsed.token);
+    localStorage.setItem('token', parsed.token)
+    return <Redirect to="/" />
+  }
 
   const onClickLogin = () => {
     if (emailErrors.length === 0 && passwordErrors.length === 0 ) {
@@ -113,6 +126,24 @@ const Login = () => {
                       <CCol xs="6" className="text-right">
                         <CButton color="link" className="px-0">Forgot password?</CButton>
                       </CCol>
+                    </CRow>
+                    <p className="mt-4 mb-1 font-weight-bold">Sign in with</p>
+                    <CRow className="mt-1 justify-content-around" >
+
+                      <a href="/" className="btn mt-3 border-dark col-5">
+                        <CIcon width="20px" src={GitHubLogo} />
+                        <span className="ml-2">GitHub</span>
+                      </a>
+
+                      <a href="/" className="btn mt-3 border-dark col-5">
+                        <CIcon width="25px" src={GitLabLogo} />
+                        <span className="ml-2">GitLab</span>
+                      </a>
+
+                      <a href="/" className="btn mt-3 border-dark col-5">
+                        <CIcon width="25px" src={TalTechLogo} />
+                        <span className="">Uni-ID</span>
+                      </a>
                     </CRow>
                   </CForm>
                 </CCardBody>
