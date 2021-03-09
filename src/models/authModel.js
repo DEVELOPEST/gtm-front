@@ -1,5 +1,6 @@
 import {action, computed, thunk} from 'easy-peasy';
 import setAuthHeader from "../utils/setAuthHeader";
+import setSessionToken from "../utils/setSessionToken";
 
 const authModel = {
     errors: [],
@@ -19,8 +20,7 @@ const authModel = {
         actions.setLoading(true)
         await api.login(payload)
             .then(data => {
-                setAuthHeader(data.jwt);
-                localStorage.setItem('token', data.jwt)
+                setSessionToken(data.jwt)
                 window.location.reload()
             })
             .catch(err => {
@@ -34,8 +34,7 @@ const authModel = {
         actions.setLoading(true)
         await api.register(payload)
             .then(data => {
-                setAuthHeader(data);
-                localStorage.setItem('token', data)
+                setSessionToken(data);
                 window.location.reload()
             })
             .catch(err => {
@@ -48,8 +47,7 @@ const authModel = {
 
         await api.fetchToken()
             .then(data => {
-                setAuthHeader(data);
-                localStorage.setItem('token', data)
+                setSessionToken(data);
             })
             .catch(err => {
                 actions.setErrors(err);

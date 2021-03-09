@@ -26,6 +26,8 @@ import Redirect from "react-router-dom/es/Redirect";
 import GitHubLogo from '../../../assets/icons/GitHubLogo.png'
 import GitLabLogo from '../../../assets/icons/GitLabLogo.png'
 import TalTechLogo from '../../../assets/icons/TalTechLogo.png'
+import {GITHUB_OAUTH_URL, GITLAB_OAUTH_URL, TALTECH_OAUTH_URL} from "../../../constants";
+import setSessionToken from "../../../utils/setSessionToken";
 
 const Login = props => {
   const [email, setEmail] = useState('');
@@ -36,11 +38,15 @@ const Login = props => {
   const {loading, errors} = useStoreState(state => state.auth)
   const {login, setErrors} = useStoreActions(actions => actions.auth)
 
+
+  useEffect(() => {
+  }, [])
+
   const queryString = require('query-string');
   const parsed = queryString.parse(props.location.search);
   if (parsed && parsed.token) {
-    setAuthHeader(parsed.token);
-    localStorage.setItem('token', parsed.token)
+    setSessionToken(parsed.token)
+
     return <Redirect to="/" />
   }
 
@@ -130,20 +136,24 @@ const Login = props => {
                     <p className="mt-4 mb-1 font-weight-bold">Sign in with</p>
                     <CRow className="mt-1 justify-content-around" >
 
-                      <a href="/" className="btn mt-3 border-dark col-5">
+                      <a href={GITHUB_OAUTH_URL} className="btn mt-3 border-dark col-5">
                         <CIcon width="20px" src={GitHubLogo} />
                         <span className="ml-2">GitHub</span>
                       </a>
 
-                      <a href="/" className="btn mt-3 border-dark col-5">
+                      <a href={GITLAB_OAUTH_URL} className="btn mt-3 border-dark col-5">
                         <CIcon width="25px" src={GitLabLogo} />
                         <span className="ml-2">GitLab</span>
                       </a>
 
-                      <a href="/" className="btn mt-3 border-dark col-5">
+                      <a href={TALTECH_OAUTH_URL} className="btn mt-3 border-dark col-5">
                         <CIcon width="25px" src={TalTechLogo} />
                         <span className="">Uni-ID</span>
                       </a>
+
+                      <CCol sm="5">
+
+                      </CCol>
                     </CRow>
                   </CForm>
                 </CCardBody>

@@ -51,9 +51,7 @@ const ChangePassword = () => {
 
     return (
         <CRow>
-            <CCol sm="1" lg="3">
-            </CCol>
-            <CCol sm="10" lg="6">
+            <CCol sm="12" lg="12">
                 <CCard>
                     <CCardHeader>
                         Change password
@@ -123,8 +121,6 @@ const ChangePassword = () => {
                             </CFormGroup>
                     </CCardBody>
                 </CCard>
-            </CCol>
-            <CCol sm="1" lg="3">
             </CCol>
         </CRow>
     )

@@ -1,9 +1,17 @@
 import React from "react";
 
-export const isDev = process.env.NODE_ENV === 'development';
-export const origin = 'https://cs.ttu.ee/services/gtm/'  // window && window.location && window.location.origin;
+export const IS_DEV = process.env.NODE_ENV === 'development';
+export const ORIGIN = 'https://cs.ttu.ee/services/gtm/'  // window && window.location && window.location.origin;
 
-export const baseURL = isDev ? 'http://localhost:8000/services/gtm/' : origin;
+export const BASE_URL = IS_DEV ? 'http://localhost:8000/services/gtm/' : ORIGIN;
+
+export const GITHUB_OAUTH_URL = BASE_URL + 'api/oauth/login/github';
+export const GITLAB_OAUTH_URL = BASE_URL + 'api/oauth/login/gitlab';
+export const TALTECH_OAUTH_URL = BASE_URL + 'api/oauth/login/taltech';
+
+export const GITHUB_OAUTH_LINK_URL = BASE_URL + 'api/oauth/login/github';
+export const GITLAB_OAUTH_LINK_URL = BASE_URL + 'api/oauth/login/gitlab';
+export const TALTECH_OAUTH_LINK_URL = BASE_URL + 'api/oauth/login/taltech';
 
 export const USER = 'USER';
 export const LECTURER = 'LECTURER';

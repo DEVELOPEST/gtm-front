@@ -1,13 +1,13 @@
 import axios from 'axios';
 import {
-    baseURL,
+    BASE_URL,
 } from "../constants";
 
 const api = {};
 api.fetch = opts => axios
   .request({
     ...opts,
-    baseURL: opts.baseURL || baseURL,
+    baseURL: opts.baseURL || BASE_URL,
     mode: 'no-cors'
   })
   .then(response => response.data);
