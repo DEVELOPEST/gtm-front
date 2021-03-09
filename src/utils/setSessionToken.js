@@ -3,7 +3,13 @@ import setAuthHeader from "./setAuthHeader";
 
 export default token => {
     const [cookies, setCookie, removeCookie] = useCookies();
-    setCookie('user_jwt', token, {sameSite: "lax"}); //secure: true, httpOnly: true
+    console.log("Set cookie")
+    setCookie('user_jwt', token, {
+        sameSite: 'lax',
+        httpOnly: false,
+        expires: new Date(new Date().getTime() + 300 * 1000),
+        path: '/'
+    });
     localStorage.setItem('token', token)
     setAuthHeader(token);
 };
