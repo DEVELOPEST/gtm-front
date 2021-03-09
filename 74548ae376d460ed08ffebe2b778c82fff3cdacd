@@ -1,0 +1,9 @@
+[ver:1,total:4560,branch:feature/FRONT-30]
+src/views/pages/login/Login.js:2110,1615021200:460,1615024800:480,1615032000:180,1615035600:240,1615039200:360,1615050000:180,1615298400:180,1615309200:30,r
+src/utils/setSessionToken.js:1530,1615309200:1530,m
+src/api/index.js:390,1615035600:180,1615050000:60,1615309200:150,r
+src/views/leaderboard/UsersLeaderboard.js:360,1614279600:360,r
+node_modules/react-cookie/es6/useCookies.d.ts:65,1615309200:65,r
+node_modules/universal-cookie/cjs/types.d.ts:55,1615309200:55,r
+src/views/profile/OauthLinking.js:30,1615309200:30,r
+node_modules/@coreui/react/src/index.d.ts:20,1615021200:20,r
