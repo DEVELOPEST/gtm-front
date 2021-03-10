@@ -1,0 +1,6 @@
+[ver:1,total:1380,branch:feature/FRONT-30]
+src/views/pages/login/Login.js:654,1615366800:444,1615384800:210,m
+src/utils/setSessionToken.js:450,1615309200:180,1615384800:270,m
+src/constants.js:196,1615366800:196,m
+src/utils/inputValidations.js:48,1615366800:48,m
+src/views/profile/OauthLinking.js:32,1615366800:32,m
