@@ -6,7 +6,7 @@ export default token => {
     console.log("Set cookie")
     setCookie('user_jwt', token, {
         sameSite: 'lax',
-        httpOnly: false,
+        httpOnly: true,
         expires: new Date(new Date().getTime() + 300 * 1000),
         path: '/'
     });

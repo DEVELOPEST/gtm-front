@@ -18,7 +18,7 @@ import {useStoreActions, useStoreState} from "easy-peasy";
 import CustomLoader from "../../../reusable/CustomLoader";
 
 import {
-  emailValidation,
+  usernameValidation,
   passwordValidation,
   passwordRepeatValidation
 } from "../../../utils/inputValidations"
@@ -54,7 +54,7 @@ const Register = () => {
 
   const handleChangeEmail = value => {
     setEmail(value)
-    setEmailErrors(emailValidation(value))
+    setEmailErrors(usernameValidation(value))
   }
 
   const handleChangePassword = value => {

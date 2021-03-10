@@ -18,7 +18,7 @@ import CIcon from '@coreui/icons-react'
 import {useStoreActions, useStoreState} from "easy-peasy";
 import CustomLoader from "../../../reusable/CustomLoader";
 import {
-  emailValidation,
+  usernameValidation,
   passwordValidation,
 } from "../../../utils/inputValidations"
 import setAuthHeader from "../../../utils/setAuthHeader";
@@ -26,13 +26,13 @@ import Redirect from "react-router-dom/es/Redirect";
 import GitHubLogo from '../../../assets/icons/GitHubLogo.png'
 import GitLabLogo from '../../../assets/icons/GitLabLogo.png'
 import TalTechLogo from '../../../assets/icons/TalTechLogo.png'
-import {GITHUB_OAUTH_URL, GITLAB_OAUTH_URL, TALTECH_OAUTH_URL} from "../../../constants";
+import {GITHUB_OAUTH_URL, GITLAB_OAUTH_URL, MICROSOFT_OAUTH_URL} from "../../../constants";
 import setSessionToken from "../../../utils/setSessionToken";
 
 const Login = props => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [emailErrors, setEmailErrors] = useState([]);
+  const [usernameErrors, setUsernameErrors] = useState([]);
   const [passwordErrors, setPasswordErrors] = useState([]);
 
   const {loading, errors} = useStoreState(state => state.auth)
@@ -51,14 +51,14 @@ const Login = props => {
   }
 
   const onClickLogin = () => {
-    if (emailErrors.length === 0 && passwordErrors.length === 0 ) {
-      login({'email': email, 'password': password})
+    if (usernameErrors.length === 0 && passwordErrors.length === 0 ) {
+      login({'username': username, 'password': password})
     }
   }
 
-  const handleChangeEmail = value => {
-    setEmail(value)
-    setEmailErrors(emailValidation(value))
+  const handleChangeUsername = value => {
+    setUsername(value)
+    setUsernameErrors(usernameValidation(value))
   }
 
   const handleChangePassword = value => {
@@ -90,14 +90,13 @@ const Login = props => {
                         </CInputGroupText>
                       </CInputGroupPrepend>
                       <CInput
-                          className={(emailErrors.length === 0 ? "" : " red-border")}
-                          onChange={event => handleChangeEmail(event.target.value)}
+                          className={(usernameErrors.length === 0 ? "" : " red-border")}
+                          onChange={event => handleChangeUsername(event.target.value)}
                           type="text"
                           onKeyDown={event => handleKeyDown(event)}
-                          placeholder="Email"
-                          autoComplete="email" />
+                          placeholder="Username"/>
                     </CInputGroup>
-                    {emailErrors.map((value) => {
+                    {usernameErrors.map((value) => {
                       return <small className="form-text text-muted color-red mb-2">{value}</small>
                     })}
                     <CInputGroup className="mb-3">
@@ -146,7 +145,7 @@ const Login = props => {
                         <span className="ml-2">GitLab</span>
                       </a>
 
-                      <a href={TALTECH_OAUTH_URL} className="btn mt-3 border-dark col-5">
+                      <a href={MICROSOFT_OAUTH_URL} className="btn mt-3 border-dark col-5">
                         <CIcon width="25px" src={TalTechLogo} />
                         <span className="">Uni-ID</span>
                       </a>

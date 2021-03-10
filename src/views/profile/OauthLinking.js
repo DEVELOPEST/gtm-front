@@ -13,7 +13,7 @@ import TalTechLogo from "../../assets/icons/TalTechLogo.png";
 import {
     GITHUB_OAUTH_URL,
     GITLAB_OAUTH_URL,
-    TALTECH_OAUTH_URL,
+    MICROSOFT_OAUTH_URL,
 } from "../../constants";
 
 const OAuthLinking = () => {
@@ -47,7 +47,7 @@ const OAuthLinking = () => {
                                         <small> (connected)</small>
                                     </CCol>
 
-                                    <CCol xs="10" sm="10" md="5" onClick={() => redirect(TALTECH_OAUTH_URL)} className="btn mt-3 border-dark">
+                                    <CCol xs="10" sm="10" md="5" onClick={() => redirect(MICROSOFT_OAUTH_URL)} className="btn mt-3 border-dark">
                                         <CIcon width="20px" src={TalTechLogo} />
                                         <span className="">Uni-ID</span>
                                         <small> (connected)</small>
