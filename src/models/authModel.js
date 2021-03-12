@@ -40,6 +40,20 @@ const authModel = {
             })
         actions.setLoading(false)
     }),
+    delete_account: thunk(async (actions, payload, { injections }) => {
+        const { api } = injections;
+
+        actions.setLoading(true)
+        await api.delete_account()
+            .then(() => {
+                localStorage.removeItem('token')
+                window.location.reload()
+            })
+            .catch(err => {
+                actions.setErrors(err);
+            })
+        actions.setLoading(false)
+    }),
     login: thunk(async (actions, payload, { injections }) => {
         const { api } = injections;
 

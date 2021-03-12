@@ -10,6 +10,7 @@ import {
 } from "@coreui/react";
 import ChangePassword from "./ChangePassword";
 import OAuthLinking from "./OauthLinking";
+import AccountDelete from "./AccountDelete";
 
 const Profile = () => {
     const [activeTab, setActiveTab] = useState(0)
@@ -27,6 +28,7 @@ const Profile = () => {
                                 <CListGroup id="list-tab" role="tablist">
                                     <CListGroupItem onClick={() => setActiveTab(0)} action active={activeTab === 0} >Change Password</CListGroupItem>
                                     <CListGroupItem onClick={() => setActiveTab(1)} action active={activeTab === 1} >Link Accounts</CListGroupItem>
+                                    <CListGroupItem onClick={() => setActiveTab(2)} action active={activeTab === 2} >Delete Account</CListGroupItem>
                                 </CListGroup>
                             </CCol>
 
@@ -37,6 +39,9 @@ const Profile = () => {
                                     </CTabPane>
                                     <CTabPane active={activeTab === 1}>
                                         <OAuthLinking />
+                                    </CTabPane>
+                                    <CTabPane active={activeTab === 2}>
+                                        <AccountDelete />
                                     </CTabPane>
                                 </CTabContent>
                             </CCol>
