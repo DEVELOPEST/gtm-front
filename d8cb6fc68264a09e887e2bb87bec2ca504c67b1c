@@ -1,0 +1,10 @@
+[ver:1,total:3660,branch:feature/FRONT-30]
+src/views/profile/OauthLinking.js:2053,1615309200:660,1615564800:523,1615568400:810,1615572000:60,m
+src/models/authModel.js:721,1615564800:346,1615568400:185,1615572000:190,m
+src/api/index.js:330,1615564800:52,1615568400:278,m
+src/utils/setSessionToken.js:255,1615564800:20,1615568400:235,r
+src/views/pages/login/Login.js:185,1615309200:165,1615568400:20,r
+src/constants.js:82,1615568400:32,1615572000:50,m
+src/Auth.js:15,1615309200:15,r
+src/containers/TheHeader.js:12,1615564800:12,r
+src/views/pages/register/Register.js:7,1615564800:7,r
