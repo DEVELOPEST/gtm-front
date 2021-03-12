@@ -45,6 +45,8 @@ api.removeRole = params => api.fetch({url: `/api/roles`, data: params,  method: 
 
 // Auth
 api.login = params => api.fetch({url: `/api/auth/login`, data: params, method: 'POST'});
+api.logins = () => api.fetch({url: `/api/auth/login`, method: 'GET'});
+api.delete_login = params => api.fetch({url: `/api/auth/login`, data: params,  method: 'DELETE'});
 api.register = params => api.fetch({url: `/api/auth/register`, data: params, method: 'POST'});
 api.fetchToken = () => api.fetch({url: `/api/auth/token`, method: 'GET'});
 api.changePassword = params => api.fetch({url: `/api/auth/password`, data: params, method: 'PUT'});

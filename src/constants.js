@@ -9,9 +9,9 @@ export const GITHUB_OAUTH_URL = BASE_URL + 'api/oauth/login/github';
 export const GITLAB_OAUTH_URL = BASE_URL + 'api/oauth/login/gitlab';
 export const MICROSOFT_OAUTH_URL = BASE_URL + 'api/oauth/login/microsoft';
 
-export const GITHUB_OAUTH_LINK_URL = BASE_URL + 'api/oauth/login/github';
-export const GITLAB_OAUTH_LINK_URL = BASE_URL + 'api/oauth/login/gitlab';
-export const MICROSOFT_OAUTH_LINK_URL = BASE_URL + 'api/oauth/login/microsoft';
+export const GITHUB_OAUTH_TYPE_STRING = 'oauth_token_github';
+export const GITLAB_OAUTH_TYPE_STRING = 'oauth_bearer_gitlab';
+export const MICROSOFT_OAUTH_TYPE_STRING = 'oauth_bearer_microsoft';
 
 export const USER = 'USER';
 export const LECTURER = 'LECTURER';
