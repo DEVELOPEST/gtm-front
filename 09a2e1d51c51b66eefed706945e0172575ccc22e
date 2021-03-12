@@ -1,0 +1,9 @@
+[ver:1,total:2700,branch:feature/FRONT-30]
+src/views/profile/AccountDelete.js:2305,1615575600:280,1615586400:2025,m
+src/constants.js:192,1615572000:180,1615575600:12,r
+src/views/profile/Profile.js:61,1615575600:61,m
+src/models/authModel.js:48,1615586400:48,m
+src/views/profile/ChangePassword.js:36,1615586400:36,r
+src/api/index.js:24,1615586400:24,m
+src/views/profile/OauthLinking.js:22,1615575600:7,1615586400:15,r
+src/containers/TheHeaderSettingsDropdown.js:12,1615586400:12,r
