@@ -1,0 +1,5 @@
+[ver:1,total:780,branch:feature/FRONT-30]
+src/utils/setSessionToken.js:501,1615626000:501,m
+src/models/authModel.js:204,1615626000:204,r
+src/App.js:45,1615626000:45,m
+package.json:30,1615626000:30,m
