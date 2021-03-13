@@ -1,0 +1,12 @@
+[ver:1,total:3060,branch:feature/FRONT-30]
+src/views/profile/ChangePassword.js:908,1615636800:703,1615640400:205,m
+src/views/profile/AccountDelete.js:592,1615636800:592,m
+src/api/index.js:273,1615636800:235,1615640400:38,m
+src/Auth.js:261,1615636800:201,1615640400:60,m
+package.json:240,1615626000:180,1615629600:60,r
+src/reusable/GroupInputsContainer.js:214,1615629600:135,1615636800:60,1615640400:19,r
+src/models/authModel.js:170,1615636800:162,1615640400:8,m
+src/views/profile/OauthLinking.js:157,1615636800:157,r
+node_modules/react-datepicker/dist/es/index.js:150,1615629600:150,r
+src/models/passwordChangeModel.js:80,1615636800:50,1615640400:30,m
+src/views/dashboard/Dashboard.js:15,1615629600:15,r
