@@ -1,0 +1,10 @@
+[ver:1,total:3360,branch:feature/FRONT-30]
+src/utils/setSessionToken.js:1323,1615626000:936,1615629600:387,m
+src/reusable/GroupInputsContainer.js:448,1615629600:448,m
+src/views/profile/OauthLinking.js:360,1615622400:180,1615626000:120,1615629600:60,m
+src/containers/TheHeaderSettingsDropdown.js:345,1615629600:345,m
+src/models/authModel.js:324,1615626000:294,1615629600:30,r
+src/views/pages/login/Login.js:294,1615626000:90,1615629600:204,m
+src/Auth.js:234,1615629600:234,m
+src/views/dashboard/Dashboard.js:20,1615629600:20,r
+node_modules/date-fns/typings.d.ts:12,1615629600:12,r
