@@ -2,9 +2,10 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import {CCard, CCardBody, CCol, CRow} from '@coreui/react';
 import SelectDropdown from 'react-dropdown-select';
-import ReactDatePicker from 'react-datepicker';
+import ReactDatePicker, {registerLocale} from 'react-datepicker';
 import {useStoreActions, useStoreState} from "easy-peasy";
 import React, {useEffect} from 'react'
+import enGB from 'date-fns/locale/en-GB';
 
 const GroupInputsContainer = (onInputChanged) => {
     const {groups, chosenGroup, loading} = useStoreState(state => state.groups)
@@ -12,6 +13,8 @@ const GroupInputsContainer = (onInputChanged) => {
 
     const {startDate, endDate, intervals, chosenInterval} = useStoreState(state => state.dashboardInputs)
     const {setChosenInterval, setStartDate, setEndDate} = useStoreActions(actions => actions.dashboardInputs)
+
+    registerLocale('enGB', enGB)
 
     useEffect(() => {
         onInputChanged.onInputChanged();
@@ -68,6 +71,8 @@ const GroupInputsContainer = (onInputChanged) => {
                             <label>Start date:</label>
                             <ReactDatePicker
                                 className="w-100"
+                                dateFormat="dd/MM/yyyy"
+                                locale="enGB"
                                 selected={startDate}
                                 onChange={date => setStartDate(date)}
                             />
@@ -78,6 +83,8 @@ const GroupInputsContainer = (onInputChanged) => {
                             <label>End date:</label>
                             <ReactDatePicker
                                 className="w-100"
+                                dateFormat="dd/MM/yyyy"
+                                locale="enGB"
                                 selected={endDate}
                                 onChange={date => setEndDate(date)}
                             />

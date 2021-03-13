@@ -13,8 +13,9 @@ const TheHeaderSettingsDropdown = () => {
     const history = useHistory()
 
     const handleLogOut = () => {
-        localStorage.removeItem('token')
-        window.location.reload()
+        localStorage.removeItem('token');
+        document.cookie="jwt=; Max-Age=0; Path=/;";
+        window.location.reload();
     }
 
     return (

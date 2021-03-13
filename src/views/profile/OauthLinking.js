@@ -17,6 +17,7 @@ import {
     MICROSOFT_OAUTH_URL,
 } from "../../constants";
 import {useStoreActions, useStoreState} from "easy-peasy";
+import setSessionToken from '../../utils/setSessionToken';
 
 const OAuthLinking = () => {
     const {logins} = useStoreState(state => state.auth)
@@ -30,6 +31,7 @@ const OAuthLinking = () => {
         if (logins.includes(type)) {
             delete_login(type);
         } else {
+            setSessionToken(localStorage.getItem("token"));
             window.location.href = url;
         }
     }

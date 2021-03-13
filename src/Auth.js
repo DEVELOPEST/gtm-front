@@ -6,6 +6,7 @@ import {ADMIN, LECTURER, USER} from "./constants";
 
 
 export const logout = () => {
+    document.cookie="jwt=; Max-Age=0; Path=/;";
     localStorage.removeItem('token')
     window.location.reload(true);
 }

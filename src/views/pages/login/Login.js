@@ -50,6 +50,11 @@ const Login = props => {
     return <Redirect to="/" />
   }
 
+  const redirect = (url) => {
+      document.cookie="jwt=; Max-Age=0; Path=/;";
+      window.location.href = url;
+  }
+
   const onClickLogin = () => {
     if (usernameErrors.length === 0 && passwordErrors.length === 0 ) {
       login({'username': username, 'password': password})
@@ -135,17 +140,17 @@ const Login = props => {
                     <p className="mt-4 mb-1 font-weight-bold">Sign in with</p>
                     <CRow className="mt-1 justify-content-around" >
 
-                      <a href={GITHUB_OAUTH_URL} className="btn mt-3 border-dark col-5">
+                      <a onClick={() => redirect(GITHUB_OAUTH_URL)} className="btn mt-3 border-dark col-5">
                         <CIcon width="20px" src={GitHubLogo} />
                         <span className="ml-2">GitHub</span>
                       </a>
 
-                      <a href={GITLAB_OAUTH_URL} className="btn mt-3 border-dark col-5">
+                      <a onClick={() => redirect(GITLAB_OAUTH_URL)} className="btn mt-3 border-dark col-5">
                         <CIcon width="25px" src={GitLabLogo} />
                         <span className="ml-2">GitLab</span>
                       </a>
 
-                      <a href={MICROSOFT_OAUTH_URL} className="btn mt-3 border-dark col-5">
+                      <a onClick={() => redirect(MICROSOFT_OAUTH_URL)} className="btn mt-3 border-dark col-5">
                         <CIcon width="25px" src={TalTechLogo} />
                         <span className="">Uni-ID</span>
                       </a>
