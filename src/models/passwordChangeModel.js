@@ -48,6 +48,28 @@ const passwordChangeModel = {
             actions.setLoading(false)
         }
     }),
+    createPassword: thunk(async (actions, payload, { injections, getState }) => {
+        const { api } = injections;
+        const {newPassword, newPasswordRepeat} = getState(state => state.password);
+        if (newPassword === newPasswordRepeat && newPassword.length >= 8) {
+            let dto = {
+                new_password: newPassword
+            }
+            actions.setLoading(true)
+            await api.createPassword(dto)
+                .then(() => {
+                    actions.setError('')
+                    actions.setSuccess(true);
+                    actions.setOldPassword('');
+                    actions.setNewPassword('');
+                    actions.setNewPasswordRepeat('');
+                })
+                .catch(({ response }) => {
+                    actions.setError(response)
+                })
+            actions.setLoading(false)
+        }
+    }),
 };
 
 export default passwordChangeModel;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {
     CAlert,
     CButton,
@@ -18,7 +18,14 @@ const ChangePassword = () => {
     const [warning, setWarning] = useState('');
 
     const {oldPassword, newPassword, newPasswordRepeat, error, success} = useStoreState(state => state.passwordChange)
-    const {setOldPassword, setNewPassword, setNewPasswordRepeat, changePassword, setSuccess, setError} = useStoreActions(actions => actions.passwordChange)
+    const {setOldPassword, setNewPassword, setNewPasswordRepeat, changePassword, createPassword, setSuccess, setError} = useStoreActions(actions => actions.passwordChange)
+
+    const {hasPassword} = useStoreState(state => state.auth)
+    const {getPassword} = useStoreActions(actions => actions.auth)
+
+    useEffect(() => {
+        getPassword();
+    }, [])
 
     const getOldPasswordValid = () => {
         return oldPassword.length >= 8
@@ -38,10 +45,12 @@ const ChangePassword = () => {
     };
 
     const onClickChange = () => {
-        console.log("click")
         if (getOldPasswordValid() && getNewPasswordValid() && getNewPasswordRepeatValid(true)){
             setWarning('')
             changePassword()
+        } else if (!hasPassword && getNewPasswordValid() && getNewPasswordRepeatValid(true)) {
+            setWarning('')
+            createPassword()
         } else {
             setSuccess('')
             setError('')
@@ -72,6 +81,7 @@ const ChangePassword = () => {
                             {warning}
                         </CAlert>
                         }
+                        { hasPassword &&
                             <CFormGroup>
                                 <CLabel >Old Password</CLabel>
                                 <CInputGroup>
@@ -86,6 +96,8 @@ const ChangePassword = () => {
                                     </CInputGroupAppend>
                                 </CInputGroup>
                             </CFormGroup>
+                        }
+
                             <CFormGroup>
                                 <CLabel >New Password</CLabel>
                                 <CInputGroup>

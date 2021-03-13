@@ -27,6 +27,15 @@ export const isValidToken = token => {
     return true
 }
 
+export const getUsernameFromToken = () => {
+    const token = localStorage.getItem('token');
+    if (isValidToken(token)) {
+        const { username } = decode(token);
+        return username;
+    }
+    return '';
+}
+
 export const hasAnyRole = checkRoles => {
     const token = localStorage.getItem('token');
     if (isValidToken(token)) {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {
     CButton,
     CCard,
@@ -13,16 +13,20 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import {useStoreActions} from "easy-peasy";
+import {getUsernameFromToken} from "../../Auth";
 
 const AccountDelete = () => {
     const [inputValue, setInputValue] = useState('');
     const {delete_account} = useStoreActions(actions => actions.auth)
 
-    const value = "xxx";
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        setUsername(getUsernameFromToken());
+    }, [])
 
     const handleClick = () => {
-        console.log("handleClick")
-        if (value === inputValue) delete_account();
+        if (username === inputValue) delete_account();
     }
 
     return (
@@ -33,9 +37,13 @@ const AccountDelete = () => {
                         Delete Account
                     </CCardHeader>
                     <CCardBody>
-                        <CForm className={value === inputValue ? "was-validated" : ''}>
+                        <CForm className={username === inputValue ? "was-validated" : ''}>
                             <CFormGroup>
-                                <CLabel htmlFor="inputWarning2i">Please write {value} to confirm deletion</CLabel>
+                                <CLabel htmlFor="inputWarning2i">
+                                    Please write
+                                    <span className="font-weight-bold"> {username} </span>
+                                    to confirm deletion
+                                </CLabel>
                                 <CInput
                                     onChange={event => setInputValue(event.target.value)}
                                     id="inputWarning2i" />

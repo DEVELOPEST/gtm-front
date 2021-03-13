@@ -3,8 +3,12 @@ import setSessionToken from "../utils/setSessionToken";
 
 const authModel = {
     logins: [],
+    hasPassword: '',
     errors: [],
     loading: false,
+    setHasPassword: action((store, payload) => {
+        store.hasPassword = payload;
+    }),
     setLogins: action((store, payload) => {
         store.logins = payload;
     }),
@@ -13,6 +17,19 @@ const authModel = {
     }),
     setLoading: action((store, payload) => {
         store.loading = payload;
+    }),
+    getPassword: thunk(async (actions, payload, { injections }) => {
+        const { api } = injections;
+
+        actions.setLoading(true)
+        await api.getPassword()
+            .then(data => {
+                actions.setHasPassword(data);
+            })
+            .catch(err => {
+                actions.setErrors(err);
+            })
+        actions.setLoading(false)
     }),
     get_logins: thunk(async (actions, payload, { injections }) => {
         const { api } = injections;

@@ -51,6 +51,8 @@ api.delete_account = () => api.fetch({url: `/api/auth/account`,  method: 'DELETE
 api.register = params => api.fetch({url: `/api/auth/register`, data: params, method: 'POST'});
 api.fetchToken = () => api.fetch({url: `/api/auth/token`, method: 'GET'});
 api.changePassword = params => api.fetch({url: `/api/auth/password`, data: params, method: 'PUT'});
+api.createPassword = params => api.fetch({url: `/api/auth/password-create`, data: params, method: 'PUT'});
+api.getPassword = () => api.fetch({url: `/api/auth/password`, method: 'GET'});
 
 
 export default api;
