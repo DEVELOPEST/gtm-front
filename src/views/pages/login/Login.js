@@ -21,11 +21,10 @@ import {
   usernameValidation,
   passwordValidation,
 } from "../../../utils/inputValidations"
-import setAuthHeader from "../../../utils/setAuthHeader";
 import Redirect from "react-router-dom/es/Redirect";
 import GitHubLogo from '../../../assets/icons/GitHubLogo.png'
 import GitLabLogo from '../../../assets/icons/GitLabLogo.png'
-import TalTechLogo from '../../../assets/icons/TalTechLogo.png'
+import MicrosoftLogo from '../../../assets/icons/MicrosoftLogo.png'
 import {GITHUB_OAUTH_URL, GITLAB_OAUTH_URL, MICROSOFT_OAUTH_URL} from "../../../constants";
 import setSessionToken from "../../../utils/setSessionToken";
 
@@ -151,8 +150,8 @@ const Login = props => {
                       </a>
 
                       <a onClick={() => redirect(MICROSOFT_OAUTH_URL)} className="btn mt-3 border-dark col-5">
-                        <CIcon width="25px" src={TalTechLogo} />
-                        <span className="">Uni-ID</span>
+                        <CIcon width="25px" src={MicrosoftLogo} />
+                        <span className=""> Microsoft</span>
                       </a>
 
                       <CCol sm="5">

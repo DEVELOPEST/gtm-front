@@ -17,7 +17,7 @@ const Profile = () => {
 
     return (
         <CRow className="justify-content-center">
-            <CCol sm="12" md="12" lg="12" xxl="8">
+            <CCol sm="12" md="12" lg="12" xxl="10">
                 <CCard>
                     <CCardHeader>
                         Profile

@@ -9,7 +9,7 @@ import {
 import CIcon from "@coreui/icons-react";
 import GitHubLogo from "../../assets/icons/GitHubLogo.png";
 import GitLabLogo from "../../assets/icons/GitLabLogo.png";
-import TalTechLogo from "../../assets/icons/TalTechLogo.png";
+import MicrosoftLogo from '../../assets/icons/MicrosoftLogo.png'
 import {
     GITHUB_OAUTH_TYPE_STRING,
     GITHUB_OAUTH_URL, GITLAB_OAUTH_TYPE_STRING,
@@ -63,8 +63,8 @@ const OAuthLinking = () => {
                                     </CCol>
 
                                     <CCol xs="10" sm="10" md="5" onClick={() => redirect(MICROSOFT_OAUTH_URL, MICROSOFT_OAUTH_TYPE_STRING)} className="btn mt-3 border-dark">
-                                        <CIcon width="20px" src={TalTechLogo} />
-                                        <span className="">Microsoft </span>
+                                        <CIcon width="20px" src={MicrosoftLogo} />
+                                        <span className="ml-2">Microsoft </span>
                                         <small>{logins.includes(MICROSOFT_OAUTH_TYPE_STRING) ? "(connected)" : "(not connected)"}</small>
                                     </CCol>
                                     <CCol sm="5">
