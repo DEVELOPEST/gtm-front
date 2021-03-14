@@ -150,7 +150,7 @@ const Login = props => {
                       </a>
 
                       <a onClick={() => redirect(MICROSOFT_OAUTH_URL)} className="btn mt-3 border-dark col-5">
-                        <CIcon width="25px" src={MicrosoftLogo} />
+                        <CIcon width="23.85px" src={MicrosoftLogo} />
                         <span className=""> Microsoft</span>
                       </a>
 
