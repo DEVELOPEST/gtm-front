@@ -1,0 +1,4 @@
+[ver:1,total:780,branch:feature/FRONT-30]
+src/views/pages/login/Login.js:555,1615662000:180,1615726800:375,m
+src/reusable/GroupInputsContainer.js:180,1615629600:180,r
+src/views/profile/OauthLinking.js:45,1615726800:45,r
