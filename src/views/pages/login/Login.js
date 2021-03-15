@@ -25,7 +25,15 @@ import Redirect from "react-router-dom/es/Redirect";
 import GitHubLogo from '../../../assets/icons/GitHubLogo.png'
 import GitLabLogo from '../../../assets/icons/GitLabLogo.png'
 import MicrosoftLogo from '../../../assets/icons/MicrosoftLogo.png'
-import {GITHUB_OAUTH_URL, GITLAB_OAUTH_URL, MICROSOFT_OAUTH_URL} from "../../../constants";
+import TalTechLogo from '../../../assets/icons/TalTechLogo.png'
+import BitbucketLogo from '../../../assets/icons/BitbucketLogo.png'
+import {
+  BITBUCKET_OAUTH_URL,
+  GITHUB_OAUTH_URL,
+  GITLAB_OAUTH_URL,
+  MICROSOFT_OAUTH_URL,
+  TALTECH_OAUTH_URL
+} from "../../../constants";
 import setSessionToken from "../../../utils/setSessionToken";
 
 const Login = props => {
@@ -140,18 +148,28 @@ const Login = props => {
                     <CRow className="mt-1 justify-content-around" >
 
                       <a onClick={() => redirect(GITHUB_OAUTH_URL)} className="btn mt-3 border-dark col-5">
-                        <CIcon width="20px" src={GitHubLogo} />
+                        <CIcon width="17px" src={GitHubLogo} />
                         <span className="ml-2">GitHub</span>
                       </a>
 
                       <a onClick={() => redirect(GITLAB_OAUTH_URL)} className="btn mt-3 border-dark col-5">
-                        <CIcon width="25px" src={GitLabLogo} />
+                        <CIcon width="17px" src={GitLabLogo} />
                         <span className="ml-2">GitLab</span>
                       </a>
 
                       <a onClick={() => redirect(MICROSOFT_OAUTH_URL)} className="btn mt-3 border-dark col-5">
-                        <CIcon width="25px" src={MicrosoftLogo} />
+                        <CIcon width="17px" src={MicrosoftLogo} />
                         <span className=""> Microsoft</span>
+                      </a>
+
+                      <a onClick={() => redirect(TALTECH_OAUTH_URL)} className="btn mt-3 border-dark col-5">
+                        <CIcon width="17px" src={TalTechLogo} />
+                        <span className=""> TalTech</span>
+                      </a>
+
+                      <a onClick={() => redirect(BITBUCKET_OAUTH_URL)} className="btn mt-3 border-dark col-5">
+                        <CIcon width="17px" src={BitbucketLogo} />
+                        <span className=""> BitButcket</span>
                       </a>
 
                       <CCol sm="5">

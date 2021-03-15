@@ -8,10 +8,14 @@ export const BASE_URL = IS_DEV ? 'http://localhost:8000/services/gtm/' : ORIGIN;
 export const GITHUB_OAUTH_URL = BASE_URL + 'api/oauth/login/github';
 export const GITLAB_OAUTH_URL = BASE_URL + 'api/oauth/login/gitlab';
 export const MICROSOFT_OAUTH_URL = BASE_URL + 'api/oauth/login/microsoft';
+export const TALTECH_OAUTH_URL = BASE_URL + 'api/oauth/login/gitlab-taltech';
+export const BITBUCKET_OAUTH_URL = BASE_URL + 'api/oauth/login/bitbucket';
 
 export const GITHUB_OAUTH_TYPE_STRING = 'oauth_token_github';
 export const GITLAB_OAUTH_TYPE_STRING = 'oauth_bearer_gitlab';
 export const MICROSOFT_OAUTH_TYPE_STRING = 'oauth_bearer_microsoft';
+export const TALTECH_OAUTH_TYPE_STRING = 'oauth_bearer_gitlab.cs.ttu.ee';
+export const BITBUCKET_OAUTH_TYPE_STRING = 'oauth_bearer_bitbucket';
 
 export const USER = 'USER';
 export const LECTURER = 'LECTURER';
