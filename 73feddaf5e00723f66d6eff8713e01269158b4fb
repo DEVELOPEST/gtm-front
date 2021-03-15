@@ -1,0 +1,4 @@
+[ver:1,total:780,branch:feature/FRONT-30]
+src/views/pages/login/Login.js:376,1615834800:96,1615838400:280,m
+src/views/profile/OauthLinking.js:260,1615838400:260,m
+src/constants.js:144,1615834800:144,m
