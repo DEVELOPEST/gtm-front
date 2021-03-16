@@ -92,6 +92,7 @@ const authModel = {
         await api.register(payload)
             .then(data => {
                 setSessionToken(data);
+                console.log(data);
                 window.location.reload()
             })
             .catch(err => {

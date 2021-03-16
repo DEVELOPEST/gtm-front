@@ -28,10 +28,10 @@ const Register = () => {
   const {loading, errors} = useStoreState(state => state.auth)
   const {register, setErrors} = useStoreActions(actions => actions.auth)
 
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
-  const [emailErrors, setEmailErrors] = useState([]);
+  const [usernameErrors, setUsernameErrors] = useState([]);
   const [passwordErrors, setPasswordErrors] = useState([]);
   const [passwordRepeatErrors, setPasswordRepeatErrors] = useState([]);
 
@@ -40,11 +40,11 @@ const Register = () => {
   })
 
   const onClickRegister = () => {
-    if (emailErrors.length === 0 && passwordErrors.length === 0 && passwordRepeatErrors.length === 0) {
+    if (usernameErrors.length === 0 && passwordErrors.length === 0 && passwordRepeatErrors.length === 0) {
       register(
           {
             'user': {
-              'email': email,
+              'username': username,
               'password': password
             }
           }
@@ -52,9 +52,9 @@ const Register = () => {
     }
   }
 
-  const handleChangeEmail = value => {
-    setEmail(value)
-    setEmailErrors(usernameValidation(value))
+  const handleChangeUsername = value => {
+    setUsername(value)
+    setUsernameErrors(usernameValidation(value))
   }
 
   const handleChangePassword = value => {
@@ -79,17 +79,18 @@ const Register = () => {
                   <p className="text-muted">Create your account</p>
                   <CInputGroup className="mb-3">
                     <CInputGroupPrepend>
-                      <CInputGroupText>@</CInputGroupText>
+                      <CInputGroupText>
+                        <CIcon name="cil-user" />
+                      </CInputGroupText>
                     </CInputGroupPrepend>
                     <CInput
-                        className={(emailErrors.length === 0 ? "" : " red-border")}
-                        onChange={event => handleChangeEmail(event.target.value)}
+                        className={(usernameErrors.length === 0 ? "" : " red-border")}
+                        onChange={event => handleChangeUsername(event.target.value)}
                         type="text"
-                        placeholder="Email"
-                        autoComplete="email" />
+                        placeholder="Username" />
 
                   </CInputGroup>
-                  {emailErrors.map((value) => {
+                  {usernameErrors.map((value) => {
                     return <small className="form-text text-muted color-red mb-2">{value}</small>
                   })}
                   <CInputGroup className="mb-3">
