@@ -1,13 +1,13 @@
 import axios from 'axios';
 import {
-  baseURL,
+    BASE_URL,
 } from "../constants";
 
 const api = {};
 api.fetch = opts => axios
   .request({
     ...opts,
-    baseURL: opts.baseURL || baseURL,
+    baseURL: opts.baseURL || BASE_URL,
     mode: 'no-cors'
   })
   .then(response => response.data);
@@ -45,9 +45,14 @@ api.removeRole = params => api.fetch({url: `/api/roles`, data: params,  method: 
 
 // Auth
 api.login = params => api.fetch({url: `/api/auth/login`, data: params, method: 'POST'});
+api.logins = () => api.fetch({url: `/api/auth/login`, method: 'GET'});
+api.delete_login = params => api.fetch({url: `/api/auth/login`, data: params,  method: 'DELETE'});
+api.delete_account = () => api.fetch({url: `/api/auth/account`,  method: 'DELETE'});
 api.register = params => api.fetch({url: `/api/auth/register`, data: params, method: 'POST'});
 api.fetchToken = () => api.fetch({url: `/api/auth/token`, method: 'GET'});
 api.changePassword = params => api.fetch({url: `/api/auth/password`, data: params, method: 'PUT'});
+api.createPassword = params => api.fetch({url: `/api/auth/password-create`, data: params, method: 'PUT'});
+api.getPassword = () => api.fetch({url: `/api/auth/password`, method: 'GET'});
 
 
 export default api;

@@ -18,28 +18,59 @@ import CIcon from '@coreui/icons-react'
 import {useStoreActions, useStoreState} from "easy-peasy";
 import CustomLoader from "../../../reusable/CustomLoader";
 import {
-  emailValidation,
+  usernameValidation,
   passwordValidation,
 } from "../../../utils/inputValidations"
+import Redirect from "react-router-dom/es/Redirect";
+import GitHubLogo from '../../../assets/icons/GitHubLogo.png'
+import GitLabLogo from '../../../assets/icons/GitLabLogo.png'
+import MicrosoftLogo from '../../../assets/icons/MicrosoftLogo.png'
+import TalTechLogo from '../../../assets/icons/TalTechLogo.png'
+import BitbucketLogo from '../../../assets/icons/BitbucketLogo.png'
+import {
+  BITBUCKET_OAUTH_URL,
+  GITHUB_OAUTH_URL,
+  GITLAB_OAUTH_URL,
+  MICROSOFT_OAUTH_URL,
+  TALTECH_OAUTH_URL
+} from "../../../constants";
+import setSessionToken from "../../../utils/setSessionToken";
 
-const Login = () => {
-  const [email, setEmail] = useState('');
+const Login = props => {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [emailErrors, setEmailErrors] = useState([]);
+  const [usernameErrors, setUsernameErrors] = useState([]);
   const [passwordErrors, setPasswordErrors] = useState([]);
 
   const {loading, errors} = useStoreState(state => state.auth)
   const {login, setErrors} = useStoreActions(actions => actions.auth)
 
+
+  useEffect(() => {
+  }, [])
+
+  const queryString = require('query-string');
+  const parsed = queryString.parse(props.location.search);
+  if (parsed && parsed.token) {
+    setSessionToken(parsed.token)
+
+    return <Redirect to="/" />
+  }
+
+  const redirect = (url) => {
+      document.cookie="jwt=; Max-Age=0; Path=/;";
+      window.location.href = url;
+  }
+
   const onClickLogin = () => {
-    if (emailErrors.length === 0 && passwordErrors.length === 0 ) {
-      login({'email': email, 'password': password})
+    if (usernameErrors.length === 0 && passwordErrors.length === 0 ) {
+      login({'username': username, 'password': password})
     }
   }
 
-  const handleChangeEmail = value => {
-    setEmail(value)
-    setEmailErrors(emailValidation(value))
+  const handleChangeUsername = value => {
+    setUsername(value)
+    setUsernameErrors(usernameValidation(value))
   }
 
   const handleChangePassword = value => {
@@ -67,18 +98,17 @@ const Login = () => {
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
                         <CInputGroupText>
-                          @
+                          <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
                       <CInput
-                          className={(emailErrors.length === 0 ? "" : " red-border")}
-                          onChange={event => handleChangeEmail(event.target.value)}
+                          className={(usernameErrors.length === 0 ? "" : " red-border")}
+                          onChange={event => handleChangeUsername(event.target.value)}
                           type="text"
                           onKeyDown={event => handleKeyDown(event)}
-                          placeholder="Email"
-                          autoComplete="email" />
+                          placeholder="Username"/>
                     </CInputGroup>
-                    {emailErrors.map((value) => {
+                    {usernameErrors.map((value) => {
                       return <small className="form-text text-muted color-red mb-2">{value}</small>
                     })}
                     <CInputGroup className="mb-3">
@@ -114,6 +144,38 @@ const Login = () => {
                         <CButton color="link" className="px-0">Forgot password?</CButton>
                       </CCol>
                     </CRow>
+                    <p className="mt-4 mb-1 font-weight-bold">Sign in with</p>
+                    <CRow className="mt-1 justify-content-around" >
+
+                      <a onClick={() => redirect(GITHUB_OAUTH_URL)} className="btn mt-3 border-dark col-5">
+                        <CIcon width="17px" src={GitHubLogo} />
+                        <span className="ml-2">GitHub</span>
+                      </a>
+
+                      <a onClick={() => redirect(GITLAB_OAUTH_URL)} className="btn mt-3 border-dark col-5">
+                        <CIcon width="17px" src={GitLabLogo} />
+                        <span className="ml-2">GitLab</span>
+                      </a>
+
+                      <a onClick={() => redirect(MICROSOFT_OAUTH_URL)} className="btn mt-3 border-dark col-5">
+                        <CIcon width="17px" src={MicrosoftLogo} />
+                        <span className=""> Microsoft</span>
+                      </a>
+
+                      <a onClick={() => redirect(TALTECH_OAUTH_URL)} className="btn mt-3 border-dark col-5">
+                        <CIcon width="17px" src={TalTechLogo} />
+                        <span className=""> TalTech</span>
+                      </a>
+
+                      <a onClick={() => redirect(BITBUCKET_OAUTH_URL)} className="btn mt-3 border-dark col-5">
+                        <CIcon width="17px" src={BitbucketLogo} />
+                        <span className=""> BitButcket</span>
+                      </a>
+
+                      <CCol sm="5">
+
+                      </CCol>
+                    </CRow>
                   </CForm>
                 </CCardBody>
               </CCard>
@@ -121,8 +183,8 @@ const Login = () => {
                 <CCardBody className="text-center">
                   <div>
                     <h2>Sign up</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua.</p>
+                    <p>Login to GTM Dashboard.</p>
+                    <p>Or register if you don't have an account yet!</p>
                     <Link to="/register">
                       <CButton color="primary" className="mt-3" active tabIndex={-1}>Register Now!</CButton>
                     </Link>

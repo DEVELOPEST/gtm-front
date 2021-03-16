@@ -1,11 +1,16 @@
-import {action, computed, thunk} from 'easy-peasy';
-import setAuthHeader from "../utils/setAuthHeader";
+import {action, thunk} from 'easy-peasy';
+import setSessionToken from "../utils/setSessionToken";
 
 const authModel = {
+    logins: [],
+    hasPassword: '',
     errors: [],
     loading: false,
-    setPasswordRepeat: action((store, payload) => {
-        store.passwordRepeat = payload;
+    setHasPassword: action((store, payload) => {
+        store.hasPassword = payload;
+    }),
+    setLogins: action((store, payload) => {
+        store.logins = payload;
     }),
     setErrors: action((store, payload) => {
         store.errors = payload;
@@ -13,14 +18,66 @@ const authModel = {
     setLoading: action((store, payload) => {
         store.loading = payload;
     }),
+    getPassword: thunk(async (actions, payload, { injections }) => {
+        const { api } = injections;
+
+        actions.setLoading(true)
+        await api.getPassword()
+            .then(data => {
+                actions.setHasPassword(data);
+            })
+            .catch(err => {
+                actions.setErrors(err);
+            })
+        actions.setLoading(false)
+    }),
+    get_logins: thunk(async (actions, payload, { injections }) => {
+        const { api } = injections;
+
+        actions.setLoading(true)
+        await api.logins()
+            .then(data => {
+                actions.setLogins(data);
+            })
+            .catch(err => {
+                actions.setErrors(err);
+            })
+        actions.setLoading(false)
+    }),
+    delete_login: thunk(async (actions, login_type, { injections }) => {
+        const { api } = injections;
+
+        actions.setLoading(true)
+        await api.delete_login({"login_type": login_type})
+            .then(() => {
+                actions.get_logins();
+            })
+            .catch(err => {
+                actions.setErrors(err);
+            })
+        actions.setLoading(false)
+    }),
+    delete_account: thunk(async (actions, payload, { injections }) => {
+        const { api } = injections;
+
+        actions.setLoading(true)
+        await api.delete_account()
+            .then(() => {
+                localStorage.removeItem('token')
+                window.location.reload()
+            })
+            .catch(err => {
+                actions.setErrors(err);
+            })
+        actions.setLoading(false)
+    }),
     login: thunk(async (actions, payload, { injections }) => {
         const { api } = injections;
 
         actions.setLoading(true)
         await api.login(payload)
             .then(data => {
-                setAuthHeader(data.jwt);
-                localStorage.setItem('token', data.jwt)
+                setSessionToken(data.jwt)
                 window.location.reload()
             })
             .catch(err => {
@@ -34,8 +91,8 @@ const authModel = {
         actions.setLoading(true)
         await api.register(payload)
             .then(data => {
-                setAuthHeader(data);
-                localStorage.setItem('token', data)
+                setSessionToken(data);
+                console.log(data);
                 window.location.reload()
             })
             .catch(err => {
@@ -48,8 +105,7 @@ const authModel = {
 
         await api.fetchToken()
             .then(data => {
-                setAuthHeader(data);
-                localStorage.setItem('token', data)
+                setSessionToken(data);
             })
             .catch(err => {
                 actions.setErrors(err);

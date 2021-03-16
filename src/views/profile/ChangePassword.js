@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {
     CAlert,
     CButton,
@@ -18,7 +18,14 @@ const ChangePassword = () => {
     const [warning, setWarning] = useState('');
 
     const {oldPassword, newPassword, newPasswordRepeat, error, success} = useStoreState(state => state.passwordChange)
-    const {setOldPassword, setNewPassword, setNewPasswordRepeat, changePassword, setSuccess, setError} = useStoreActions(actions => actions.passwordChange)
+    const {setOldPassword, setNewPassword, setNewPasswordRepeat, changePassword, createPassword, setSuccess, setError} = useStoreActions(actions => actions.passwordChange)
+
+    const {hasPassword} = useStoreState(state => state.auth)
+    const {getPassword} = useStoreActions(actions => actions.auth)
+
+    useEffect(() => {
+        getPassword();
+    }, [])
 
     const getOldPasswordValid = () => {
         return oldPassword.length >= 8
@@ -38,10 +45,12 @@ const ChangePassword = () => {
     };
 
     const onClickChange = () => {
-        console.log("click")
         if (getOldPasswordValid() && getNewPasswordValid() && getNewPasswordRepeatValid(true)){
             setWarning('')
             changePassword()
+        } else if (!hasPassword && getNewPasswordValid() && getNewPasswordRepeatValid(true)) {
+            setWarning('')
+            createPassword()
         } else {
             setSuccess('')
             setError('')
@@ -51,9 +60,7 @@ const ChangePassword = () => {
 
     return (
         <CRow>
-            <CCol sm="1" lg="3">
-            </CCol>
-            <CCol sm="10" lg="6">
+            <CCol sm="12" lg="12">
                 <CCard>
                     <CCardHeader>
                         Change password
@@ -74,6 +81,7 @@ const ChangePassword = () => {
                             {warning}
                         </CAlert>
                         }
+                        { hasPassword &&
                             <CFormGroup>
                                 <CLabel >Old Password</CLabel>
                                 <CInputGroup>
@@ -88,6 +96,8 @@ const ChangePassword = () => {
                                     </CInputGroupAppend>
                                 </CInputGroup>
                             </CFormGroup>
+                        }
+
                             <CFormGroup>
                                 <CLabel >New Password</CLabel>
                                 <CInputGroup>
@@ -123,8 +133,6 @@ const ChangePassword = () => {
                             </CFormGroup>
                     </CCardBody>
                 </CCard>
-            </CCol>
-            <CCol sm="1" lg="3">
             </CCol>
         </CRow>
     )
