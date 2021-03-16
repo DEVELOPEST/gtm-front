@@ -13,8 +13,9 @@ const TheHeaderSettingsDropdown = () => {
     const history = useHistory()
 
     const handleLogOut = () => {
-        localStorage.removeItem('token')
-        window.location.reload()
+        localStorage.removeItem('token');
+        document.cookie="jwt=; Max-Age=0; Path=/;";
+        window.location.reload();
     }
 
     return (
@@ -27,9 +28,9 @@ const TheHeaderSettingsDropdown = () => {
                 <CIcon name="cil-user" alt="User" />
             </CDropdownToggle>
             <CDropdownMenu className="pt-0" placement="bottom-end">
-                <CDropdownItem onClick={() =>  history.push(`/profile/password`)}>
+                <CDropdownItem onClick={() =>  history.push(`/profile`)}>
                     <CIcon name="cil-settings" className="mfe-2" />
-                    Change Password
+                    Profile
                 </CDropdownItem>
                 <CDropdownItem onClick={handleLogOut} >
                     <CIcon name="cil-lock-locked" className="mfe-2" />

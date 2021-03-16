@@ -4,18 +4,15 @@ if (!Array.prototype.last){
     };
 }
 
-export const emailValidation = value => {
+export const usernameValidation = (value) => {
     let errors = []
     if (!value) {
-        errors.push("Email cannot be empty!")
-    }
-    if (!value.includes("@")) {
-        errors.push("Email must contain @!")
+        errors.push("Username cannot be empty!")
     }
     return errors
 }
 
-export const passwordValidation = value => {
+export const passwordValidation = (value) => {
     let errors = []
     if (value.length < 8) {
         errors.push("Password must be at least 8 characters long!")

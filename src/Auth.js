@@ -6,6 +6,7 @@ import {ADMIN, LECTURER, USER} from "./constants";
 
 
 export const logout = () => {
+    document.cookie="jwt=; Max-Age=0; Path=/;";
     localStorage.removeItem('token')
     window.location.reload(true);
 }
@@ -24,6 +25,15 @@ export const isValidToken = token => {
         return false
     }
     return true
+}
+
+export const getUsernameFromToken = () => {
+    const token = localStorage.getItem('token');
+    if (isValidToken(token)) {
+        const { username } = decode(token);
+        return username;
+    }
+    return '';
 }
 
 export const hasAnyRole = checkRoles => {
