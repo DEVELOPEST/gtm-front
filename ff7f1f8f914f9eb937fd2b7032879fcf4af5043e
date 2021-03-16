@@ -1,0 +1,8 @@
+[ver:1,total:1980,branch:feature/FRONT-30]
+src/views/pages/register/Register.js:610,1615881600:550,1615885200:60,m
+src/constants.js:390,1615748400:210,1615752000:180,r
+src/views/pages/login/Login.js:290,1615881600:290,m
+src/models/authModel.js:240,1615885200:240,m
+src/views/profile/OauthLinking.js:210,1615726800:180,1615748400:30,r
+src/logo.svg:180,1615881600:180,m
+public/logo.svg:60,1615885200:60,m
