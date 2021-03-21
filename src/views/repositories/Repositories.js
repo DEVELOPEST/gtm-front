@@ -1,6 +1,5 @@
 import {useStoreActions, useStoreState} from 'easy-peasy';
-import UntrackedRepository from './UntrackedRepository';
-import TrackedRepository from './TrackedRepository';
+import Repository from './Repository';
 import {useEffect} from 'react';
 
 const Repositories = () => {
@@ -12,12 +11,9 @@ const Repositories = () => {
     }, [])
 
     const repos = repositories.map(repo => {
-        if (repo.tracked) {
-            return <TrackedRepository repo={repo} key={repo.url}/>
-        } else {
-            return <UntrackedRepository repo={repo} key={repo.url}/>
+            return <Repository repo={repo} key={repo.url}/>
         }
-    });
+    );
 
 
     return (

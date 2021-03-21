@@ -1,7 +1,7 @@
 import {CCard, CCardBody, CRow, CCol, CButton} from '@coreui/react';
 import React from 'react';
 
-const UntrackedRepository = (props) => {
+const Repository = (props) => {
 
     const openRepoOnWeb = () => {
         window.location.href = props.repo.url;
@@ -27,4 +27,4 @@ const UntrackedRepository = (props) => {
     )
 }
 
-export default UntrackedRepository;
+export default Repository;
