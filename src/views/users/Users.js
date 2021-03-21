@@ -67,7 +67,7 @@ const Users = () => {
                         <CDataTable
                             items={users}
                             fields={[
-                                { key: 'email', _classes: 'font-weight-bold w-50' },
+                                { key: 'username', _classes: 'font-weight-bold w-50' },
                                 { key: 'roles', _classes: 'font-weight-bold w-50' },
                             ]}
                             hover

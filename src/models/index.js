@@ -11,6 +11,7 @@ import passwordChangeModel from './passwordChangeModel';
 import dashboardInputsModel from './dashboardInputsModel';
 import groupAccessModel from './groupAccessModel';
 import leaderboardModel from './leaderboardModel';
+import repositoriesModel from './repositoriesModel';
 
 const storeModel = {
     sidebar: sidebarModel,
@@ -26,6 +27,7 @@ const storeModel = {
     passwordChange: passwordChangeModel,
     dashboardInputs: dashboardInputsModel,
     groupAccess: groupAccessModel,
+    repositories: repositoriesModel,
 }
 
 export default storeModel;

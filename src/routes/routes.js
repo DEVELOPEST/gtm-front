@@ -4,6 +4,7 @@ const Dashboard = React.lazy(() => import('../views/dashboard/Dashboard'));
 const Leaderboard = React.lazy(() => import('../views/leaderboard/Leaderboard'));
 const ChangePassword = React.lazy(() => import('../views/profile/ChangePassword'));
 const Profile = React.lazy(() => import('../views/profile/Profile'));
+const Repositories = React.lazy(() => import('../views/repositories/Repositories'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -11,7 +12,7 @@ const routes = [
   { path: '/leaderboard', name: 'Leaderboard', component: Leaderboard },
   { path: '/profile/password', name: 'Change password', component: ChangePassword },
   { path: '/profile', name: 'Profile', component: Profile },
-
+  { path: '/repositories', name: 'Repositories', component: Repositories },
 ];
 
 export default routes;
