@@ -17,7 +17,7 @@ const Repositories = () => {
 
 
     return (
-        <div>
+        <div className="row">
             {repos}
         </div>
     )

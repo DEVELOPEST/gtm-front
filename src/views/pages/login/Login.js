@@ -169,7 +169,7 @@ const Login = props => {
 
                       <a onClick={() => redirect(BITBUCKET_OAUTH_URL)} className="btn mt-3 border-dark col-5">
                         <CIcon width="17px" src={BitbucketLogo} />
-                        <span className=""> BitButcket</span>
+                        <span className=""> BitBucket</span>
                       </a>
 
                       <CCol sm="5">

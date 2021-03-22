@@ -1,4 +1,5 @@
 import { action, thunk } from 'easy-peasy';
+import {useState} from "react";
 
 const RepositoriesModel = {
     repositories: [],
@@ -25,6 +26,22 @@ const RepositoriesModel = {
                 actions.setError(err);
             })
         actions.setLoading(false)
+    }),
+    postRepository: thunk(async (actions, url, { injections, getStoreState }) => {
+
+        const { api } = injections;
+        let pushHookUrl = 'Test'
+        actions.setLoading(true)
+        await api.postRepository({'clone_url': url})
+            .then(data => {
+                console.log(data)
+                pushHookUrl = 'cool';
+            })
+            .catch(err => {
+                actions.setError(err);
+            })
+        actions.setLoading(false)
+        return pushHookUrl
     }),
 };
 

@@ -45,6 +45,7 @@ api.removeRole = params => api.fetch({url: `/api/roles`, data: params,  method: 
 
 // Repositories
 api.fetchRepositories = () => api.fetch({url: `/api/vcs/repositories`, method: 'GET'})
+api.postRepository = (params) => api.fetch({url: `/api/vcs/repositories`, data: params, method: 'POST'})
 
 // Auth
 api.login = params => api.fetch({url: `/api/auth/login`, data: params, method: 'POST'});
