@@ -30,7 +30,7 @@ const RepositoriesModel = {
     postRepository: thunk(async (actions, url, { injections, getStoreState }) => {
 
         const { api } = injections;
-        let pushHookUrl = 'Test'
+        let pushHookUrl = false
         actions.setLoading(true)
         await api.postRepository({'clone_url': url})
             .then(data => {
