@@ -1,5 +1,7 @@
 import {CCard, CCardBody, CAlert, CCol, CButton, CCardHeader, CLink} from '@coreui/react';
 import React, {useState} from 'react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import CIcon from '@coreui/icons-react'
 import GitHubLogo from "../../assets/icons/GitHubLogo.png";
 import GitLabLogo from "../../assets/icons/GitLabLogo.png";
@@ -63,8 +65,13 @@ const Repository = (props) => {
                             ? (
                                 <CAlert color="info">
                                     Please add PUSH WEBHOOK to&nbsp;
-                                    <CLink className="alert-link" href={props.repo.url + getWebhookCreationUrlEnding(props.repo.repo_credentials.provider)}>{props.repo.repo_credentials.provider}</CLink>
-                                    &nbsp;with {url} url to complete tracking initialization.
+                                    <CLink className="alert-link"
+                                           href={props.repo.url + getWebhookCreationUrlEnding(props.repo.repo_credentials.provider)}
+                                    >{props.repo.repo_credentials.provider}</CLink>
+                                    &nbsp;with
+                                    <SyntaxHighlighter language="http" wrapLines={true} style={github}>
+                                        {url}
+                                    </SyntaxHighlighter> url to complete tracking initialization.
                                 </CAlert>
                             )
                             : (

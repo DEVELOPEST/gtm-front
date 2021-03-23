@@ -19,7 +19,6 @@ const RepositoriesModel = {
         actions.setLoading(true)
         await api.fetchRepositories()
             .then(data => {
-                console.log(data)
                 actions.setData(data);
             })
             .catch(err => {
