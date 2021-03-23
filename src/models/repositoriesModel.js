@@ -34,7 +34,7 @@ const RepositoriesModel = {
         actions.setLoading(true)
         await api.postRepository({'clone_url': url})
             .then(data => {
-                pushHookUrl = data;
+                pushHookUrl = data.sync_url;
             })
             .catch(err => {
                 actions.setError(err);
