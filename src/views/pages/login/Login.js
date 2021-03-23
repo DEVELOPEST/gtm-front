@@ -42,8 +42,8 @@ const Login = props => {
   const [usernameErrors, setUsernameErrors] = useState([]);
   const [passwordErrors, setPasswordErrors] = useState([]);
 
-  const {loading, errors} = useStoreState(state => state.auth)
-  const {login, setErrors} = useStoreActions(actions => actions.auth)
+  const {loading} = useStoreState(state => state.auth)
+  const {login} = useStoreActions(actions => actions.auth)
 
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const Login = props => {
 
   const onClickLogin = () => {
     if (usernameErrors.length === 0 && passwordErrors.length === 0 ) {
-      login({'username': username, 'password': password})
+      login({username: username, password: password})
     }
   }
 

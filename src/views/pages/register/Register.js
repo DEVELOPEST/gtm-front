@@ -3,7 +3,6 @@ import {
   CButton,
   CCard,
   CCardBody,
-  CCardFooter,
   CCol,
   CContainer,
   CForm,
@@ -25,8 +24,8 @@ import {
 
 const Register = () => {
 
-  const {loading, errors} = useStoreState(state => state.auth)
-  const {register, setErrors} = useStoreActions(actions => actions.auth)
+  const {loading} = useStoreState(state => state.auth)
+  const {register} = useStoreActions(actions => actions.auth)
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -41,14 +40,7 @@ const Register = () => {
 
   const onClickRegister = () => {
     if (usernameErrors.length === 0 && passwordErrors.length === 0 && passwordRepeatErrors.length === 0) {
-      register(
-          {
-            'user': {
-              'username': username,
-              'password': password
-            }
-          }
-      )
+      register({username: username, password: password})
     }
   }
 

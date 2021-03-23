@@ -1,11 +1,29 @@
-import { action, thunk } from 'easy-peasy';
+import {Action, action, Thunk, thunk} from 'easy-peasy';
+import {IApi} from "../api";
 
-const passwordChangeModel = {
+export interface PasswordChangeModel {
+    oldPassword: string;
+    newPassword: string;
+    newPasswordRepeat: string;
+    success: boolean | null;
+    error: Error | null;
+    loading: boolean | null;
+    setOldPassword: Action<PasswordChangeModel, string>
+    setNewPassword: Action<PasswordChangeModel, string>
+    setNewPasswordRepeat: Action<PasswordChangeModel, string>
+    setError: Action<PasswordChangeModel, Error | null>
+    setSuccess: Action<PasswordChangeModel, boolean | null>
+    setLoading: Action<PasswordChangeModel, boolean | null>
+    changePassword: Thunk<PasswordChangeModel>
+    createPassword: Thunk<PasswordChangeModel>
+}
+
+const passwordChange: PasswordChangeModel = {
     oldPassword: '',
     newPassword: '',
     newPasswordRepeat: '',
-    error: '',
-    success: '',
+    error: null,
+    success: null,
     loading: false,
     setOldPassword: action((store, payload) => {
         store.oldPassword = payload;
@@ -25,8 +43,9 @@ const passwordChangeModel = {
     setLoading: action((store, payload) => {
         store.loading = payload;
     }),
-    changePassword: thunk(async (actions, payload, { injections, getState }) => {
-        const { api } = injections;
+    changePassword: thunk(async (actions, _, { injections, getState }) => {
+        const api: IApi = injections.api;
+        // @ts-ignore
         const {oldPassword, newPassword, newPasswordRepeat} = getState(state => state.password);
         if (newPassword === newPasswordRepeat && newPassword.length >= 8) {
             let dto = {
@@ -36,20 +55,22 @@ const passwordChangeModel = {
             actions.setLoading(true)
             await api.changePassword(dto)
                 .then(() => {
-                    actions.setError('')
+                    actions.setError(null)
                     actions.setSuccess(true);
                     actions.setOldPassword('');
                     actions.setNewPassword('');
                     actions.setNewPasswordRepeat('');
                 })
-                .catch(({ response }) => {
-                    actions.setError(response)
+                .catch((err: Error) => {
+                    console.log(err)
+                    actions.setError(err)
                 })
             actions.setLoading(false)
         }
     }),
-    createPassword: thunk(async (actions, payload, { injections, getState }) => {
-        const { api } = injections;
+    createPassword: thunk(async (actions, _, { injections, getState }) => {
+        const api: IApi = injections.api;
+        // @ts-ignore
         const {newPassword, newPasswordRepeat} = getState(state => state.password);
         if (newPassword === newPasswordRepeat && newPassword.length >= 8) {
             let dto = {
@@ -58,18 +79,18 @@ const passwordChangeModel = {
             actions.setLoading(true)
             await api.createPassword(dto)
                 .then(() => {
-                    actions.setError('')
+                    actions.setError(null)
                     actions.setSuccess(true);
                     actions.setOldPassword('');
                     actions.setNewPassword('');
                     actions.setNewPasswordRepeat('');
                 })
-                .catch(({ response }) => {
-                    actions.setError(response)
+                .catch((err: Error) => {
+                    actions.setError(err)
                 })
             actions.setLoading(false)
         }
     }),
 };
 
-export default passwordChangeModel;
+export default passwordChange;

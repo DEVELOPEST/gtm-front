@@ -25,7 +25,7 @@ const ChangePassword = () => {
 
     useEffect(() => {
         getPassword();
-    }, [])
+    }, [getPassword])
 
     const getOldPasswordValid = () => {
         return oldPassword.length >= 8

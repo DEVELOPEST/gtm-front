@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react'
 import {
   Redirect,
-  Route,
   Switch
 } from 'react-router-dom'
 import { CContainer, CFade } from '@coreui/react'

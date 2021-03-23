@@ -1,9 +1,29 @@
-import {action, thunk} from 'easy-peasy';
+import {Action, action, Thunk, thunk} from 'easy-peasy';
 import setSessionToken from "../utils/setSessionToken";
+import {IApi} from "../api";
+import {IUser, IUserCredentials} from "../api/models/IUser";
 
-const authModel = {
+export interface AuthModel {
+    logins: string[],
+    hasPassword: boolean | null,
+    errors: [],
+    loading: boolean,
+    setHasPassword: Action<AuthModel, boolean | null>
+    setLogins: Action<AuthModel, string[]>
+    setErrors: Action<AuthModel, []>
+    setLoading: Action<AuthModel, boolean>
+    getPassword: Thunk<AuthModel>
+    get_logins: Thunk<AuthModel>
+    delete_login: Thunk<AuthModel, string>
+    delete_account: Thunk<AuthModel>
+    login: Thunk<AuthModel, IUserCredentials>
+    register: Thunk<AuthModel, IUserCredentials>
+    fetchToken: Thunk<AuthModel>
+}
+
+const auth: AuthModel = {
     logins: [],
-    hasPassword: '',
+    hasPassword: null,
     errors: [],
     loading: false,
     setHasPassword: action((store, payload) => {
@@ -18,8 +38,8 @@ const authModel = {
     setLoading: action((store, payload) => {
         store.loading = payload;
     }),
-    getPassword: thunk(async (actions, payload, { injections }) => {
-        const { api } = injections;
+    getPassword: thunk(async (actions, _, { injections }) => {
+        const api: IApi = injections.api;
 
         actions.setLoading(true)
         await api.getPassword()
@@ -31,8 +51,8 @@ const authModel = {
             })
         actions.setLoading(false)
     }),
-    get_logins: thunk(async (actions, payload, { injections }) => {
-        const { api } = injections;
+    get_logins: thunk(async (actions, _, { injections }) => {
+        const api: IApi = injections.api;
 
         actions.setLoading(true)
         await api.logins()
@@ -45,10 +65,10 @@ const authModel = {
         actions.setLoading(false)
     }),
     delete_login: thunk(async (actions, login_type, { injections }) => {
-        const { api } = injections;
+        const api: IApi = injections.api;
 
         actions.setLoading(true)
-        await api.delete_login({"login_type": login_type})
+        await api.delete_login(login_type)
             .then(() => {
                 actions.get_logins();
             })
@@ -57,8 +77,8 @@ const authModel = {
             })
         actions.setLoading(false)
     }),
-    delete_account: thunk(async (actions, payload, { injections }) => {
-        const { api } = injections;
+    delete_account: thunk(async (actions, _, { injections }) => {
+        const api: IApi = injections.api;
 
         actions.setLoading(true)
         await api.delete_account()
@@ -71,11 +91,11 @@ const authModel = {
             })
         actions.setLoading(false)
     }),
-    login: thunk(async (actions, payload, { injections }) => {
-        const { api } = injections;
+    login: thunk(async (actions, userCredentials, { injections }) => {
+        const api: IApi = injections.api;
 
         actions.setLoading(true)
-        await api.login(payload)
+        await api.login(userCredentials)
             .then(data => {
                 setSessionToken(data.jwt)
                 window.location.reload()
@@ -85,14 +105,13 @@ const authModel = {
             })
         actions.setLoading(false)
     }),
-    register: thunk(async (actions, payload, { injections }) => {
-        const { api } = injections;
+    register: thunk(async (actions, userCredentials, { injections }) => {
+        const api: IApi = injections.api;
 
         actions.setLoading(true)
-        await api.register(payload)
+        await api.register(userCredentials)
             .then(data => {
-                setSessionToken(data);
-                console.log(data);
+                setSessionToken(data.jwt);
                 window.location.reload()
             })
             .catch(err => {
@@ -100,16 +119,16 @@ const authModel = {
             })
         actions.setLoading(false)
     }),
-    fetchToken: thunk(async (actions, _payload, { injections }) => {
-        const { api } = injections;
+    fetchToken: thunk(async (actions, _, { injections }) => {
+        const api: IApi = injections.api;
 
         await api.fetchToken()
             .then(data => {
-                setSessionToken(data);
+                setSessionToken(data.jwt);
             })
             .catch(err => {
                 actions.setErrors(err);
             })
     }),
 };
-export default authModel;
+export default auth;

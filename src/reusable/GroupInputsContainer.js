@@ -34,7 +34,7 @@ const GroupInputsContainer = (onInputChanged) => {
 
     useEffect(() => {
         fetchGroups()
-    }, [])
+    }, [fetchGroups])
 
     const getIntervalOptions = () => {
         return intervals.map(function (obj) {

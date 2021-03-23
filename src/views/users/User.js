@@ -9,7 +9,7 @@ const User = ({match}) => {
     const {
         user,
         loading: userLoading,
-        error} = useStoreState(state => state.user)
+    } = useStoreState(state => state.user)
     const {fetchUser} = useStoreActions(actions => actions.user)
     const {addRole, removeRole} = useStoreActions(actions => actions.roles)
 

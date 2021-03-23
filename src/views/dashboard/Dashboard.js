@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {
   CCard,
   CCardBody,
@@ -16,12 +16,12 @@ const Dashboard = () => {
     const {startDate, endDate, chosenInterval} = useStoreState((state) => state.dashboardInputs)
 
     const {fetchTimeline} = useStoreActions((actions) => actions.timeline)
-    const {fetchSubDirsTimeline: fetchSubDirsTimeline} = useStoreActions((actions) => actions.subDirsTimeline)
+    const {fetchSubDirsTimeline} = useStoreActions((actions) => actions.subDirsTimeline)
     const {fetchActivityTimeline} = useStoreActions((actions) => actions.activityTimeline)
 
     const inputChangedCallback = () => {
 
-        if ((chosenGroup !== '' || groups.length > 0) && chosenInterval !== '' && startDate !== '' && endDate !== '') {
+        if ((chosenGroup !== null || groups.length > 0) && chosenInterval !== '' && startDate !== '' && endDate !== '') {
             fetchTimeline();
             fetchActivityTimeline();
             fetchSubDirsTimeline();

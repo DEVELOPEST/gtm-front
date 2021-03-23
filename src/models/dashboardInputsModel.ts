@@ -1,11 +1,25 @@
-import { action } from 'easy-peasy';
+import {Action, action} from 'easy-peasy';
 
-const dashboardInputsModel = {
+export interface DashboardInputsModel {
+    startDate: Date,
+    endDate: Date,
+    intervals: string[],
+    chosenInterval: string,
+    error: Error | null,
+    loading: boolean,
+    setStartDate: Action<DashboardInputsModel, Date>
+    setEndDate: Action<DashboardInputsModel, Date>
+    setChosenInterval: Action<DashboardInputsModel, string>
+    setError: Action<DashboardInputsModel, Error | null>
+    setLoading: Action<DashboardInputsModel, boolean>
+}
+
+const dashboardInputs: DashboardInputsModel = {
     startDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
     endDate: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1),
     intervals: ["Day", "Week", "Month", "Year"],
     chosenInterval: "Day",
-    error: '',
+    error: null,
     loading: false,
     setStartDate: action((store, payload) => {
         store.startDate = payload;
@@ -24,4 +38,4 @@ const dashboardInputsModel = {
     }),
 };
 
-export default dashboardInputsModel;
+export default dashboardInputs;

@@ -1,7 +1,18 @@
-import {action, thunk, useStoreActions} from 'easy-peasy';
+import {Action, action, Thunk, thunk} from 'easy-peasy';
+import {IApi} from "../api";
 
-const rolesModel = {
-    error: '',
+export interface RolesModel {
+    error: Error | null;
+    loading: boolean;
+    setError: Action<RolesModel, Error | null>;
+    setLoading: Action<RolesModel, boolean>;
+    addRole: Thunk<RolesModel, boolean>;
+    removeRole: Thunk<RolesModel, boolean>;
+}
+
+
+const roles: RolesModel = {
+    error: null,
     loading: false,
     setError: action((store, payload) => {
         store.error = payload;
@@ -10,27 +21,27 @@ const rolesModel = {
         store.loading = payload;
     }),
     addRole: thunk(async (actions, userId, { injections }) => {
-        const { api } = injections;
+        const api: IApi = injections.api;
 
         actions.setLoading(true)
         await api.addRole({"user": userId, role: 2})
             .then(() => {})
-            .catch(err => {
+            .catch((err: Error) => {
                 actions.setError(err)
             })
         actions.setLoading(false)
     }),
     removeRole: thunk(async (actions, userId, { injections }) => {
-        const { api } = injections;
+        const api: IApi = injections.api;
 
         actions.setLoading(true)
         await api.removeRole({"user": userId, role: 2})
             .then(() => {})
-            .catch(err => {
+            .catch((err: Error) => {
                 actions.setError(err)
             })
         actions.setLoading(false)
     }),
 };
 
-export default rolesModel;
+export default roles;

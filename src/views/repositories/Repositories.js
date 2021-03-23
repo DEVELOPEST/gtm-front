@@ -8,7 +8,7 @@ const Repositories = () => {
 
     useEffect(() => {
         fetchRepositories();
-    }, [])
+    }, [fetchRepositories])
 
     const repos = repositories.map(repo => {
             return <Repository repo={repo} key={repo.url}/>

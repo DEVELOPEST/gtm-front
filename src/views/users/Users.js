@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import {
     CBadge,
@@ -16,7 +16,6 @@ import {useStoreActions, useStoreState} from "easy-peasy";
 const Users = () => {
     const {users} = useStoreState(state => state.users)
     const {fetchUsers} = useStoreActions(actions => actions.users)
-    const {addRole} = useStoreActions(actions => actions.roles)
     const history = useHistory()
     const itemsPerPage = 10
     const maxPage = users.length % itemsPerPage === 0
@@ -25,6 +24,7 @@ const Users = () => {
     const queryPage = useLocation().search.match(/page=([0-9]+)/, '')
     const currentPage = Number(queryPage && queryPage[1] ? queryPage[1] : 1)
     const [page, setPage] = useState(currentPage > maxPage ? maxPage : currentPage)
+
 
     const getBadge = status => {
         switch (status) {
@@ -42,14 +42,10 @@ const Users = () => {
         currentPage !== newPage && history.push(`/users?page=${newPage}`)
     }
 
-    const handleClick = async id => {
-        await addRole(id)
-        window.location.reload()
-    }
-
     useEffect(() => {
         fetchUsers()
-    }, [])
+    }, [fetchUsers])
+
 
     useEffect(() => {
 

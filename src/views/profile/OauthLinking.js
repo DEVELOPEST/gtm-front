@@ -29,7 +29,7 @@ const OAuthLinking = () => {
 
     useEffect(() => {
         get_logins();
-    }, [])
+    }, [get_logins])
 
     const redirect = (url, type) => {
         if (logins.includes(type)) {
