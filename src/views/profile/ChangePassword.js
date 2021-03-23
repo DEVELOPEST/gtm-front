@@ -68,7 +68,7 @@ const ChangePassword = () => {
                     <CCardBody>
                         {error &&
                         <CAlert color="danger">
-                            {error.data.errors.password[0]}
+                            {error.response.data.error}
                         </CAlert>
                         }
                         {success &&

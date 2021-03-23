@@ -61,8 +61,7 @@ const passwordChange: PasswordChangeModel = {
                     actions.setNewPassword('');
                     actions.setNewPasswordRepeat('');
                 })
-                .catch((err: Error) => {
-                    console.log(err)
+                .catch(err => {
                     actions.setError(err)
                 })
             actions.setLoading(false)
@@ -85,7 +84,7 @@ const passwordChange: PasswordChangeModel = {
                     actions.setNewPassword('');
                     actions.setNewPasswordRepeat('');
                 })
-                .catch((err: Error) => {
+                .catch(err => {
                     actions.setError(err)
                 })
             actions.setLoading(false)
