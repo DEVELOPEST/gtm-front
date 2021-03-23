@@ -1,0 +1,4 @@
+[ver:1,total:1680,branch:feature/FRONT-57]
+src/views/profile/ChangePassword.js:860,1616533200:620,1616540400:240,m
+src/models/passwordChangeModel.ts:805,1616533200:805,m
+src/react-app-env.d.ts:15,1616533200:15,r
