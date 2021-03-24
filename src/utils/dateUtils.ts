@@ -10,7 +10,7 @@ import {
     startOfYear
 } from 'date-fns';
 
-export const formatDate = (date, interval) => {
+export const formatDate = (date: Date, interval: string) => {
     return {
         "Day": format(date, "HH"),
         "Week": format(date, "EEEEEE"),
@@ -19,7 +19,7 @@ export const formatDate = (date, interval) => {
     }[interval]
 }
 
-export const getEndDate = (date, interval) => {
+export const getEndDate = (date: Date, interval: string) => {
     return {
         "Day": endOfDay(date),
         "Week": endOfWeek(date),
@@ -28,7 +28,7 @@ export const getEndDate = (date, interval) => {
     }[interval]
 }
 
-export const getStartDate = (date, interval) => {
+export const getStartDate = (date: Date, interval: string) => {
     return {
         "Day": startOfDay(date),
         "Week": startOfWeek(date),
@@ -37,7 +37,7 @@ export const getStartDate = (date, interval) => {
     }[interval]
 }
 
-export const getRequestInterval = (interval) => {
+export const getRequestInterval = (interval: string) => {
     return {
         "Day": 'HOUR',
         "Week": 'DAY',
@@ -45,3 +45,9 @@ export const getRequestInterval = (interval) => {
         "Year": 'MONTH',
     }[interval]
 }
+
+export const dateFormatter = (date: string | Date) => {
+    if (typeof date !== 'string' || date.indexOf('T') === -1) return date;
+    return date?.split('T')[0];
+};
+

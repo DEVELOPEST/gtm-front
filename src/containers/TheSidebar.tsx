@@ -1,5 +1,5 @@
 import React from 'react'
-import {useStoreActions, useStoreState} from "easy-peasy";
+import {useStoreActions, useStoreState} from "../store/store";
 
 import {
   CCreateElement,
@@ -26,7 +26,7 @@ const TheSidebar = () => {
   return (
     <CSidebar
       show={sidebarShow}
-      onShowChange={(val) => setSidebarShow(val)}
+      onShowChange={(val: '' | true | false | 'responsive') => setSidebarShow(val)}
     >
       <CSidebarBrand className="d-md-down-none" to="/">
         <CIcon

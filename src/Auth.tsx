@@ -1,7 +1,6 @@
 import decode from "jwt-decode";
 import {Route} from "react-router-dom";
 import {Redirect} from "react-router-dom";
-import React from "react";
 import {ADMIN, LECTURER, USER} from "./constants";
 
 
@@ -11,11 +10,12 @@ export const logout = () => {
     window.location.reload(true);
 }
 
-export const isValidToken = token => {
+export const isValidToken = (token: string | null) => {
     if (!token) {
         return false
     }
     try {
+        // @ts-ignore
         const { exp } = decode(token);
         if (exp < new Date().getTime() / 1000 ) {
             logout()
@@ -28,17 +28,19 @@ export const isValidToken = token => {
 }
 
 export const getUsernameFromToken = () => {
-    const token = localStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
     if (isValidToken(token)) {
+        // @ts-ignore
         const { username } = decode(token);
         return username;
     }
     return '';
 }
 
-export const hasAnyRole = checkRoles => {
-    const token = localStorage.getItem('token');
+export const hasAnyRole = (checkRoles: string[]) => {
+    const token: string | null = localStorage.getItem('token');
     if (isValidToken(token)) {
+        // @ts-ignore
         const { roles } = decode(token);
         for (var i = 0; i < checkRoles.length; i++) {
             if (roles.indexOf(checkRoles[i]) >= 0){
@@ -50,6 +52,7 @@ export const hasAnyRole = checkRoles => {
 }
 
 
+// @ts-ignore
 export const UserRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={props => (
         hasAnyRole([USER]) ? (
@@ -60,6 +63,7 @@ export const UserRoute = ({component: Component, ...rest}) => (
     )}/>
 )
 
+// @ts-ignore
 export const AnyUserRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={props => (
         hasAnyRole([USER, LECTURER, ADMIN]) ? (
@@ -70,6 +74,7 @@ export const AnyUserRoute = ({component: Component, ...rest}) => (
     )}/>
 )
 
+// @ts-ignore
 export const LecturerRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={props => (
         hasAnyRole([LECTURER]) ? (
@@ -80,6 +85,7 @@ export const LecturerRoute = ({component: Component, ...rest}) => (
     )}/>
 )
 
+// @ts-ignore
 export const NonUserRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={props => (
         hasAnyRole([USER, LECTURER, ADMIN]) ? (
@@ -90,6 +96,7 @@ export const NonUserRoute = ({component: Component, ...rest}) => (
     )}/>
 )
 
+// @ts-ignore
 export const AdminRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={props => (
         hasAnyRole([ADMIN]) ? (

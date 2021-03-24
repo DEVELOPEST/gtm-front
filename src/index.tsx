@@ -10,6 +10,7 @@ import { icons } from './assets/icons'
 import { StoreProvider } from 'easy-peasy';
 import store from './store/store';
 
+// @ts-ignore
 React.icons = icons
 
 ReactDOM.render(

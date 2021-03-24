@@ -1,10 +1,12 @@
+// @ts-ignore
 if (!Array.prototype.last){
+    // @ts-ignore
     Array.prototype.last = function(){
         return this[this.length - 1];
     };
 }
 
-export const usernameValidation = (value) => {
+export const usernameValidation = (value: string) => {
     let errors = []
     if (!value) {
         errors.push("Username cannot be empty!")
@@ -12,7 +14,7 @@ export const usernameValidation = (value) => {
     return errors
 }
 
-export const passwordValidation = (value) => {
+export const passwordValidation = (value: string) => {
     let errors = []
     if (value.length < 8) {
         errors.push("Password must be at least 8 characters long!")
@@ -20,7 +22,7 @@ export const passwordValidation = (value) => {
     return errors
 }
 
-export const passwordRepeatValidation = (password, passwordRepeat) => {
+export const passwordRepeatValidation = (password: string, passwordRepeat: string) => {
     let errors = []
     if (password !== passwordRepeat) {
         errors.push("Passwords don't match!")

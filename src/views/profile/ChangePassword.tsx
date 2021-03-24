@@ -12,7 +12,7 @@ import {
     CRow
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {useStoreActions, useStoreState} from "easy-peasy";
+import {useStoreActions, useStoreState} from "../../store/store";
 
 const ChangePassword = () => {
     const [warning, setWarning] = useState('');
@@ -35,8 +35,8 @@ const ChangePassword = () => {
         return newPassword.length >= 8
     };
 
-    const getNewPasswordRepeatValid = value => {
-        if (newPasswordRepeat === '') return '';
+    const getNewPasswordRepeatValid = (value: string | boolean) => {
+        if (newPasswordRepeat === '') return undefined;
         if (value) {
             return (newPasswordRepeat.length >= 8 && newPassword === newPasswordRepeat);
         } else {
@@ -52,8 +52,8 @@ const ChangePassword = () => {
             setWarning('')
             createPassword()
         } else {
-            setSuccess('')
-            setError('')
+            setSuccess(null)
+            setError(null)
             setWarning('Please fill all the fields correctly!')
         }
     }
@@ -68,7 +68,8 @@ const ChangePassword = () => {
                     <CCardBody>
                         {error &&
                         <CAlert color="danger">
-                            {error.response.data.error}
+                            {// @ts-ignore TODO: Tavo Error liiga yldine, vb oskad midagi peale hakata
+                                error.response.data.error}
                         </CAlert>
                         }
                         {success &&
@@ -87,7 +88,7 @@ const ChangePassword = () => {
                                 <CInputGroup>
                                     <CInput
                                         value={oldPassword}
-                                        onChange={event => setOldPassword(event.target.value)}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setOldPassword(e.target.value)}
                                         valid={getOldPasswordValid()}
                                         type="password"
                                         placeholder="Insert old password" />
@@ -103,7 +104,7 @@ const ChangePassword = () => {
                                 <CInputGroup>
                                     <CInput
                                         value={newPassword}
-                                        onChange={event => setNewPassword(event.target.value)}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewPassword(e.target.value)}
                                         valid={getNewPasswordValid()}
                                         type="password"
                                         placeholder="Insert new password" />
@@ -117,7 +118,7 @@ const ChangePassword = () => {
                                 <CInputGroup>
                                     <CInput
                                         value={newPasswordRepeat}
-                                        onChange={event => setNewPasswordRepeat(event.target.value)}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewPasswordRepeat(e.target.value)}
                                         invalid={getNewPasswordRepeatValid(false)}
                                         valid={getNewPasswordRepeatValid(true)}
                                         type="password"

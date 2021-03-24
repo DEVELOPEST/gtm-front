@@ -3,11 +3,23 @@ import "react-datepicker/dist/react-datepicker.css";
 import {CCard, CCardBody, CCol, CRow} from '@coreui/react';
 import SelectDropdown from 'react-dropdown-select';
 import ReactDatePicker, {registerLocale} from 'react-datepicker';
-import {useStoreActions, useStoreState} from "easy-peasy";
+import {useStoreActions, useStoreState} from "../store/store";
 import React, {useEffect} from 'react'
 import enGB from 'date-fns/locale/en-GB';
+import {IGroupWithAccess} from "../api/models/IGroup";
 
-const GroupInputsContainer = (onInputChanged) => {
+interface IGroupOption {
+    label: string,
+    value: IGroupWithAccess,
+    name: string
+}
+
+interface IIntervalOption {
+    label: string,
+    value: string,
+}
+
+const GroupInputsContainer = (onInputChanged: { onInputChanged: Function }) => {
     const {groups, chosenGroup, loading} = useStoreState(state => state.groups)
     const {fetchGroups, setChosenGroup} = useStoreActions(actions => actions.groups)
 
@@ -44,7 +56,7 @@ const GroupInputsContainer = (onInputChanged) => {
 
     const getGroupOptions = () => {
         return groups.map(function (obj) {
-            return {label: obj.name, value: obj.id, name: obj.name}
+            return {label: obj.name, value: obj, name: obj.name}
         })
     }
 
@@ -59,9 +71,9 @@ const GroupInputsContainer = (onInputChanged) => {
                                 loading && groups.length > 0 ? "loading" :
                                     <SelectDropdown
                                         options={getGroupOptions()}
-                                        onChange={(value) => setChosenGroup(value[0])}
+                                        onChange={(value: IGroupOption[] ) => value && value.length > 0 && setChosenGroup(value[0].value)}
                                         searchable={false}
-                                        values={getGroupOptions().filter((option) => option.name === chosenGroup.name)}
+                                        values={getGroupOptions().filter((option) => (chosenGroup && option.name === chosenGroup.name))}
                                     />
                             }
                         </div>
@@ -74,7 +86,7 @@ const GroupInputsContainer = (onInputChanged) => {
                                 dateFormat="dd/MM/yyyy"
                                 locale="enGB"
                                 selected={startDate}
-                                onChange={date => setStartDate(date)}
+                                onChange={date => date && date instanceof Date && setStartDate(date)}
                             />
                         </div>
                     </CCol>
@@ -86,7 +98,7 @@ const GroupInputsContainer = (onInputChanged) => {
                                 dateFormat="dd/MM/yyyy"
                                 locale="enGB"
                                 selected={endDate}
-                                onChange={date => setEndDate(date)}
+                                onChange={date => date && date instanceof Date && setEndDate(date)}
                             />
                         </div>
                     </CCol>

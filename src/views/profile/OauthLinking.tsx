@@ -20,7 +20,7 @@ import {
     GITLAB_OAUTH_URL, MICROSOFT_OAUTH_TYPE_STRING,
     MICROSOFT_OAUTH_URL, TALTECH_OAUTH_TYPE_STRING, TALTECH_OAUTH_URL,
 } from "../../constants";
-import {useStoreActions, useStoreState} from "easy-peasy";
+import {useStoreActions, useStoreState} from "../../store/store";
 import setSessionToken from '../../utils/setSessionToken';
 
 const OAuthLinking = () => {
@@ -31,11 +31,14 @@ const OAuthLinking = () => {
         get_logins();
     }, [get_logins])
 
-    const redirect = (url, type) => {
+    const redirect = (url: string, type: string) => {
         if (logins.includes(type)) {
             delete_login(type);
         } else {
-            setSessionToken(localStorage.getItem("token"));
+            const token: string | null = localStorage.getItem("token");
+            if (token) {
+                setSessionToken(token);
+            }
             window.location.href = url;
         }
     }

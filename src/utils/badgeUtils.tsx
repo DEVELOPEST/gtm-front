@@ -1,7 +1,8 @@
 import {CBadge} from '@coreui/react';
 
-const getRankBadge = (value, prop, data) => {
-    const rank = data.filter((u) => u[prop] >= value).length
+// TODO: Tavo (value: any, prop: any, data: any)
+const getRankBadge = (value: any, prop: any, data: any) => {
+    const rank = data.filter((u: any) => u[prop] >= value).length
     if (rank <= 3) {
         const str = rank === 1 ? '1st' : rank === 2 ? '2nd' : '3rd';
         return (
@@ -13,7 +14,8 @@ const getRankBadge = (value, prop, data) => {
     return <></>
 }
 
-export const getBadge = (item, prop, data) => {
+// TODO: Tavo (item: any, prop: any, data: any)
+export const getBadge = (item: any, prop: any, data: any) => {
     return (
         <td>
                 <span style={{padding: 5}}>

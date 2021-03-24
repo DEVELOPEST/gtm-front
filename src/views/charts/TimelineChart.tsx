@@ -7,16 +7,13 @@ import {
     XAxis,
     YAxis
 } from "recharts";
-import {useStoreState} from "easy-peasy";
+import {useStoreState} from "../../store/store";
 import React from "react";
+import {dateFormatter} from "../../utils/dateUtils";
 
 const TimelineChart = () => {
     const {data} = useStoreState((state) => state.timeline);
 
-    const dateFormatter = (date) => {
-        if (typeof date !== 'string' || date.indexOf('T') === -1) return date;
-        return date?.split('T')[0];
-    };
 
     return (
             <ResponsiveContainer width="100%" height={400} >
@@ -32,7 +29,9 @@ const TimelineChart = () => {
                         </linearGradient>
                     </defs>
                     <Tooltip labelFormatter={(t) => dateFormatter(t) }/>
-                    <XAxis padding={{ left: 26, right: 26 }} dataKey="start" tickFormatter={dateFormatter}/>
+                    <XAxis padding={{ left: 26, right: 26 }} dataKey="start"
+                        // @ts-ignore TODO: Tavo
+                           tickFormatter={dateFormatter}/>
                     <YAxis yAxisId="left" tickCount={10} tickLine={false} axisLine={false} />
                     <YAxis yAxisId="right" orientation='right' tickCount={10} tickLine={false} axisLine={false} allowDecimals={false} />
                     <Area yAxisId="left" type="monotoneX" dataKey="time" stroke="#0f7dfa" fill="url(#colorUvBlue)" />

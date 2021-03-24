@@ -1,5 +1,5 @@
 import React from "react";
-import {useStoreActions, useStoreState} from "easy-peasy";
+import {useStoreActions, useStoreState} from "../store/store";
 
 import {
   CHeader,

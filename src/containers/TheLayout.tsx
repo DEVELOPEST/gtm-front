@@ -7,7 +7,7 @@ import {
 } from './index'
 import IdleTimer from "react-idle-timer";
 import {useInterval} from "../utils/hooks/hooks";
-import {useStoreActions} from "easy-peasy";
+import {useStoreActions} from "../store/store";
 import {hasAnyRole} from "../Auth";
 import {ADMIN, LECTURER, USER} from "../constants";
 import setAuthHeader from "../utils/setAuthHeader";
@@ -17,7 +17,11 @@ const TheLayout = () => {
     const {fetchToken} = useStoreActions(actions => actions.auth);
 
     useEffect(() => {
-        setAuthHeader(localStorage.getItem('token'))
+        const token: string | null = localStorage.getItem('token');
+        if (token) {
+            setAuthHeader(token)
+        }
+
         fetchToken()
     }, [])
 

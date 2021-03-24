@@ -21,7 +21,6 @@ const TheHeaderSettingsDropdown = () => {
         <CDropdown
             inNav
             className="c-header-nav-items mx-2"
-            direction="down"
         >
             <CDropdownToggle className="c-header-nav-link" caret={false}>
                 <CIcon name="cil-user" alt="User" />

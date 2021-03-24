@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Link } from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -15,13 +15,12 @@ import {
   CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import {useStoreActions, useStoreState} from "easy-peasy";
+import {useStoreActions, useStoreState} from "../../../store/store";
 import CustomLoader from "../../../reusable/CustomLoader";
 import {
   usernameValidation,
   passwordValidation,
 } from "../../../utils/inputValidations"
-import Redirect from "react-router-dom/es/Redirect";
 import GitHubLogo from '../../../assets/icons/GitHubLogo.png'
 import GitLabLogo from '../../../assets/icons/GitLabLogo.png'
 import MicrosoftLogo from '../../../assets/icons/MicrosoftLogo.png'
@@ -36,11 +35,11 @@ import {
 } from "../../../constants";
 import setSessionToken from "../../../utils/setSessionToken";
 
-const Login = props => {
+const Login = (props: any) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [usernameErrors, setUsernameErrors] = useState([]);
-  const [passwordErrors, setPasswordErrors] = useState([]);
+  const [usernameErrors, setUsernameErrors] = useState<string[]>([]);
+  const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
 
   const {loading} = useStoreState(state => state.auth)
   const {login} = useStoreActions(actions => actions.auth)
@@ -54,10 +53,10 @@ const Login = props => {
   if (parsed && parsed.token) {
     setSessionToken(parsed.token)
 
-    return <Redirect to="/" />
+    return <Redirect to={{pathname: "/"}} />
   }
 
-  const redirect = (url) => {
+  const redirect = (url: string) => {
       document.cookie="jwt=; Max-Age=0; Path=/;";
       window.location.href = url;
   }
@@ -68,17 +67,17 @@ const Login = props => {
     }
   }
 
-  const handleChangeUsername = value => {
+  const handleChangeUsername = (value: string) => {
     setUsername(value)
     setUsernameErrors(usernameValidation(value))
   }
 
-  const handleChangePassword = value => {
+  const handleChangePassword = (value: string) => {
     setPassword(value)
     setPasswordErrors(passwordValidation(value))
   }
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       onClickLogin()
     }
@@ -103,9 +102,9 @@ const Login = props => {
                       </CInputGroupPrepend>
                       <CInput
                           className={(usernameErrors.length === 0 ? "" : " red-border")}
-                          onChange={event => handleChangeUsername(event.target.value)}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeUsername(e.target.value)}
                           type="text"
-                          onKeyDown={event => handleKeyDown(event)}
+                          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e)}
                           placeholder="Username"/>
                     </CInputGroup>
                     {usernameErrors.map((value) => {
@@ -119,8 +118,8 @@ const Login = props => {
                       </CInputGroupPrepend>
                       <CInput
                           className={(passwordErrors.length === 0 ? "" : " red-border")}
-                          onChange={event => handleChangePassword(event.target.value)}
-                          onKeyDown={event => handleKeyDown(event)}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangePassword(e.target.value)}
+                          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e)}
                           type="password"
                           placeholder="Password"
                           autoComplete="current-password" />

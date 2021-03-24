@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from "react";
 import {
     CButton,
     CCard,
@@ -12,14 +12,14 @@ import {
     CRow,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {useStoreActions} from "easy-peasy";
+import {useStoreActions} from "../../store/store";
 import {getUsernameFromToken} from "../../Auth";
 
-const AccountDelete = () => {
+const AccountDelete: React.FC = () => {
     const [inputValue, setInputValue] = useState('');
-    const {delete_account} = useStoreActions(actions => actions.auth)
-
     const [username, setUsername] = useState('');
+
+    const {delete_account} = useStoreActions(actions => actions.auth)
 
     useEffect(() => {
         setUsername(getUsernameFromToken());
@@ -45,10 +45,11 @@ const AccountDelete = () => {
                                     to confirm deletion
                                 </CLabel>
                                 <CInput
-                                    onChange={event => setInputValue(event.target.value)}
+                                    value={inputValue}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
                                     id="inputWarning2i" />
                             </CFormGroup>
-                            <CButton onClick={() => handleClick()} type="reset" size="sm" color="danger">
+                            <CButton onClick={handleClick} type="reset" size="sm" color="danger">
                                 <CIcon name="cil-ban" /> Delete
                             </CButton>
                         </CForm>

@@ -1,4 +1,4 @@
-import {useStoreActions, useStoreState} from 'easy-peasy';
+import {useStoreActions, useStoreState} from '../../store/store';
 import Repository from './Repository';
 import {useEffect} from 'react';
 

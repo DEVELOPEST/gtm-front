@@ -29,7 +29,7 @@ const TheContent = () => {
                   path={route.path}
                   exact={route.exact}
                   name={route.name}
-                  component={props => (
+                  component={(props: any) => (
                     <CFade>
                       <route.component {...props} />
                     </CFade>
@@ -43,7 +43,7 @@ const TheContent = () => {
                           path={route.path}
                           exact={route.exact}
                           name={route.name}
-                          component={props => (
+                          component={(props: any) => (
                               <CFade>
                                   <route.component {...props} />
                               </CFade>

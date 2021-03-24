@@ -13,7 +13,7 @@ import {
   CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import {useStoreActions, useStoreState} from "easy-peasy";
+import {useStoreActions, useStoreState} from "../../../store/store";
 import CustomLoader from "../../../reusable/CustomLoader";
 
 import {
@@ -30,9 +30,9 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
-  const [usernameErrors, setUsernameErrors] = useState([]);
-  const [passwordErrors, setPasswordErrors] = useState([]);
-  const [passwordRepeatErrors, setPasswordRepeatErrors] = useState([]);
+  const [usernameErrors, setUsernameErrors] = useState<string[]>([]);
+  const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
+  const [passwordRepeatErrors, setPasswordRepeatErrors] = useState<string[]>([]);
 
   useEffect(() => {
     // setErrors([])
@@ -44,19 +44,25 @@ const Register = () => {
     }
   }
 
-  const handleChangeUsername = value => {
+  const handleChangeUsername = (value: string) => {
     setUsername(value)
     setUsernameErrors(usernameValidation(value))
   }
 
-  const handleChangePassword = value => {
+  const handleChangePassword = (value: string) => {
     setPassword(value)
     setPasswordErrors(passwordValidation(value))
   }
 
-  const handleChangePasswordRepeat = value => {
+  const handleChangePasswordRepeat = (value: string) => {
     setPasswordRepeat(value)
     setPasswordRepeatErrors(passwordRepeatValidation(password, value))
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      onClickRegister()
+    }
   }
 
   return (
@@ -77,7 +83,8 @@ const Register = () => {
                     </CInputGroupPrepend>
                     <CInput
                         className={(usernameErrors.length === 0 ? "" : " red-border")}
-                        onChange={event => handleChangeUsername(event.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeUsername(e.target.value)}
+                        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e)}
                         type="text"
                         placeholder="Username" />
 
@@ -93,7 +100,8 @@ const Register = () => {
                     </CInputGroupPrepend>
                     <CInput
                         className={(passwordErrors.length === 0 ? "" : " red-border")}
-                        onChange={event => handleChangePassword(event.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangePassword(e.target.value)}
+                        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e)}
                         type="password"
                         placeholder="Password"
                         autoComplete="new-password" />
@@ -110,7 +118,8 @@ const Register = () => {
                     </CInputGroupPrepend>
                     <CInput
                         className={(passwordRepeatErrors.length === 0 ? "" : " red-border")}
-                        onChange={event => handleChangePasswordRepeat(event.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangePasswordRepeat(e.target.value)}
+                        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e)}
                         type="password"
                         placeholder="Repeat password"
                         autoComplete="new-password" />

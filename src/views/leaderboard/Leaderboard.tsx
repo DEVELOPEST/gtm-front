@@ -1,7 +1,7 @@
 import {CCard, CCardBody, CCardHeader} from '@coreui/react';
 import UsersLeaderboard from './UsersLeaderboard';
 import React from 'react';
-import {useStoreActions} from 'easy-peasy';
+import {useStoreActions} from '../../store/store';
 import FilesLeaderboard from './FilesLeaderboard';
 import {GroupInputsContainer} from '../../reusable';
 

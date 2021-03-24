@@ -23,11 +23,11 @@ class App extends Component {
     return (
         <BrowserRouter basename="/services/gtm/front">
             <React.Suspense fallback={loading}><Switch>
-                <NonUserRoute exact path="/login" name="Login Page" component={props => <Login {...props}/>}  />
-                <NonUserRoute exact path="/register" name="Register Page" component={props => <Register {...props}/>} />
-                <Route exact path="/404" name="Page 404" component={props => <Page404 {...props}/>} />
-                <Route exact path="/500" name="Page 500" component={props => <Page500 {...props}/>} />
-                <AnyUserRoute path="/" name="Home" component={props => <TheLayout {...props}/>} />
+                <NonUserRoute exact path="/login" name="Login Page" component={(props: any) => <Login {...props}/>}  />
+                <NonUserRoute exact path="/register" name="Register Page" component={(props: any) => <Register {...props}/>} />
+                <Route exact path="/404" component={(props: any) => <Page404 {...props}/>} />
+                <Route exact path="/500" component={(props: any) => <Page500 {...props}/>} />
+                <AnyUserRoute path="/" name="Home" component={(props: any) => <TheLayout {...props}/>} />
             </Switch>
             </React.Suspense>
         </BrowserRouter>

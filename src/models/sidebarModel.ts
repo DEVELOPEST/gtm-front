@@ -1,8 +1,8 @@
 import {Action, action} from 'easy-peasy';
 
 export interface SidebarModel {
-    sidebarShow: string;
-    setSidebarShow: Action<SidebarModel, string>;
+    sidebarShow: '' | true | false | 'responsive';
+    setSidebarShow: Action<SidebarModel, '' | true | false | 'responsive'>;
 }
 
 const sidebar: SidebarModel = {

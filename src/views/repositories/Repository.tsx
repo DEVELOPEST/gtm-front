@@ -4,15 +4,16 @@ import CIcon from '@coreui/icons-react'
 import GitHubLogo from "../../assets/icons/GitHubLogo.png";
 import GitLabLogo from "../../assets/icons/GitLabLogo.png";
 import BitbucketLogo from "../../assets/icons/BitbucketLogo.png";
-import {useStoreActions} from "easy-peasy";
+import {useStoreActions} from "../../store/store";
+import {IRepository} from "../../api/models/IRepository";
 
-const Repository = (props) => {
+const Repository = (props: any) => {
     const [url, setUrl] = useState('');
-    const [trackClicked, setTrackClicked] = useState('');
+    const [trackClicked, setTrackClicked] = useState(false);
 
     const {postRepository} = useStoreActions(actions => actions.repositories);
 
-    const getAccentColor = (stars) => {
+    const getAccentColor = (stars: number) => {
         switch (stars) {
             case 2: return 'warning'
             case 3: return 'warning'
@@ -22,7 +23,7 @@ const Repository = (props) => {
         }
     }
 
-    const getImage = (provider) => {
+    const getImage = (provider: string) => {
         switch (provider) {
             case 'gitlab.com': return GitLabLogo
             case 'github.com': return GitHubLogo
@@ -31,15 +32,15 @@ const Repository = (props) => {
         }
     }
 
-    const  handleClickTrack = async (repo) => {
+    const handleClickTrack = async (repo: IRepository) => {
         setTrackClicked(true);
-        let pushUrl = await postRepository(repo.clone_url);
+        let pushUrl = await postRepository(repo.cloneUrl);
         if (pushUrl) {
             setUrl(pushUrl)
         }
     }
 
-    const getWebhookCreationUrlEnding = (provider) => {
+    const getWebhookCreationUrlEnding = (provider: string) => {
         switch (provider) {
             case 'gitlab.com': return '/hooks'
             case 'github.com': return '/settings/hooks/new'
@@ -49,7 +50,6 @@ const Repository = (props) => {
     }
 
     return (
-
         <CCol xs="12" sm="6" md="4">
             <CCard accentColor={getAccentColor(props.repo.stars)}>
                 <CCardHeader>

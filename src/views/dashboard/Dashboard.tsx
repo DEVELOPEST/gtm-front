@@ -4,16 +4,16 @@ import {
   CCardBody,
 } from '@coreui/react'
 
-import TimelineChart from '../charts/TimelineChart.js'
+import TimelineChart from '../charts/TimelineChart'
 import ActivityChart from "../charts/ActivityChart";
 import SubDirsChart from "../charts/SubDirsChart";
 import {GroupInputsContainer} from '../../reusable';
-import {useStoreActions, useStoreState} from "easy-peasy";
+import {useStoreActions, useStoreState} from "../../store/store";
 
 const Dashboard = () => {
 
     const {chosenGroup, groups} = useStoreState(state => state.groups)
-    const {startDate, endDate, chosenInterval} = useStoreState((state) => state.dashboardInputs)
+    const {chosenInterval} = useStoreState((state) => state.dashboardInputs)
 
     const {fetchTimeline} = useStoreActions((actions) => actions.timeline)
     const {fetchSubDirsTimeline} = useStoreActions((actions) => actions.subDirsTimeline)
@@ -21,7 +21,7 @@ const Dashboard = () => {
 
     const inputChangedCallback = () => {
 
-        if ((chosenGroup !== null || groups.length > 0) && chosenInterval !== '' && startDate !== '' && endDate !== '') {
+        if ((chosenGroup !== null || groups.length > 0) && chosenInterval !== '') {
             fetchTimeline();
             fetchActivityTimeline();
             fetchSubDirsTimeline();
