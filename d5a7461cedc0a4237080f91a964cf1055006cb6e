@@ -1,0 +1,12 @@
+[ver:1,total:2620,branch:release/v0.2.0]
+src/views/repositories/Repository.tsx:966,1616608800:606,1616612400:360,m
+src/api/index.ts:612,1616608800:90,1616612400:522,m
+src/utils/jsonUtils.ts:343,1616612400:343,d
+src/containers/_nav.tsx:220,1616608800:220,m
+package.json:215,1616608800:120,1616612400:95,m
+node_modules/camelcase-keys/index.js:80,1616612400:80,r
+src/views/repositories/Repositories.tsx:72,1616608800:12,1616612400:60,m
+src/models/repositoriesModel.ts:60,1616612400:60,r
+node_modules/axios/index.d.ts:20,1616612400:20,r
+src/store/store.ts:20,1616612400:20,r
+.gtm/com.intellij.javascript.nodejs.npm.InstallNodeLocalDependenciesAction$InstallDepsRunProfile@6f9ad27.app:12,1616608800:12,r
