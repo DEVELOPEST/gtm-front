@@ -2,15 +2,17 @@ import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {IApi} from "../api";
 import {IGroupWithAccess} from "../api/models/IGroup";
 import {IUserGroup} from "../api/models/IUser";
+import {AxiosError} from "axios";
+import {IError} from "../api/models/IError";
 
 export interface GroupAccessModel {
     accessibleGroups: IGroupWithAccess[],
     notAccessibleGroups: IGroupWithAccess[],
-    error: Error | null,
+    error: AxiosError<IError> | null,
     loading: boolean,
     setAccessibleGroups: Action<GroupAccessModel, IGroupWithAccess[]>
     setNotAccessibleGroups: Action<GroupAccessModel, IGroupWithAccess[]>
-    setError: Action<GroupAccessModel, Error | null>
+    setError: Action<GroupAccessModel, AxiosError<IError> | null>
     setLoading: Action<GroupAccessModel, boolean>
     fetchUserAccessibleGroups: Thunk<GroupAccessModel, number>
     fetchUserNotAccessibleGroups: Thunk<GroupAccessModel, number>

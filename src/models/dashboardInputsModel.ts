@@ -1,16 +1,18 @@
 import {Action, action} from 'easy-peasy';
+import {AxiosError} from "axios";
+import {IError} from "../api/models/IError";
 
 export interface DashboardInputsModel {
     startDate: Date,
     endDate: Date,
     intervals: string[],
     chosenInterval: string,
-    error: Error | null,
+    error: AxiosError<IError> | null,
     loading: boolean,
     setStartDate: Action<DashboardInputsModel, Date>
     setEndDate: Action<DashboardInputsModel, Date>
     setChosenInterval: Action<DashboardInputsModel, string>
-    setError: Action<DashboardInputsModel, Error | null>
+    setError: Action<DashboardInputsModel, AxiosError<IError> | null>
     setLoading: Action<DashboardInputsModel, boolean>
 }
 

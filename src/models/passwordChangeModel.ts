@@ -1,17 +1,19 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {IApi} from "../api";
+import {AxiosError} from "axios";
+import {IError} from "../api/models/IError";
 
 export interface PasswordChangeModel {
     oldPassword: string;
     newPassword: string;
     newPasswordRepeat: string;
     success: boolean | null;
-    error: Error | null;
+    error: AxiosError<IError> | null;
     loading: boolean | null;
     setOldPassword: Action<PasswordChangeModel, string>
     setNewPassword: Action<PasswordChangeModel, string>
     setNewPasswordRepeat: Action<PasswordChangeModel, string>
-    setError: Action<PasswordChangeModel, Error | null>
+    setError: Action<PasswordChangeModel, AxiosError<IError> | null>
     setSuccess: Action<PasswordChangeModel, boolean | null>
     setLoading: Action<PasswordChangeModel, boolean | null>
     changePassword: Thunk<PasswordChangeModel>

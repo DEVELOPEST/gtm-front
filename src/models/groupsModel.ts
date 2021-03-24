@@ -1,15 +1,17 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {IGroup, IGroupWithAccess} from "../api/models/IGroup";
 import {IApi} from "../api";
+import {AxiosError} from "axios";
+import {IError} from "../api/models/IError";
 
 export interface GroupsModel {
     groups: IGroupWithAccess[];
     chosenGroup: IGroupWithAccess | null;
-    error: Error | null;
+    error: AxiosError<IError> | null;
     loading: boolean;
     setGroups: Action<GroupsModel, IGroupWithAccess[]>;
     setChosenGroup: Action<GroupsModel, IGroupWithAccess | null>;
-    setError: Action<GroupsModel, Error | null>;
+    setError: Action<GroupsModel, AxiosError<IError> | null>;
     setLoading: Action<GroupsModel, boolean>;
     fetchGroups: Thunk<GroupsModel>;
 }
@@ -44,7 +46,7 @@ const groups: GroupsModel = {
                     actions.setChosenGroup(groups[0])
                 }
             })
-            .catch((err: Error) => {
+            .catch((err: AxiosError<IError>) => {
                 actions.setError(err)
             })
         actions.setLoading(false)

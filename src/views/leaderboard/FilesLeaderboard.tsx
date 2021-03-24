@@ -3,13 +3,13 @@ import {useStoreState} from "../../store/store";
 import {getBadge} from '../../utils/badgeUtils';
 import {IGroupFileStats} from "../../api/models/IGroup";
 
-const FilesLeaderboard = () => {
+const FilesLeaderboard = ()  => {
     const {files} = useStoreState(state => state.leaderboard);
 
     const fields = ['path','total_time', 'time_per_user', 'total_commits', 'commits_per_user', 'commits_per_hour', 'users', 'lines_added', 'lines_removed', 'lines_per_hour']
 
     return (
-        // @ts-ignore TODO: Tavo
+        // @ts-ignore
         <CDataTable
             items={files}
             fields={fields}

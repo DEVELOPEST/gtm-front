@@ -1,10 +1,12 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {IApi} from "../api";
+import {AxiosError} from "axios";
+import {IError} from "../api/models/IError";
 
 export interface RolesModel {
-    error: Error | null;
+    error: AxiosError<IError> | null;
     loading: boolean;
-    setError: Action<RolesModel, Error | null>;
+    setError: Action<RolesModel, AxiosError<IError> | null>;
     setLoading: Action<RolesModel, boolean>;
     addRole: Thunk<RolesModel, boolean>;
     removeRole: Thunk<RolesModel, boolean>;
@@ -26,7 +28,7 @@ const roles: RolesModel = {
         actions.setLoading(true)
         await api.addRole({"user": userId, role: 2})
             .then(() => {})
-            .catch((err: Error) => {
+            .catch((err: AxiosError<IError>) => {
                 actions.setError(err)
             })
         actions.setLoading(false)
@@ -37,7 +39,7 @@ const roles: RolesModel = {
         actions.setLoading(true)
         await api.removeRole({"user": userId, role: 2})
             .then(() => {})
-            .catch((err: Error) => {
+            .catch((err: AxiosError<IError>) => {
                 actions.setError(err)
             })
         actions.setLoading(false)

@@ -30,7 +30,6 @@ const TimelineChart = () => {
                     </defs>
                     <Tooltip labelFormatter={(t) => dateFormatter(t) }/>
                     <XAxis padding={{ left: 26, right: 26 }} dataKey="start"
-                        // @ts-ignore TODO: Tavo
                            tickFormatter={dateFormatter}/>
                     <YAxis yAxisId="left" tickCount={10} tickLine={false} axisLine={false} />
                     <YAxis yAxisId="right" orientation='right' tickCount={10} tickLine={false} axisLine={false} allowDecimals={false} />

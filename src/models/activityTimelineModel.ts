@@ -1,13 +1,15 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {IApi} from "../api";
 import {IActivityTimeline} from "../api/models/ITimeline";
+import {AxiosError} from "axios";
+import {IError} from "../api/models/IError";
 
 export interface ActivityTimelineModel {
     data: IActivityTimeline[],
-    error: Error | null,
+    error: AxiosError<IError> | null,
     loading: boolean,
     setData: Action<ActivityTimelineModel, IActivityTimeline[]>
-    setError: Action<ActivityTimelineModel, Error | null>
+    setError: Action<ActivityTimelineModel, AxiosError<IError> | null>
     setLoading: Action<ActivityTimelineModel, boolean>
     fetchActivityTimeline: Thunk<ActivityTimelineModel>
 }

@@ -1,7 +1,7 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {startOfDay} from 'date-fns';
 import {IApi} from "../api";
-import {ISubDirLevelTimelineData} from "../api/models/ITimeline";
+import {ISubDirLevelTimelineData, ISubDirLevelTimelineEntry} from "../api/models/ITimeline";
 
 export interface SubDirsTimelineModel {
     data: ISubDirLevelTimelineData[];

@@ -2,13 +2,15 @@ import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {startOfDay} from 'date-fns';
 import {ITimeline} from "../api/models/ITimeline";
 import {IApi} from "../api";
+import {AxiosError} from "axios";
+import {IError} from "../api/models/IError";
 
 export interface TimelineModel {
     data: ITimeline[];
-    error: Error | null;
+    error: AxiosError<IError> | null;
     loading: boolean;
     setData: Action<TimelineModel, ITimeline[]>
-    setError: Action<TimelineModel, Error | null>;
+    setError: Action<TimelineModel, AxiosError<IError> | null>;
     setLoading: Action<TimelineModel, boolean>;
     fetchTimeline: Thunk<TimelineModel>
 }
@@ -43,7 +45,7 @@ const timeline: TimelineModel = {
             .then(timeline => {
                 actions.setData(timeline)
             })
-            .catch((err: Error) => {
+            .catch((err: AxiosError<IError>) => {
                 actions.setError(err)
             })
         actions.setLoading(false)

@@ -1,8 +1,9 @@
 import React from "react";
 import {dateFormatter} from "../../../utils/dateUtils";
+import {TooltipProps} from "recharts";
+import {NameType, ValueType} from "recharts/types/component/DefaultTooltipContent";
 
-// TODO: Tavo (props: any)
-const SubDirChartTooltip = (props: any) => {
+const SubDirChartTooltip = (props: TooltipProps<any, NameType>) => {
     const {active, payload} = props;
 
     if (active && payload != null) {
@@ -11,14 +12,12 @@ const SubDirChartTooltip = (props: any) => {
             backgroundColor: '#fff',
             border: '1px solid #ccc',
         };
-        // @ts-ignore TODO: Tavo
         const currData = payload.filter((entry) => (entry?.value || 0) !== 0);
-
+        console.log("a", currData)
         return (
             <div className="area-chart-tooltip" style={style}>
-                <p>{dateFormatter(currData[0]?.payload?.start)}</p>
+                <p>{dateFormatter(currData[0]?.value?.start)}</p>
                 {
-                    // @ts-ignore TODO: Tavo
                     currData.map((entry) => {
                         return <p style={{color: entry?.color}}>{entry?.name + ' : '}<em>{entry?.value}</em></p>
                     })

@@ -16,8 +16,8 @@ import {ISubDirLevelTimelineData} from "../../api/models/ITimeline";
 const SubDirsChart = () => {
     const {data, paths} = useStoreState(state => state.subDirsTimeline)
     const getPathData = (data: ISubDirLevelTimelineData, path: string) => {
-        if (data.directories.get(path) == null) return 0;
-        return data.directories.get(path)!.time;
+        if (data.directories[path] == null) return 0;
+        return data.directories[path].time;
     };
     const getColor = (i: number) => {
         return GRAPH_COLORS[i % GRAPH_COLORS.length];
@@ -29,7 +29,6 @@ const SubDirsChart = () => {
             <AreaChart data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                 <Tooltip content={<SubDirChartTooltip/>}/>
                 <XAxis dataKey="start"
-                    // @ts-ignore TODO: Tavo
                        tickFormatter={dateFormatter}/>
                 <YAxis tickCount={10} tickLine={false} axisLine={false}/>
                 {

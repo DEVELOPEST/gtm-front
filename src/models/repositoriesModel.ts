@@ -1,13 +1,15 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {IApi} from "../api";
 import {IRepository, ITrackedRepository} from "../api/models/IRepository";
+import {AxiosError} from "axios";
+import {IError} from "../api/models/IError";
 
 export interface RepositoriesModel {
     repositories: IRepository[];
-    error: Error | null;
+    error: AxiosError<IError> | null;
     loading: boolean;
     setRepositories: Action<RepositoriesModel, IRepository[]>
-    setError: Action<RepositoriesModel, Error | null>
+    setError: Action<RepositoriesModel, AxiosError<IError> | null>
     setLoading: Action<RepositoriesModel, boolean>
     fetchRepositories: Thunk<RepositoriesModel>
     postRepository: Thunk<RepositoriesModel, string>
@@ -33,7 +35,7 @@ const repositories: RepositoriesModel = {
             .then(repositories => {
                 actions.setRepositories(repositories);
             })
-            .catch((err: Error) => {
+            .catch((err: AxiosError<IError>) => {
                 actions.setError(err);
             })
         actions.setLoading(false)
@@ -47,7 +49,7 @@ const repositories: RepositoriesModel = {
             .then(trackedRepository => {
                 pushHookUrl = trackedRepository.syncUrl;
             })
-            .catch((err: Error) => {
+            .catch((err: AxiosError<IError>) => {
                 actions.setError(err);
             })
         actions.setLoading(false)

@@ -68,8 +68,7 @@ const ChangePassword = () => {
                     <CCardBody>
                         {error &&
                         <CAlert color="danger">
-                            {// @ts-ignore TODO: Tavo Error liiga yldine, vb oskad midagi peale hakata
-                                error.response.data.error}
+                            {error!.response?.data.error}
                         </CAlert>
                         }
                         {success &&

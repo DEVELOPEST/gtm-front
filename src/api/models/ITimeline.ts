@@ -16,7 +16,7 @@ export interface ISubDirLevelTimelineWrapper {
 export interface ISubDirLevelTimelineData {
     start: string,
     end: string,
-    directories: Map<string, ISubDirLevelTimelineEntry>,
+    directories: IDictionary<ISubDirLevelTimelineEntry>,
 }
 
 export interface ISubDirLevelTimelineEntry {
@@ -26,6 +26,10 @@ export interface ISubDirLevelTimelineEntry {
     linesAdded: number,
     linesRemoved: number,
     users: number,
+}
+
+export interface IDictionary<TValue> {
+    [id: string]: TValue;
 }
 
 // ========================================= ActivityTimeline =======================================

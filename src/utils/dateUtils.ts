@@ -46,7 +46,7 @@ export const getRequestInterval = (interval: string) => {
     }[interval]
 }
 
-export const dateFormatter = (date: string | Date) => {
+export const dateFormatter = (date: any | Date) => {
     if (typeof date !== 'string' || date.indexOf('T') === -1) return date;
     return date?.split('T')[0];
 };

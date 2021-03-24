@@ -8,7 +8,6 @@ const UsersLeaderboard = () => {
     const fields = ['name', 'total_time', 'commits', 'lines_added', 'lines_removed', 'lines_per_hour', 'commits_per_hour', 'lines_per_commit']
 
     return (
-        // @ts-ignore TODO: Tavo
         <CDataTable
             items={users}
             fields={fields}
@@ -25,10 +24,7 @@ const UsersLeaderboard = () => {
                 'commits_per_hour': (item: any) => getBadge(item, 'commits_per_hour', users),
                 'lines_per_commit': (item: any) => getBadge(item, 'lines_per_commit', users),
             }}
-            details={{item: "123", index: 0}}
-        >
-
-        </CDataTable>
+        />
     )
 }
 

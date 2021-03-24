@@ -1,7 +1,7 @@
 import {CBadge} from '@coreui/react';
 
-// TODO: Tavo (value: any, prop: any, data: any)
-const getRankBadge = (value: any, prop: any, data: any) => {
+
+const getRankBadge = <TObj, TProp extends keyof TObj>(value: any, prop: TProp, data: Array<TObj>): JSX.Element => {
     const rank = data.filter((u: any) => u[prop] >= value).length
     if (rank <= 3) {
         const str = rank === 1 ? '1st' : rank === 2 ? '2nd' : '3rd';
@@ -12,16 +12,13 @@ const getRankBadge = (value: any, prop: any, data: any) => {
         )
     }
     return <></>
-}
+};
 
-// TODO: Tavo (item: any, prop: any, data: any)
-export const getBadge = (item: any, prop: any, data: any) => {
-    return (
-        <td>
-                <span style={{padding: 5}}>
-                {item[prop]}
-                </span>
-            {getRankBadge(item[prop], prop, data)}
-        </td>
-    )
-}
+export const getBadge = <TObj, TProp extends keyof TObj>(item: TObj, prop: TProp, data: Array<TObj>): JSX.Element => (
+    <td>
+        <span style={{padding: 5}}>
+            {item[prop]}
+        </span>
+        {getRankBadge(item[prop], prop, data)}
+    </td>
+);

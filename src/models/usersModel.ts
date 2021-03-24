@@ -1,13 +1,15 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {IUser} from "../api/models/IUser";
 import {IApi} from "../api";
+import {AxiosError} from "axios";
+import {IError} from "../api/models/IError";
 
 export interface UsersModel {
     users: IUser[];
-    error: Error | null;
+    error: AxiosError<IError> | null;
     loading: boolean;
     setUsers: Action<UsersModel, IUser[]>;
-    setError: Action<UsersModel, Error | null>;
+    setError: Action<UsersModel, AxiosError<IError> | null>;
     setLoading: Action<UsersModel, boolean>;
     fetchUsers: Thunk<UsersModel, string>;
 }
@@ -33,7 +35,7 @@ const users: UsersModel = {
             .then(users => {
                 actions.setUsers(users)
             })
-            .catch((err: Error) => {
+            .catch((err: AxiosError<IError>) => {
                 actions.setError(err)
             })
         actions.setLoading(false)
