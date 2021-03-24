@@ -1,0 +1,4 @@
+[ver:1,total:500,branch:release/v0.2.0]
+src/views/repositories/Repository.tsx:400,1616608800:400,m
+.gitignore:80,1616608800:80,r
+src/models/repositoriesModel.js:20,1616608800:20,d
