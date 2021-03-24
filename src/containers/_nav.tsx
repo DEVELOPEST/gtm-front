@@ -22,7 +22,7 @@ const _nav =  [
     _tag: 'CSidebarNavItem',
     name: 'Repositories',
     to: '/repositories',
-    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
+    icon: <CIcon name="cil-chart" customClasses="c-sidebar-nav-icon"/>,
   }
 ]
 

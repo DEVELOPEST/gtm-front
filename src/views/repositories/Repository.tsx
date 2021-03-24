@@ -35,8 +35,8 @@ const Repository = (props: any) => {
     }
 
     const handleClickTrack = async (repo: IRepository) => {
-        setTrackClicked(true);
         let pushUrl = await postRepository(repo.cloneUrl);
+        setTrackClicked(true);
         if (pushUrl) {
             setUrl(pushUrl)
         }
@@ -55,8 +55,8 @@ const Repository = (props: any) => {
         <CCol xs="12" sm="6" md="4">
             <CCard accentColor={getAccentColor(props.repo.stars)}>
                 <CCardHeader>
-                    <CIcon width="20px" src={getImage(props.repo.repo_credentials.provider)} />
-                    <CLink className="alert-link color-black" href={props.repo.url}> {props.repo.full_name} </CLink>
+                    <CIcon width="20px" src={getImage(props.repo.repoCredentials.provider)} />
+                    <CLink className="alert-link color-black" href={props.repo.url}> {props.repo.fullName} </CLink>
                     <span className="float-right"><CIcon name="cil-star" /> {props.repo.stars} </span>
                 </CCardHeader>
                 <CCardBody>
@@ -66,8 +66,8 @@ const Repository = (props: any) => {
                                 <CAlert color="info">
                                     Please add PUSH WEBHOOK to&nbsp;
                                     <CLink className="alert-link"
-                                           href={props.repo.url + getWebhookCreationUrlEnding(props.repo.repo_credentials.provider)}
-                                    >{props.repo.repo_credentials.provider}</CLink>
+                                           href={props.repo.url + getWebhookCreationUrlEnding(props.repo.repoCredentials.provider)}
+                                    >{props.repo.repoCredentials.provider}</CLink>
                                     &nbsp;with
                                     <SyntaxHighlighter language="http" wrapLines={true} style={github}>
                                         {url}

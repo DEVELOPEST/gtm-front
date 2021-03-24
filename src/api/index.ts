@@ -7,6 +7,7 @@ import {IGroup, IGroupStats, IGroupWithAccess} from "./models/IGroup";
 import {IJsonWebToken, IUser, IUserCredentials} from "./models/IUser";
 import {IActivityTimeline, ISubDirLevelTimelineWrapper, ITimeline} from "./models/ITimeline";
 import {IRepository, ITrackedRepository} from "./models/IRepository";
+import applyCaseMiddleware from "axios-case-converter";
 
 export interface IApi {
     fetch<T> (opts: any): Promise<T>
@@ -56,13 +57,14 @@ export interface IApi {
 const Api: IApi =  {
 
     fetch<Type>(opts: any): Promise<Type>{
-        return axios
+        const client = applyCaseMiddleware(axios.create());
+        return client
             .request({
                 ...opts,
                 baseURL: opts.baseURL || BASE_URL,
                 mode: 'no-cors'
             })
-            .then(response => response.data);
+            .then(response => (response.data));
     },
 
     // ===================================================== Timeline =========================================================

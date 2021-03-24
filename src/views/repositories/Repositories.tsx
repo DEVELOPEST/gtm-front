@@ -10,7 +10,7 @@ const Repositories = () => {
         fetchRepositories();
     }, [fetchRepositories])
 
-    const repos = repositories.filter(r => r.tracked).map(repo => {
+    const repos = repositories.filter(r => !r.tracked).map(repo => {
             return <Repository repo={repo} key={repo.url}/>
         }
     );
