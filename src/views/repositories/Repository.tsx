@@ -6,6 +6,7 @@ import CIcon from '@coreui/icons-react'
 import GitHubLogo from "../../assets/icons/GitHubLogo.png";
 import GitLabLogo from "../../assets/icons/GitLabLogo.png";
 import BitbucketLogo from "../../assets/icons/BitbucketLogo.png";
+import TalTechLogo from "../../assets/icons/TalTechLogo.png";
 import {useStoreActions} from "../../store/store";
 import {IRepository} from "../../api/models/IRepository";
 
@@ -30,6 +31,7 @@ const Repository = (props: any) => {
             case 'gitlab.com': return GitLabLogo
             case 'github.com': return GitHubLogo
             case 'bitbucket.com': return BitbucketLogo
+            case 'gitlab.cs.ttu.ee': return TalTechLogo
             default: return ''
         }
     }
@@ -45,6 +47,7 @@ const Repository = (props: any) => {
     const getWebhookCreationUrlEnding = (provider: string) => {
         switch (provider) {
             case 'gitlab.com': return '/hooks'
+            case 'gitlab.cs.ttu.ee': return '/hooks'
             case 'github.com': return '/settings/hooks/new'
             case 'bitbucket.com': return '/admin/addon/admin/bitbucket-webhooks/bb-webhooks-repo-admin'
             default: return ''

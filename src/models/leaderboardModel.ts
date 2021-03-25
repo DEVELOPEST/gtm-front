@@ -52,6 +52,7 @@ const leaderboard: LeaderboardModel = {
             )
             .then(data => {
                 actions.setUsers(data.users);
+                console.log(data)
                 actions.setFiles(data.files);
             })
             .catch(err => {
