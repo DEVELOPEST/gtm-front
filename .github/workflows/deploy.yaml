@@ -2,7 +2,7 @@ name: Deploy
 on:
   workflow_run:
     workflows: ["Build"]
-    branches: ["master"]
+    branches: ["master", "feature/FRONT-60"]
     types:
       - completed
 jobs:

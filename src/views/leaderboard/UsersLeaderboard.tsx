@@ -5,7 +5,7 @@ import {getBadge} from '../../utils/badgeUtils';
 const UsersLeaderboard = () => {
     const {users} = useStoreState(state => state.leaderboard);
 
-    const fields = ['name', 'total_time', 'commits', 'lines_added', 'lines_removed', 'lines_per_hour', 'commits_per_hour', 'lines_per_commit']
+    const fields = ['name', 'totalTime', 'commits', 'linesAdded', 'linesRemoved', 'linesPerHour', 'commitsPerHour', 'linesPerCommit']
 
     return (
         <CDataTable
@@ -14,15 +14,15 @@ const UsersLeaderboard = () => {
             itemsPerPage={15}
             pagination
             sorter
-            sorterValue={{ column: 'total_time', desc: 'true' }}
+            sorterValue={{ column: 'totalTime', desc: 'true' }}
             scopedSlots={{
-                'total_time': (item: any) => getBadge(item, 'total_time', users),
+                'totalTime': (item: any) => getBadge(item, 'totalTime', users),
                 'commits': (item: any) => getBadge(item, 'commits', users),
-                'lines_added': (item: any) => getBadge(item, 'lines_added', users),
-                'lines_removed': (item: any) => getBadge(item, 'lines_removed', users),
-                'lines_per_hour': (item: any) => getBadge(item, 'lines_per_hour', users),
-                'commits_per_hour': (item: any) => getBadge(item, 'commits_per_hour', users),
-                'lines_per_commit': (item: any) => getBadge(item, 'lines_per_commit', users),
+                'linesAdded': (item: any) => getBadge(item, 'linesAdded', users),
+                'linesRemoved': (item: any) => getBadge(item, 'linesRemoved', users),
+                'linesPerHour': (item: any) => getBadge(item, 'linesPerHour', users),
+                'commitsPerHour': (item: any) => getBadge(item, 'commitsPerHour', users),
+                'linesPerCommit': (item: any) => getBadge(item, 'linesPerCommit', users),
             }}
         />
     )
