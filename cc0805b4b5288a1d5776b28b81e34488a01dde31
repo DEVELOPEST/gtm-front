@@ -1,3 +1,8 @@
 [ver:1,total:300,branch:master]
 src/views/repositories/Repository.tsx:240,1616677200:240,m
 src/views/repositories/Repositories.tsx:60,1616677200:60,r
+
+[ver:1,total:240,branch:master]
+src/views/repositories/Repository.tsx:180,1616677200:180,m
+src/api/index.ts:30,1616677200:30,r
+src/constants.ts:30,1616677200:30,r
