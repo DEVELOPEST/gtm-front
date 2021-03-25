@@ -1,0 +1,10 @@
+[ver:1,total:1020,branch:feature/FRONT-60]
+src/views/leaderboard/FilesLeaderboard.tsx:353,1616673600:353,m
+src/views/leaderboard/UsersLeaderboard.tsx:192,1616673600:192,m
+src/views/repositories/Repository.tsx:180,1616677200:180,m
+src/constants.ts:80,1616673600:80,m
+src/models/leaderboardModel.ts:80,1616673600:80,m
+src/api/index.ts:60,1616673600:60,r
+.github/workflows/deploy.yaml:36,1616677200:36,m
+.github/workflows/build.yaml:24,1616677200:24,m
+src/models/index.ts:15,1616673600:15,r
