@@ -13,7 +13,6 @@ const SubDirChartTooltip = (props: TooltipProps<any, NameType>) => {
             border: '1px solid #ccc',
         };
         const currData = payload.filter((entry) => (entry?.value || 0) !== 0);
-        console.log("a", currData)
         return (
             <div className="area-chart-tooltip" style={style}>
                 <p>{dateFormatter(currData[0]?.value?.start)}</p>

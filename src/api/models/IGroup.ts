@@ -43,6 +43,20 @@ export interface IGroupFileStats {
     linesPerHour: number,
 }
 
+export interface IGroupExportDataEntry {
+    user: string,
+    provider: string,
+    repository: string,
+    path: string,
+    is_app: boolean,
+    files_count: number,
+    timestamp: number,
+    message: string,
+    total_time: number,
+    lines_added: number,
+    lines_removed: number,
+}
+
 // ========================================= GroupAccess =======================================
 
 export interface IGroupWithAccess {

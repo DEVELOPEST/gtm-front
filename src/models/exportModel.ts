@@ -1,32 +1,29 @@
 import {Action, action, Thunk, thunk} from "easy-peasy";
 import {startOfDay} from "date-fns";
 import {IApi} from "../api";
-import {IGroupFileStats, IGroupUserStats} from "../api/models/IGroup";
+import {IGroupExportDataEntry, IGroupFileStats, IGroupUserStats} from "../api/models/IGroup";
 import {AxiosError} from "axios";
 import {IError} from "../api/models/IError";
 
-export interface LeaderboardModel {
-    users: IGroupUserStats[],
-    files: IGroupFileStats[],
+export interface ExportModel {
+    data: IGroupExportDataEntry[] | null,
     error: AxiosError<IError> | null,
     loading: boolean,
-    setUsers: Action<LeaderboardModel, IGroupUserStats[]>
-    setFiles: Action<LeaderboardModel, IGroupFileStats[]>
-    setError: Action<LeaderboardModel, AxiosError<IError> | null>
-    setLoading: Action<LeaderboardModel, boolean>
-    fetchGroupStats: Thunk<LeaderboardModel>
+    dataDownloaded: boolean
+    setData: Action<ExportModel, IGroupExportDataEntry[] | null>
+    setError: Action<ExportModel, AxiosError<IError> | null>
+    setLoading: Action<ExportModel, boolean>
+    fetchGroupExportData: Thunk<ExportModel>
 }
 
-const leaderboard: LeaderboardModel = {
-    users: [],
-    files: [],
+const exportModel: ExportModel = {
+    data: [],
     error: null,
     loading: false,
-    setUsers: action((store, payload) => {
-        store.users = payload;
-    }),
-    setFiles: action((store, payload) => {
-        store.files = payload;
+    dataDownloaded: false,
+    setData: action((store, payload) => {
+        store.data = payload;
+        store.dataDownloaded = payload != null;
     }),
     setError: action((store, payload) => {
         store.error = payload;
@@ -34,7 +31,7 @@ const leaderboard: LeaderboardModel = {
     setLoading: action((store, payload) => {
         store.loading = payload;
     }),
-    fetchGroupStats: thunk(async (actions, _, {injections, getStoreState}) => {
+    fetchGroupExportData: thunk(async (actions, _, {injections, getStoreState}) => {
         const api: IApi = injections.api;
     // @ts-ignore
         const {startDate, endDate} = getStoreState().dashboardInputs;
@@ -44,15 +41,14 @@ const leaderboard: LeaderboardModel = {
         if (chosenGroup === null) return;
 
         actions.setLoading(true);
-        await api.getGroupStats(
+        await api.fetchGroupExportData(
             chosenGroup.name,
             Math.floor(startOfDay(startDate).getTime() / 1000),
             Math.floor(startOfDay(endDate).getTime() / 1000),
             2
             )
             .then(data => {
-                actions.setUsers(data.users);
-                actions.setFiles(data.files);
+                actions.setData(data);
             })
             .catch(err => {
                 actions.setError(err)
@@ -61,4 +57,4 @@ const leaderboard: LeaderboardModel = {
 }),
 }
 
-export default leaderboard;
+export default exportModel;
