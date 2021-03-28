@@ -35,7 +35,7 @@ const Leaderboard = () => {
         </CCard>
         <CCard>
             <CCardBody>
-                <div style={{textAlign: 'right'}}>
+                <div className="text-right">
                     <CButton color="info" onClick={() => fetchGroupExportData()}>Export Data</CButton>
                     {dataDownloaded ? <CSVDownload data={data!} target="_blank" /> : null }
                 </div>

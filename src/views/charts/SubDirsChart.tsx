@@ -16,9 +16,7 @@ import {ISubDirLevelTimelineData} from "../../api/models/ITimeline";
 const SubDirsChart = () => {
     const {data, paths} = useStoreState(state => state.subDirsTimeline)
     const getPathData = (data: ISubDirLevelTimelineData, path: string) => {
-        if (data.directories[path] == null) {
-            return 0;
-        }
+        if (data.directories[path] == null) return 0;
         return data.directories[path].time;
     };
     const getColor = (i: number) => {
