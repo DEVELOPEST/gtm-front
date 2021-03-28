@@ -1,0 +1,5 @@
+[ver:1,total:300,branch:feature/FRONT-62]
+src/views/charts/tooltips/SubDirChartTooltip.tsx:170,1616954400:170,m
+src/views/charts/SubDirsChart.tsx:55,1616954400:55,m
+public/index.html:45,1616954400:45,m
+src/views/charts/ActivityChart.tsx:30,1616954400:30,r
