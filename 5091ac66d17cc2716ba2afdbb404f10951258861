@@ -1,0 +1,9 @@
+[ver:1,total:3600,branch:feature/FRONT-62]
+src/views/leaderboard/Leaderboard.tsx:2385,1616950800:1515,1616954400:870,m
+src/models/exportModel.ts:589,1616950800:499,1616954400:90,m
+src/api/index.ts:278,1616950800:278,m
+src/api/models/IGroup.ts:150,1616950800:150,m
+src/models/index.ts:92,1616950800:92,m
+src/models/leaderboardModel.ts:70,1616950800:70,m
+node_modules/@types/react-csv/components/Download.d.ts:24,1616950800:24,r
+src/views/leaderboard/FilesLeaderboard.tsx:12,1616950800:12,r
