@@ -57,7 +57,12 @@ export interface IApi {
 const Api: IApi =  {
 
     fetch<Type>(opts: any): Promise<Type>{
-        const client = applyCaseMiddleware(axios.create());
+        const options = {
+            preservedKeys: (input: string) => {
+                return input.includes('/')
+            }
+        };
+        const client = applyCaseMiddleware(axios.create(), options);
         return client
             .request({
                 ...opts,
