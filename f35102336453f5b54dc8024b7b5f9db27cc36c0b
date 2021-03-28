@@ -1,0 +1,7 @@
+[ver:1,total:2640,branch:feature/FRONT-62]
+src/views/charts/SubDirsChart.tsx:1140,1616936400:1140,m
+src/api/index.ts:630,1616677200:30,1616936400:600,m
+src/constants.ts:420,1616677200:150,1616680800:180,1616936400:90,m
+package.json:180,1616936400:180,r
+src/views/repositories/Repository.tsx:150,1616936400:150,r
+src/models/subDirsTimelineModel.ts:120,1616936400:120,r
