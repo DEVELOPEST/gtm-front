@@ -1,18 +1,21 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from "react"
 import {CCard, CCardBody, CCardHeader, CCol, CFormGroup} from "@coreui/react";
 import SelectDropdown from "react-dropdown-select";
 import {useStoreActions, useStoreState} from "easy-peasy";
+import {IGroupWithAccess} from "../../api/models/IGroup";
 
-const GroupAccess = params => {
+export interface IOptionsObject {
+    label: string
+    value: string
+}
+
+const GroupAccess = (params: any) => {
     const [showSubDirs, setShowSubDirs] = useState(false)
     const [rightsToGroups, setRightsToGroups] = useState([])
     const {accessibleGroups, notAccessibleGroups} = useStoreState(state => state.groupAccess)
     const {
-        fetchUserAccessibleGroups,
-        fetchUserNotAccessibleGroups,
-        removeRights,
-        addRights,
-        toggleRecursiveRights
+        // @ts-ignore
+        fetchUserAccessibleGroups, fetchUserNotAccessibleGroups, removeRights, addRights, toggleRecursiveRights
     } = useStoreActions(actions => actions.groupAccess)
 
     useEffect(() => {
@@ -22,18 +25,18 @@ const GroupAccess = params => {
 
     const getIntervalOptions = () => {
         if (notAccessibleGroups) {
-            return notAccessibleGroups.map(function(obj) {return {label: obj.name, value: obj.id}})
+            return notAccessibleGroups.map(function(obj: IGroupWithAccess) {return {label: obj.name, value: obj.id}})
         }
         return {}
     }
 
     const handleClickGiveRights = () => {
-        addRights(rightsToGroups.map(function(obj) {return {"user": +params.userId, "group": obj.value, "access_level_recursive": false}}))
+        addRights(rightsToGroups.map(function(obj: IOptionsObject) {return {user: +params.userId, group: obj.value, access_level_recursive: false}}))
         setRightsToGroups([])
     }
 
-    const rightsToggle = value => {
-        toggleRecursiveRights({"user": +params.userId, "group": value})
+    const rightsToggle = (value: number) => {
+        toggleRecursiveRights({user: +params.userId, group: value})
     }
 
     return (
@@ -76,22 +79,22 @@ const GroupAccess = params => {
                             </tr>
                             </thead>
                             <tbody>
-                            {accessibleGroups.map((value) => {
-                                return ( value.groupAccess
+                            {accessibleGroups.map((groupWithAccess: IGroupWithAccess) => {
+                                return ( groupWithAccess.groupAccess
                                         ? <tr>
-                                            <td>{value.name}</td>
-                                            <td>{value.groupAccess ? "Access Gives" : "Granted as sub dir"}</td>
+                                            <td>{groupWithAccess.name}</td>
+                                            <td>{groupWithAccess.groupAccess ? "Access Gives" : "Granted as sub dir"}</td>
                                             <td>
-                                                {value.groupAccess &&
+                                                {groupWithAccess.groupAccess &&
                                                 <input
-                                                onChange={() => rightsToggle(value.id)}
-                                                checked={value.groupAccess.accessLevelRecursive} type="checkbox" />
+                                                onChange={() => rightsToggle(groupWithAccess.id)}
+                                                checked={groupWithAccess.groupAccess.accessLevelRecursive} type="checkbox" />
                                                 }
                                             </td>
                                             <td>
-                                                {value.groupAccess &&
+                                                {groupWithAccess.groupAccess &&
                                                 <button
-                                                    onClick={() => removeRights([{"group": value.id,"user": +params.userId}])}
+                                                    onClick={() => removeRights([{"group": groupWithAccess.id,"user": +params.userId}])}
                                                     className="btn btn-danger float-right"
                                                 >
                                                     Remove
@@ -102,13 +105,12 @@ const GroupAccess = params => {
                                         : (
                                             showSubDirs &&
                                             <tr>
-                                                <td>{value.name}</td>
-                                                <td>{value.groupAccess ? "Access Gives" : "Granted as sub dir"}</td>
+                                                <td>{groupWithAccess.name}</td>
+                                                <td>{groupWithAccess.groupAccess ? "Access Given" : "Recursive"}</td>
                                                 <td>
-                                                    {value.groupAccess &&
+                                                    {groupWithAccess.groupAccess &&
                                                     <input
-                                                        checked={value.groupAccess.accessLevelRecursive}
-                                                        onChange={() => rightsToggle(value.id)}
+                                                        onChange={() => rightsToggle(groupWithAccess.id)}
                                                         type="checkbox" />
                                                     }
                                                 </td>
