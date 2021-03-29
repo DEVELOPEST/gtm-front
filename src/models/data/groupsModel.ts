@@ -1,8 +1,8 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
-import {IGroup, IGroupWithAccess} from "../api/models/IGroup";
-import {IApi} from "../api";
+import {IGroup, IGroupWithAccess} from "../../api/models/IGroup";
+import {IApi} from "../../api";
 import {AxiosError} from "axios";
-import {IError} from "../api/models/IError";
+import {IError} from "../../api/models/IError";
 
 export interface GroupsModel {
     groups: IGroupWithAccess[];

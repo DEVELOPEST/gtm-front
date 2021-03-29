@@ -1,9 +1,9 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {startOfDay} from 'date-fns';
-import {ITimeline} from "../api/models/ITimeline";
-import {IApi} from "../api";
+import {ITimeline} from "../../api/models/ITimeline";
+import {IApi} from "../../api";
 import {AxiosError} from "axios";
-import {IError} from "../api/models/IError";
+import {IError} from "../../api/models/IError";
 
 export interface TimelineModel {
     data: ITimeline[];

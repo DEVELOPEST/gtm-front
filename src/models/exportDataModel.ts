@@ -5,18 +5,18 @@ import {IGroupExportDataEntry, IGroupFileStats, IGroupUserStats} from "../api/mo
 import {AxiosError} from "axios";
 import {IError} from "../api/models/IError";
 
-export interface ExportModel {
+export interface ExportDataModel {
     data: IGroupExportDataEntry[] | null,
     error: AxiosError<IError> | null,
     loading: boolean,
     dataDownloaded: boolean
-    setData: Action<ExportModel, IGroupExportDataEntry[] | null>
-    setError: Action<ExportModel, AxiosError<IError> | null>
-    setLoading: Action<ExportModel, boolean>
-    fetchGroupExportData: Thunk<ExportModel>
+    setData: Action<ExportDataModel, IGroupExportDataEntry[] | null>
+    setError: Action<ExportDataModel, AxiosError<IError> | null>
+    setLoading: Action<ExportDataModel, boolean>
+    fetchGroupExportData: Thunk<ExportDataModel>
 }
 
-const exportModel: ExportModel = {
+const exportData: ExportDataModel = {
     data: [],
     error: null,
     loading: false,
@@ -57,4 +57,4 @@ const exportModel: ExportModel = {
 }),
 }
 
-export default exportModel;
+export default exportData;

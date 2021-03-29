@@ -1,8 +1,8 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
-import {IApi} from "../api";
-import {IActivityTimeline} from "../api/models/ITimeline";
+import {IApi} from "../../api";
+import {IActivityTimeline} from "../../api/models/ITimeline";
 import {AxiosError} from "axios";
-import {IError} from "../api/models/IError";
+import {IError} from "../../api/models/IError";
 
 export interface ActivityTimelineModel {
     data: IActivityTimeline[],
