@@ -1,8 +1,8 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
-import {IUser} from "../api/models/IUser";
-import {IApi} from "../api";
+import {IUser} from "../../api/models/IUser";
+import {IApi} from "../../api";
 import {AxiosError} from "axios";
-import {IError} from "../api/models/IError";
+import {IError} from "../../api/models/IError";
 
 export interface UserModel {
     user: IUser | null;

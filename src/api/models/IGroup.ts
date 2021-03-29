@@ -48,13 +48,13 @@ export interface IGroupExportDataEntry {
     provider: string,
     repository: string,
     path: string,
-    is_app: boolean,
-    files_count: number,
+    isApp: boolean,
+    filesCount: number,
     timestamp: number,
     message: string,
-    total_time: number,
-    lines_added: number,
-    lines_removed: number,
+    totalTime: number,
+    linesAdded: number,
+    linesRemoved: number,
 }
 
 // ========================================= GroupAccess =======================================
@@ -69,5 +69,5 @@ export interface IGroupWithAccess {
 export interface IGroupAccess {
     user: number,
     group: number,
-    access_level_recursive: boolean,
+    accessLevelRecursive: boolean,
 }

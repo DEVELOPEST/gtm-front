@@ -7,30 +7,13 @@ import {
 import TimelineChart from '../charts/TimelineChart'
 import ActivityChart from "../charts/ActivityChart";
 import SubDirsChart from "../charts/SubDirsChart";
-import {GroupInputsContainer} from '../../reusable';
-import {useStoreActions, useStoreState} from "../../store/store";
+import {DashboardInputs} from '../../reusable';
 
 const Dashboard = () => {
 
-    const {chosenGroup, groups} = useStoreState(state => state.groups)
-    const {chosenInterval} = useStoreState((state) => state.dashboardInputs)
-
-    const {fetchTimeline} = useStoreActions((actions) => actions.timeline)
-    const {fetchSubDirsTimeline} = useStoreActions((actions) => actions.subDirsTimeline)
-    const {fetchActivityTimeline} = useStoreActions((actions) => actions.activityTimeline)
-
-    const inputChangedCallback = () => {
-
-        if ((chosenGroup !== null || groups.length > 0) && chosenInterval !== '') {
-            fetchTimeline();
-            fetchActivityTimeline();
-            fetchSubDirsTimeline();
-        }
-    }
-
   return (
     <>
-      <GroupInputsContainer onInputChanged={inputChangedCallback}/>
+      <DashboardInputs />
       <CCard>
         <CCardBody>
           <h3>Time and Users</h3>

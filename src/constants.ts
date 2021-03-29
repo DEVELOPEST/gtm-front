@@ -1,5 +1,5 @@
 
-export const IS_DEV = true // process.env.NODE_ENV === 'development';
+export const IS_DEV = false // process.env.NODE_ENV === 'development';
 export const ORIGIN = 'https://cs.ttu.ee/services/gtm/'  // window && window.location && window.location.origin;
 
 export const BASE_URL = IS_DEV ? 'http://localhost:8000/services/gtm/' : ORIGIN;

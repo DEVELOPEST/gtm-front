@@ -3,20 +3,20 @@ import UsersLeaderboard from './UsersLeaderboard';
 import React, {useEffect, useState} from 'react';
 import {useStoreActions, useStoreState} from '../../store/store';
 import FilesLeaderboard from './FilesLeaderboard';
-import {GroupInputsContainer} from '../../reusable';
+import {DashboardInputs} from '../../reusable';
 import { CSVDownload } from "react-csv";
+import LeaderboardInputs from "../../reusable/LeaderboardInputs";
 
 const Leaderboard = () => {
-    const {fetchGroupStats} = useStoreActions((actions) => actions.leaderboard);
-    const {fetchGroupExportData, setData} = useStoreActions((actions) => actions.exportModel);
-    const {data, dataDownloaded} = useStoreState(state => state.exportModel);
+    const {fetchGroupExportData, setData} = useStoreActions((actions) => actions.exportData);
+    const {data, dataDownloaded} = useStoreState(state => state.exportData);
 
     useEffect(() => {
         return () => setData(null);  // cleanup
     });
 
     return <>
-        <GroupInputsContainer onInputChanged={() => fetchGroupStats()}/>
+        <LeaderboardInputs />
         <CCard>
             <CCardHeader>
                 <h3>Users</h3>

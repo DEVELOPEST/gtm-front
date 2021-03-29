@@ -1,18 +1,19 @@
 import sidebar, {SidebarModel} from './sidebarModel';
-import timeline, {TimelineModel} from './timelineModel';
-import groups, {GroupsModel} from './groupsModel';
-import activityTimeline, {ActivityTimelineModel} from './activityTimelineModel'
-import subDirsTimeline, {SubDirsTimelineModel} from './subDirsTimelineModel'
+import timeline, {TimelineModel} from './data/timelineModel';
+import groups, {GroupsModel} from './data/groupsModel';
+import activityTimeline, {ActivityTimelineModel} from './data/activityTimelineModel'
+import subDirsTimeline, {SubDirsTimelineModel} from './data/subDirsTimelineModel'
 import auth, {AuthModel} from './authModel';
-import users, {UsersModel} from './usersModel';
-import user, {UserModel} from './userModel';
-import roles, {RolesModel} from './rolesModel';
-import passwordChange, {PasswordChangeModel} from './passwordChangeModel';
-import dashboardInputs, {DashboardInputsModel} from './dashboardInputsModel';
-import groupAccess, {GroupAccessModel} from './groupAccessModel';
-import leaderboard, {LeaderboardModel} from './leaderboardModel';
+import users, {UsersModel} from './profile/usersModel';
+import user, {UserModel} from './profile/userModel';
+import roles, {RolesModel} from './profile/rolesModel';
+import passwordChange, {PasswordChangeModel} from './profile/passwordChangeModel';
+import dashboardInputs, {DashboardInputsModel} from './inputGroup/dashboardInputsModel';
+import groupAccess, {GroupAccessModel} from './profile/groupAccessModel';
+import leaderboard, {LeaderboardModel} from './data/leaderboardModel';
 import repositories, {RepositoriesModel} from './repositoriesModel';
-import exportModel, {ExportModel} from "./exportModel";
+import exportData, {ExportDataModel} from "./exportDataModel";
+import leaderboardInputs, {LeaderboardInputsModel} from "./inputGroup/leaderboardInputsModel";
 
 export interface StoreModel {
     sidebar: SidebarModel,
@@ -29,7 +30,8 @@ export interface StoreModel {
     dashboardInputs: DashboardInputsModel,
     groupAccess: GroupAccessModel,
     repositories: RepositoriesModel,
-    exportModel: ExportModel,
+    exportData: ExportDataModel,
+    leaderboardInputs: LeaderboardInputsModel,
 }
 
 const storeModel: StoreModel = {
@@ -47,7 +49,8 @@ const storeModel: StoreModel = {
     dashboardInputs,
     groupAccess,
     repositories,
-    exportModel,
+    exportData,
+    leaderboardInputs,
 }
 
 export default storeModel;

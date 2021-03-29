@@ -1,7 +1,7 @@
 import CustomLoader from './CustomLoader'
-import GroupInputsContainer from './GroupInputsContainer';
+import DashboardInputs from './DashboardInputs';
 
 export {
     CustomLoader,
-    GroupInputsContainer,
+    DashboardInputs,
 }
