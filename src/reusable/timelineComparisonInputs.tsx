@@ -8,6 +8,7 @@ import React, {useEffect} from 'react'
 import enGB from 'date-fns/locale/en-GB';
 import {IGroupWithAccess} from "../api/models/IGroup";
 import {INTERVALS} from "../constants";
+import {ITimeline} from "../api/models/ITimeline";
 
 interface IGroupOption {
     label: string,
@@ -20,16 +21,15 @@ interface IIntervalOption {
     value: string,
 }
 
-const DashboardInputs = () => {
-    const {groups, chosenGroup, loading} = useStoreState(state => state.groups)
-    const {fetchGroups, setChosenGroup} = useStoreActions(actions => actions.groups)
+const TimelineComparisonInputs = () => {
+    const {groups, loading} = useStoreState(state => state.groups)
+    const {fetchGroups} = useStoreActions(actions => actions.groups)
 
-    const {startDate, endDate, interval} = useStoreState(state => state.dashboardInputs)
-    const {setInterval, setStartDate, setEndDate} = useStoreActions(actions => actions.dashboardInputs)
+    const {startDate, endDate, interval} = useStoreState(state => state.timelineComparisonInputs)
+    const {setInterval, setStartDate, setEndDate} = useStoreActions(actions => actions.timelineComparisonInputs)
 
-    const {fetchTimeline} = useStoreActions((actions) => actions.timeline)
-    const {fetchSubDirsTimeline} = useStoreActions((actions) => actions.subDirsTimeline)
-    const {fetchActivityTimeline} = useStoreActions((actions) => actions.activityTimeline)
+    const {data, chosenGroups} = useStoreState(state => state.timelineComparison)
+    const {fetchTimelines, setChosenGroups, setData} = useStoreActions((actions) => actions.timelineComparison)
 
     registerLocale('enGB', enGB)
 
@@ -38,12 +38,11 @@ const DashboardInputs = () => {
     }, [fetchGroups])
 
     useEffect(() => {
-        if ((chosenGroup !== null || groups.length > 0) && interval !== '') {
-            fetchTimeline();
-            fetchActivityTimeline();
-            fetchSubDirsTimeline();
+        if ((chosenGroups !== null || groups.length > 0) && interval !== '') {
+            setData([])
+            fetchTimelines();
         }
-    }, [startDate, chosenGroup, interval, endDate])
+    }, [startDate, chosenGroups, interval, endDate])
 
 
     const getIntervalOptions = () => {
@@ -53,8 +52,8 @@ const DashboardInputs = () => {
     }
 
     const groupOptions = groups.map(function (obj) {
-            return {label: obj.name, value: obj.name, object: obj}
-        })
+        return {label: obj.name, value: obj.name, object: obj}
+    })
 
     return <>
         <CCard>
@@ -66,10 +65,17 @@ const DashboardInputs = () => {
                             {
                                 loading && groups.length > 0 ? "loading" :
                                     <SelectDropdown
+                                        multi={true}
                                         options={groupOptions}
-                                        onChange={(value: IGroupOption[] ) => value && value.length > 0 && setChosenGroup(value[0].object)}
-                                        searchable={false}
-                                        values={groupOptions.filter((option) => (chosenGroup && option.object.id === chosenGroup.id))}
+                                        onChange={(value: IGroupOption[] ) => value && value.length > 0 && setChosenGroups(value.map(function (obj) {
+                                            return obj.object
+                                        }))}
+                                        searchable={true}
+                                        values={groupOptions.filter((option) => {
+                                            chosenGroups.map(function (obj) {
+                                                return obj.id
+                                            }).includes(option.object.id)
+                                        })}
                                     />
                             }
                         </div>
@@ -115,4 +121,4 @@ const DashboardInputs = () => {
     </>
 }
 
-export default DashboardInputs;
+export default TimelineComparisonInputs;

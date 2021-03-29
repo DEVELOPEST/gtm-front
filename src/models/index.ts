@@ -14,6 +14,8 @@ import leaderboard, {LeaderboardModel} from './data/leaderboardModel';
 import repositories, {RepositoriesModel} from './repositoriesModel';
 import exportData, {ExportDataModel} from "./exportDataModel";
 import leaderboardInputs, {LeaderboardInputsModel} from "./inputGroup/leaderboardInputsModel";
+import timelineComparisonInputs, {TimelineComparisonInputsModel} from "./inputGroup/timelineComparisonInputsModel";
+import timelineComparison, {TimelineComparisonModel} from "./data/timelineComparisonModel";
 
 export interface StoreModel {
     sidebar: SidebarModel,
@@ -32,6 +34,8 @@ export interface StoreModel {
     repositories: RepositoriesModel,
     exportData: ExportDataModel,
     leaderboardInputs: LeaderboardInputsModel,
+    timelineComparisonInputs: TimelineComparisonInputsModel,
+    timelineComparison: TimelineComparisonModel,
 }
 
 const storeModel: StoreModel = {
@@ -51,6 +55,8 @@ const storeModel: StoreModel = {
     repositories,
     exportData,
     leaderboardInputs,
+    timelineComparisonInputs,
+    timelineComparison
 }
 
 export default storeModel;
