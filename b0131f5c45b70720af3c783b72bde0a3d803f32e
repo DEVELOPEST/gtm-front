@@ -1,0 +1,8 @@
+[ver:1,total:1380,branch:release/v0.2.1]
+src/views/charts/ActivityChart.tsx:420,1617084000:30,1617087600:360,1617105600:30,m
+src/views/charts/tooltips/SubDirChartTooltip.tsx:300,1617084000:300,r
+src/reusable/timelineComparisonInputs.tsx:300,1617087600:300,m
+src/constants.ts:195,1617091200:180,1617105600:15,m
+src/views/charts/TimelineComparisonChart.tsx:90,1617087600:90,m
+src/views/timelineComparison/timelineComparison.tsx:45,1617087600:30,1617105600:15,m
+public/index.html:30,1617084000:30,r
