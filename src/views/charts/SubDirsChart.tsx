@@ -23,13 +23,11 @@ const SubDirsChart = () => {
         return GRAPH_COLORS[i % GRAPH_COLORS.length];
     };
 
-
     return (
         <ResponsiveContainer width="100%" height={400}>
             <AreaChart data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                 <Tooltip content={<SubDirChartTooltip/>}/>
-                <XAxis dataKey="start"
-                       tickFormatter={dateFormatter}/>
+                <XAxis dataKey="start" tickFormatter={dateFormatter} tickLine={false}/>
                 <YAxis tickCount={10} tickLine={false} axisLine={false}/>
                 {
                     paths.map((path, i) => {
@@ -41,7 +39,7 @@ const SubDirsChart = () => {
                             dataKey={(e) => getPathData(e, path)}
                             fill={getColor(i)}
                             stroke={getColor(i)}
-                            fillOpacity="0.9"/>)
+                            fillOpacity="0.5"/>)
                     })
                 }
             </AreaChart>

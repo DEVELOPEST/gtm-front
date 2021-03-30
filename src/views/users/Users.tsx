@@ -12,21 +12,24 @@ import {
 } from '@coreui/react'
 
 import {useStoreActions, useStoreState} from "easy-peasy";
+import {IUser} from "../../api/models/IUser";
 
 const Users = () => {
     const {users} = useStoreState(state => state.users)
+    // @ts-ignore
     const {fetchUsers} = useStoreActions(actions => actions.users)
     const history = useHistory()
     const itemsPerPage = 10
     const maxPage = users.length % itemsPerPage === 0
         ? users.length / itemsPerPage
         : Math.floor(users.length / itemsPerPage + 1)
+    // @ts-ignore
     const queryPage = useLocation().search.match(/page=([0-9]+)/, '')
     const currentPage = Number(queryPage && queryPage[1] ? queryPage[1] : 1)
     const [page, setPage] = useState(currentPage > maxPage ? maxPage : currentPage)
 
 
-    const getBadge = status => {
+    const getBadge = (status: String) => {
         switch (status) {
             case 'LECTURER': return 'success'
             case 'USER': return 'secondary'
@@ -35,7 +38,7 @@ const Users = () => {
         }
     }
 
-    const pageChange = newPage => {
+    const pageChange = (newPage: number) => {
         if (newPage > maxPage) {
             newPage = maxPage
         }
@@ -71,12 +74,12 @@ const Users = () => {
                             itemsPerPage={itemsPerPage}
                             activePage={page}
                             clickableRows
-                            onRowClick={(item) => history.push(`/users/${item.id}`)}
+                            onRowClick={(item: IUser) => history.push(`/users/${item.id}`)}
                             scopedSlots = {{
                                 'roles':
-                                    (item)=>(
+                                    (item: IUser)=>(
                                         <td>
-                                            {item.roles.map((value) => {
+                                            {item.roles.map((value: String) => {
                                                 return <CBadge className='mr-2' color={getBadge(value)}>
                                                     {value}
                                                 </CBadge>

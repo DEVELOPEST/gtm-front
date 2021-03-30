@@ -1,7 +1,7 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
-import {IApi} from "../api";
+import {IApi} from "../../api";
 import {AxiosError} from "axios";
-import {IError} from "../api/models/IError";
+import {IError} from "../../api/models/IError";
 
 export interface RolesModel {
     error: AxiosError<IError> | null;

@@ -3,7 +3,7 @@ import {
     BASE_URL,
     TALLINN_TIMEZONE
 } from "../constants";
-import {IGroup, IGroupStats, IGroupWithAccess} from "./models/IGroup";
+import {IGroup, IGroupExportDataEntry, IGroupStats, IGroupWithAccess} from "./models/IGroup";
 import {IJsonWebToken, IUser, IUserCredentials} from "./models/IUser";
 import {IActivityTimeline, ISubDirLevelTimelineWrapper, ITimeline} from "./models/ITimeline";
 import {IRepository, ITrackedRepository} from "./models/IRepository";
@@ -24,6 +24,7 @@ export interface IApi {
     getGroups: () => Promise<IGroupWithAccess[]>
     fetchUserAccessibleGroups: (userId: number) => Promise<IGroupWithAccess[]>
     fetchUserNotAccessibleGroups: (userId: number) => Promise<IGroupWithAccess[]>
+    fetchGroupExportData: (group: string, start: number, end: number, depth: number) => Promise<IGroupExportDataEntry[]>
 
     // ===================================================== Groups rights add/remove =========================================================
     removeRights: (params: Object) => Promise<AxiosResponse<Object>>
@@ -57,7 +58,12 @@ export interface IApi {
 const Api: IApi =  {
 
     fetch<Type>(opts: any): Promise<Type>{
-        const client = applyCaseMiddleware(axios.create());
+        const options = {
+            preservedKeys: (input: string) => {
+                return input.includes('/')
+            }
+        };
+        const client = applyCaseMiddleware(axios.create(), options);
         return client
             .request({
                 ...opts,
@@ -100,6 +106,10 @@ const Api: IApi =  {
 
     fetchUserNotAccessibleGroups(userId: number): Promise<IGroupWithAccess[]> {
         return this.fetch({url: `/api/groups/not-accessible/user/${userId}`, method: 'GET'});
+    },
+
+    fetchGroupExportData(group: string, start: number, end: number, depth: number): Promise<IGroupExportDataEntry[]> {
+        return this.fetch({url: `/api/groups/${group}/export?start=${start}&end=${end}&depth=${depth}`, method: 'GET'});
     },
 
     // ===================================================== Groups rights add/remove =========================================================

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 import {
+  CAlert,
   CButton,
   CCard,
   CCardBody,
@@ -41,7 +42,7 @@ const Login = (props: any) => {
   const [usernameErrors, setUsernameErrors] = useState<string[]>([]);
   const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
 
-  const {loading} = useStoreState(state => state.auth)
+  const {loading, error} = useStoreState(state => state.auth)
   const {login} = useStoreActions(actions => actions.auth)
 
 
@@ -83,6 +84,7 @@ const Login = (props: any) => {
     }
   }
 
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -94,6 +96,15 @@ const Login = (props: any) => {
                   <CForm>
                     <h1>Login</h1>
                     <p className="text-muted">Sign In to your account</p>
+                    {
+                      error &&
+                      <CAlert color="danger">
+                        {error.response && error.response.status === 500
+                            ? 'Something went wrong, please try again later!'
+                            : 'Invalid credentials'
+                        }
+                      </CAlert>
+                    }
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
                         <CInputGroupText>

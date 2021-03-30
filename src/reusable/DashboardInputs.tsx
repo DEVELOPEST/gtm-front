@@ -7,11 +7,12 @@ import {useStoreActions, useStoreState} from "../store/store";
 import React, {useEffect} from 'react'
 import enGB from 'date-fns/locale/en-GB';
 import {IGroupWithAccess} from "../api/models/IGroup";
+import {INTERVALS} from "../constants";
 
 interface IGroupOption {
     label: string,
-    value: IGroupWithAccess,
-    name: string
+    value: string,
+    object: IGroupWithAccess
 }
 
 interface IIntervalOption {
@@ -19,46 +20,41 @@ interface IIntervalOption {
     value: string,
 }
 
-const GroupInputsContainer = (onInputChanged: { onInputChanged: Function }) => {
+const DashboardInputs = () => {
     const {groups, chosenGroup, loading} = useStoreState(state => state.groups)
     const {fetchGroups, setChosenGroup} = useStoreActions(actions => actions.groups)
 
-    const {startDate, endDate, intervals, chosenInterval} = useStoreState(state => state.dashboardInputs)
-    const {setChosenInterval, setStartDate, setEndDate} = useStoreActions(actions => actions.dashboardInputs)
+    const {startDate, endDate, interval} = useStoreState(state => state.dashboardInputs)
+    const {setInterval, setStartDate, setEndDate} = useStoreActions(actions => actions.dashboardInputs)
+
+    const {fetchTimeline} = useStoreActions((actions) => actions.timeline)
+    const {fetchSubDirsTimeline} = useStoreActions((actions) => actions.subDirsTimeline)
+    const {fetchActivityTimeline} = useStoreActions((actions) => actions.activityTimeline)
 
     registerLocale('enGB', enGB)
 
     useEffect(() => {
-        onInputChanged.onInputChanged();
-    }, [chosenGroup])
-
-    useEffect(() => {
-        onInputChanged.onInputChanged();
-    }, [chosenInterval])
-
-    useEffect(() => {
-        onInputChanged.onInputChanged();
-    }, [startDate])
-
-    useEffect(() => {
-        onInputChanged.onInputChanged();
-    }, [endDate])
-
-    useEffect(() => {
-        fetchGroups()
+        if (groups.length === 0) fetchGroups();
     }, [fetchGroups])
 
+    useEffect(() => {
+        if ((chosenGroup !== null || groups.length > 0) && interval !== '') {
+            fetchTimeline();
+            fetchActivityTimeline();
+            fetchSubDirsTimeline();
+        }
+    }, [startDate, chosenGroup, interval, endDate])
+
+
     const getIntervalOptions = () => {
-        return intervals.map(function (obj) {
+        return INTERVALS.map(function (obj) {
             return {label: obj, value: obj}
         })
     }
 
-    const getGroupOptions = () => {
-        return groups.map(function (obj) {
-            return {label: obj.name, value: obj, name: obj.name}
+    const groupOptions = groups.map(function (obj) {
+            return {label: obj.name, value: obj.name, object: obj}
         })
-    }
 
     return <>
         <CCard>
@@ -70,10 +66,10 @@ const GroupInputsContainer = (onInputChanged: { onInputChanged: Function }) => {
                             {
                                 loading && groups.length > 0 ? "loading" :
                                     <SelectDropdown
-                                        options={getGroupOptions()}
-                                        onChange={(value: IGroupOption[] ) => value && value.length > 0 && setChosenGroup(value[0].value)}
+                                        options={groupOptions}
+                                        onChange={(value: IGroupOption[] ) => value && value.length > 0 && setChosenGroup(value[0].object)}
                                         searchable={false}
-                                        values={getGroupOptions().filter((option) => (chosenGroup && option.name === chosenGroup.name))}
+                                        values={groupOptions.filter((option) => (chosenGroup && option.object.id === chosenGroup.id))}
                                     />
                             }
                         </div>
@@ -107,9 +103,9 @@ const GroupInputsContainer = (onInputChanged: { onInputChanged: Function }) => {
                             <label>Interval:</label>
                             <SelectDropdown
                                 options={getIntervalOptions()}
-                                onChange={value => setChosenInterval(value[0].value)}
+                                onChange={value => setInterval(value[0].value)}
                                 searchable={false}
-                                values={getIntervalOptions().filter(option => option.label === chosenInterval)}
+                                values={getIntervalOptions().filter(option => option.label === interval)}
                             />
                         </div>
                     </CCol>
@@ -119,4 +115,4 @@ const GroupInputsContainer = (onInputChanged: { onInputChanged: Function }) => {
     </>
 }
 
-export default GroupInputsContainer;
+export default DashboardInputs;

@@ -1,5 +1,5 @@
 import {
-    Area,
+    Area, Bar,
     ComposedChart,
     ResponsiveContainer,
     Tooltip,
@@ -15,26 +15,38 @@ const ActivityChart = () => {
         <ResponsiveContainer width="100%" height={400} >
                 <ComposedChart data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                     <defs>
-                        <linearGradient id="colorUvBlue" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#0f7dfa" stopOpacity={0.7}/>
-                            <stop offset="95%" stopColor="#0f7dfa" stopOpacity={0.0}/>
-                        </linearGradient>
-                        <linearGradient id="colorUvRed" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#b31414" stopOpacity={0.7}/>
-                            <stop offset="95%" stopColor="#b31414" stopOpacity={0.0}/>
-                        </linearGradient>
-                        <linearGradient id="colorUvGreen" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#00b000" stopOpacity={0.6}/>
-                            <stop offset="95%" stopColor="#00b000" stopOpacity={0.0}/>
-                        </linearGradient>
                     </defs>
                     <Tooltip />
-                    <XAxis dataKey="label"/>
+                    <XAxis padding={{ left: 15, right: 15 }} dataKey="label" tickLine={false}/>
                     <YAxis yAxisId="left" tickCount={10} tickLine={false} axisLine={false} />
-                    <YAxis yAxisId="right-lines" orientation='right' tickCount={10} tickLine={false} axisLine={false} allowDecimals={false}/>
-                    <Area yAxisId="left" type="monotoneX" dataKey="time" stroke="#0f7dfa" fill="url(#colorUvBlue)"/>
-                    <Area yAxisId="right-lines" type="monotoneX" dataKey="linesAdded" stroke="#00bf16" fill="url(#colorUvGreen)"/>
-                    <Area yAxisId="right-lines" type="monotoneX" dataKey="linesRemoved" stroke="#bf0000" fill="url(#colorUvRed)"/>
+                    <YAxis padding={{ top: 200, bottom: 0 }} yAxisId="right-lines" orientation='right' tickCount={10} tickLine={false} axisLine={false} allowDecimals={false}/>
+                    <Area
+                        yAxisId="right-lines"
+                        type="monotoneX"
+                        dataKey="linesRemoved"
+                        stroke="#bf0000"
+                        fill="#b31414"
+                        fillOpacity="0.2"
+                        strokeWidth={2}
+                        animationDuration={300}/>
+                    <Area
+
+                        yAxisId="right-lines"
+                        type="monotoneX"
+                        dataKey="linesAdded"
+                        stroke="#00bf16"
+                        fill="#00b000"
+                        fillOpacity="0.1"
+                        strokeWidth={2}
+                        animationDuration={300}/>
+                    <Area
+                        yAxisId="left"
+                        type="monotoneX"
+                        dataKey="time"
+                        stroke="#0f7dfa"
+                        fill="none"
+                        strokeWidth={3}
+                        animationDuration={300}/>
                 </ComposedChart>
         </ResponsiveContainer>
 

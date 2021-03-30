@@ -1,9 +1,9 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {startOfDay} from 'date-fns';
-import {ITimeline} from "../api/models/ITimeline";
-import {IApi} from "../api";
+import {ITimeline} from "../../api/models/ITimeline";
+import {IApi} from "../../api";
 import {AxiosError} from "axios";
-import {IError} from "../api/models/IError";
+import {IError} from "../../api/models/IError";
 
 export interface TimelineModel {
     data: ITimeline[];
@@ -31,7 +31,7 @@ const timeline: TimelineModel = {
     fetchTimeline: thunk(async (actions, _, {injections, getStoreState}) => {
         const api: IApi = injections.api;
         // @ts-ignore
-        const {startDate, endDate, chosenInterval} = getStoreState().dashboardInputs;
+        const {startDate, endDate, interval} = getStoreState().dashboardInputs;
         // @ts-ignore
         const {chosenGroup} = getStoreState().groups;
 
@@ -40,10 +40,11 @@ const timeline: TimelineModel = {
             chosenGroup.name,
             Math.floor(startOfDay(startDate).getTime() / 1000),
             Math.floor(startOfDay(endDate).getTime() / 1000),
-            chosenInterval.toUpperCase()
+            interval.toUpperCase()
         )
             .then(timeline => {
                 actions.setData(timeline)
+                console.log(timeline)
             })
             .catch((err: AxiosError<IError>) => {
                 actions.setError(err)

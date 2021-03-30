@@ -5,24 +5,26 @@ import CustomLoader from "../../reusable/CustomLoader";
 import GroupAccess from "./GroupAccess";
 
 
-const User = ({match}) => {
+const User = ({match}: any) => {
     const {
         user,
         loading: userLoading,
     } = useStoreState(state => state.user)
+    // @ts-ignore
     const {fetchUser} = useStoreActions(actions => actions.user)
+    // @ts-ignore
     const {addRole, removeRole} = useStoreActions(actions => actions.roles)
 
     useEffect(() => {
         fetchUser(match.params.id);
     }, [])
 
-    const handleClickAdd = async id => {
+    const handleClickAdd = async (id: number) => {
         await addRole(id)
         window.location.reload()
     }
 
-    const handleClickRemove = async id => {
+    const handleClickRemove = async (id: number) => {
         await removeRole(id)
         window.location.reload()
     }

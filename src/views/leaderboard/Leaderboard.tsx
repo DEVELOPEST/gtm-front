@@ -1,15 +1,22 @@
-import {CCard, CCardBody, CCardHeader} from '@coreui/react';
+import {CCard, CCardBody, CCardHeader, CButton} from '@coreui/react';
 import UsersLeaderboard from './UsersLeaderboard';
-import React from 'react';
-import {useStoreActions} from '../../store/store';
+import React, {useEffect, useState} from 'react';
+import {useStoreActions, useStoreState} from '../../store/store';
 import FilesLeaderboard from './FilesLeaderboard';
-import {GroupInputsContainer} from '../../reusable';
+import {DashboardInputs} from '../../reusable';
+import { CSVDownload } from "react-csv";
+import LeaderboardInputs from "../../reusable/LeaderboardInputs";
 
 const Leaderboard = () => {
-    const {fetchGroupStats} = useStoreActions((actions) => actions.leaderboard);
+    const {fetchGroupExportData, setData} = useStoreActions((actions) => actions.exportData);
+    const {data, dataDownloaded} = useStoreState(state => state.exportData);
+
+    useEffect(() => {
+        return () => setData(null);  // cleanup
+    });
 
     return <>
-        <GroupInputsContainer onInputChanged={() => fetchGroupStats()}/>
+        <LeaderboardInputs />
         <CCard>
             <CCardHeader>
                 <h3>Users</h3>
@@ -24,6 +31,14 @@ const Leaderboard = () => {
             </CCardHeader>
             <CCardBody>
                 <FilesLeaderboard/>
+            </CCardBody>
+        </CCard>
+        <CCard>
+            <CCardBody>
+                <div className="text-right">
+                    <CButton color="info" onClick={() => fetchGroupExportData()}>Export Data</CButton>
+                    {dataDownloaded ? <CSVDownload data={data!} target="_blank" /> : null }
+                </div>
             </CCardBody>
         </CCard>
     </>

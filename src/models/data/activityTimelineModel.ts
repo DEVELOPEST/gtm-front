@@ -1,8 +1,8 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
-import {IApi} from "../api";
-import {IActivityTimeline} from "../api/models/ITimeline";
+import {IApi} from "../../api";
+import {IActivityTimeline} from "../../api/models/ITimeline";
 import {AxiosError} from "axios";
-import {IError} from "../api/models/IError";
+import {IError} from "../../api/models/IError";
 
 export interface ActivityTimelineModel {
     data: IActivityTimeline[],
@@ -30,7 +30,7 @@ const activityTimeline: ActivityTimelineModel = {
     fetchActivityTimeline: thunk(async (actions, _, { injections, getStoreState }) => {
         const api: IApi = injections.api;
         // @ts-ignore
-        const {startDate, endDate, chosenInterval} = getStoreState().dashboardInputs;
+        const {startDate, endDate, interval} = getStoreState().dashboardInputs;
         // @ts-ignore
         const {chosenGroup} = getStoreState().groups;
 
@@ -39,7 +39,7 @@ const activityTimeline: ActivityTimelineModel = {
             chosenGroup.name,
             Math.floor(startDate.getTime() / 1000),
             Math.floor(endDate.getTime() / 1000),
-            chosenInterval.toUpperCase()
+            interval.toUpperCase()
         )
             .then(data => {
                 actions.setData(data)

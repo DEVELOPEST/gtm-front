@@ -1,9 +1,9 @@
 import {Action, action, Thunk, thunk} from "easy-peasy";
 import {startOfDay} from "date-fns";
-import {IApi} from "../api";
-import {IGroupFileStats, IGroupUserStats} from "../api/models/IGroup";
+import {IApi} from "../../api";
+import {IGroupFileStats, IGroupUserStats} from "../../api/models/IGroup";
 import {AxiosError} from "axios";
-import {IError} from "../api/models/IError";
+import {IError} from "../../api/models/IError";
 
 export interface LeaderboardModel {
     users: IGroupUserStats[],
@@ -37,28 +37,27 @@ const leaderboard: LeaderboardModel = {
     fetchGroupStats: thunk(async (actions, _, {injections, getStoreState}) => {
         const api: IApi = injections.api;
     // @ts-ignore
-        const {startDate, endDate} = getStoreState().dashboardInputs;
+        const {startDate, endDate, depth} = getStoreState().leaderboardInputs;
     // @ts-ignore
         const {chosenGroup} = getStoreState().groups;
 
-        if (chosenGroup === null) return
+        if (chosenGroup === null) return;
 
-        actions.setLoading(true)
+        actions.setLoading(true);
         await api.getGroupStats(
             chosenGroup.name,
             Math.floor(startOfDay(startDate).getTime() / 1000),
             Math.floor(startOfDay(endDate).getTime() / 1000),
-            2
+            depth
             )
             .then(data => {
                 actions.setUsers(data.users);
-                console.log(data)
                 actions.setFiles(data.files);
             })
             .catch(err => {
                 actions.setError(err)
             })
-        actions.setLoading(false)
+        actions.setLoading(false);
 }),
 }
 

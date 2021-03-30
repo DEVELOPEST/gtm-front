@@ -1,7 +1,7 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {startOfDay} from 'date-fns';
-import {IApi} from "../api";
-import {ISubDirLevelTimelineData, ISubDirLevelTimelineEntry} from "../api/models/ITimeline";
+import {IApi} from "../../api";
+import {ISubDirLevelTimelineData, ISubDirLevelTimelineEntry} from "../../api/models/ITimeline";
 
 export interface SubDirsTimelineModel {
     data: ISubDirLevelTimelineData[];
@@ -37,7 +37,7 @@ const subDirsTimeline: SubDirsTimelineModel = {
     fetchSubDirsTimeline: thunk(async (actions, _, {injections, getStoreState}) => {
         const api: IApi = injections.api;
         // @ts-ignore
-        const {startDate, endDate, chosenInterval} = getStoreState().dashboardInputs;
+        const {startDate, endDate, interval} = getStoreState().dashboardInputs;
         // @ts-ignore
         const {chosenGroup} = getStoreState().groups;
         // @ts-ignore
@@ -48,7 +48,7 @@ const subDirsTimeline: SubDirsTimelineModel = {
             chosenGroup.name,
             Math.floor(startOfDay(startDate).getTime() / 1000),
             Math.floor(startOfDay(endDate).getTime() / 1000),
-            chosenInterval.toUpperCase(),
+            interval.toUpperCase(),
             depth
         )
             .then(subDirLevelTimelineWrapper => {

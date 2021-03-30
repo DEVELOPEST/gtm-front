@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {
+  CAlert,
   CButton,
   CCard,
   CCardBody,
@@ -24,7 +25,7 @@ import {
 
 const Register = () => {
 
-  const {loading} = useStoreState(state => state.auth)
+  const {loading, error} = useStoreState(state => state.auth)
   const {register} = useStoreActions(actions => actions.auth)
 
   const [username, setUsername] = useState('');
@@ -75,6 +76,15 @@ const Register = () => {
                 <CForm>
                   <h1>Register</h1>
                   <p className="text-muted">Create your account</p>
+                  {
+                    error &&
+                    <CAlert color="danger">
+                      {error.response && error.response.status === 409
+                            ? 'Username is taken!'
+                            : 'Something went wrong, please try again later!'
+                        }
+                    </CAlert>
+                  }
                   <CInputGroup className="mb-3">
                     <CInputGroupPrepend>
                       <CInputGroupText>

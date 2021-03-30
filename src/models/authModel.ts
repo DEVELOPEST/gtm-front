@@ -2,15 +2,19 @@ import {Action, action, Thunk, thunk} from 'easy-peasy';
 import setSessionToken from "../utils/setSessionToken";
 import {IApi} from "../api";
 import {IUser, IUserCredentials} from "../api/models/IUser";
+import {AxiosError} from "axios";
+import {IError} from "../api/models/IError";
 
 export interface AuthModel {
     logins: string[],
     hasPassword: boolean | null,
     errors: [],
+    error: AxiosError<IError> | null,
     loading: boolean,
     setHasPassword: Action<AuthModel, boolean | null>
     setLogins: Action<AuthModel, string[]>
     setErrors: Action<AuthModel, []>
+    setError: Action<AuthModel, AxiosError<IError> | null>
     setLoading: Action<AuthModel, boolean>
     getPassword: Thunk<AuthModel>
     get_logins: Thunk<AuthModel>
@@ -25,6 +29,7 @@ const auth: AuthModel = {
     logins: [],
     hasPassword: null,
     errors: [],
+    error: null,
     loading: false,
     setHasPassword: action((store, payload) => {
         store.hasPassword = payload;
@@ -34,6 +39,9 @@ const auth: AuthModel = {
     }),
     setErrors: action((store, payload) => {
         store.errors = payload;
+    }),
+    setError: action((store, payload) => {
+        store.error = payload;
     }),
     setLoading: action((store, payload) => {
         store.loading = payload;
@@ -47,7 +55,7 @@ const auth: AuthModel = {
                 actions.setHasPassword(data);
             })
             .catch(err => {
-                actions.setErrors(err);
+                actions.setError(err);
             })
         actions.setLoading(false)
     }),
@@ -60,7 +68,7 @@ const auth: AuthModel = {
                 actions.setLogins(data);
             })
             .catch(err => {
-                actions.setErrors(err);
+                actions.setError(err);
             })
         actions.setLoading(false)
     }),
@@ -73,7 +81,7 @@ const auth: AuthModel = {
                 actions.get_logins();
             })
             .catch(err => {
-                actions.setErrors(err);
+                actions.setError(err);
             })
         actions.setLoading(false)
     }),
@@ -87,7 +95,7 @@ const auth: AuthModel = {
                 window.location.reload()
             })
             .catch(err => {
-                actions.setErrors(err);
+                actions.setError(err);
             })
         actions.setLoading(false)
     }),
@@ -101,7 +109,8 @@ const auth: AuthModel = {
                 window.location.reload()
             })
             .catch(err => {
-                actions.setErrors(err);
+                console.log(err.response)
+                actions.setError(err);
             })
         actions.setLoading(false)
     }),
@@ -115,7 +124,7 @@ const auth: AuthModel = {
                 window.location.reload()
             })
             .catch(err => {
-                actions.setErrors(err);
+                actions.setError(err);
             })
         actions.setLoading(false)
     }),
@@ -127,7 +136,7 @@ const auth: AuthModel = {
                 setSessionToken(data.jwt);
             })
             .catch(err => {
-                actions.setErrors(err);
+                actions.setError(err);
             })
     }),
 };

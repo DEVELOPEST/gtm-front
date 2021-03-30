@@ -1,26 +1,24 @@
 import {Action, action} from 'easy-peasy';
 import {AxiosError} from "axios";
-import {IError} from "../api/models/IError";
+import {IError} from "../../api/models/IError";
 
-export interface DashboardInputsModel {
+export interface LeaderboardInputsModel {
     startDate: Date,
     endDate: Date,
-    intervals: string[],
-    chosenInterval: string,
+    depth: number,
     error: AxiosError<IError> | null,
     loading: boolean,
-    setStartDate: Action<DashboardInputsModel, Date>
-    setEndDate: Action<DashboardInputsModel, Date>
-    setChosenInterval: Action<DashboardInputsModel, string>
-    setError: Action<DashboardInputsModel, AxiosError<IError> | null>
-    setLoading: Action<DashboardInputsModel, boolean>
+    setStartDate: Action<LeaderboardInputsModel, Date>
+    setEndDate: Action<LeaderboardInputsModel, Date>
+    setDepth: Action<LeaderboardInputsModel, number>
+    setError: Action<LeaderboardInputsModel, AxiosError<IError> | null>
+    setLoading: Action<LeaderboardInputsModel, boolean>
 }
 
-const dashboardInputs: DashboardInputsModel = {
+const leaderboardInputsModel: LeaderboardInputsModel = {
     startDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
     endDate: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1),
-    intervals: ["Day", "Week", "Month", "Year"],
-    chosenInterval: "Day",
+    depth: 2,
     error: null,
     loading: false,
     setStartDate: action((store, payload) => {
@@ -29,8 +27,8 @@ const dashboardInputs: DashboardInputsModel = {
     setEndDate: action((store, payload) => {
         store.endDate = payload;
     }),
-    setChosenInterval: action((store, payload) => {
-        store.chosenInterval = payload;
+    setDepth: action((store, payload) => {
+        store.depth = payload;
     }),
     setError: action((store, payload) => {
         store.error = payload;
@@ -40,4 +38,4 @@ const dashboardInputs: DashboardInputsModel = {
     }),
 };
 
-export default dashboardInputs;
+export default leaderboardInputsModel;
