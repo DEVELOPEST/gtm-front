@@ -37,7 +37,7 @@ const subDirsTimeline: SubDirsTimelineModel = {
     fetchSubDirsTimeline: thunk(async (actions, _, {injections, getStoreState}) => {
         const api: IApi = injections.api;
         // @ts-ignore
-        const {startDate, endDate, chosenInterval} = getStoreState().dashboardInputs;
+        const {startDate, endDate, interval} = getStoreState().dashboardInputs;
         // @ts-ignore
         const {chosenGroup} = getStoreState().groups;
         // @ts-ignore
@@ -48,7 +48,7 @@ const subDirsTimeline: SubDirsTimelineModel = {
             chosenGroup.name,
             Math.floor(startOfDay(startDate).getTime() / 1000),
             Math.floor(startOfDay(endDate).getTime() / 1000),
-            chosenInterval.toUpperCase(),
+            interval.toUpperCase(),
             depth
         )
             .then(subDirLevelTimelineWrapper => {
