@@ -30,7 +30,7 @@ const activityTimeline: ActivityTimelineModel = {
     fetchActivityTimeline: thunk(async (actions, _, { injections, getStoreState }) => {
         const api: IApi = injections.api;
         // @ts-ignore
-        const {startDate, endDate, chosenInterval} = getStoreState().dashboardInputs;
+        const {startDate, endDate, interval} = getStoreState().dashboardInputs;
         // @ts-ignore
         const {chosenGroup} = getStoreState().groups;
 
@@ -39,7 +39,7 @@ const activityTimeline: ActivityTimelineModel = {
             chosenGroup.name,
             Math.floor(startDate.getTime() / 1000),
             Math.floor(endDate.getTime() / 1000),
-            chosenInterval.toUpperCase()
+            interval.toUpperCase()
         )
             .then(data => {
                 actions.setData(data)
