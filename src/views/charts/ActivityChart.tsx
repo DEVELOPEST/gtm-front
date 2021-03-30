@@ -26,7 +26,7 @@ const ActivityChart = () => {
                         dataKey="linesRemoved"
                         stroke="#bf0000"
                         fill="#b31414"
-                        fillOpacity="0.1"
+                        fillOpacity="0.2"
                         strokeWidth={2}
                         animationDuration={300}/>
                     <Area
