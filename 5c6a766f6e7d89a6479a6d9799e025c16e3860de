@@ -1,0 +1,6 @@
+[ver:1,total:780,branch:feature/FRONT-68]
+src/api/index.ts:210,1618077600:210,r
+src/models/exportDataModel.ts:190,1618074000:160,1618077600:30,m
+src/views/timelineComparison/timelineComparison.tsx:180,1617105600:180,r
+src/views/charts/ActivityChart.tsx:140,1618074000:80,1618077600:60,m
+src/views/leaderboard/Leaderboard.tsx:60,1618074000:60,r
