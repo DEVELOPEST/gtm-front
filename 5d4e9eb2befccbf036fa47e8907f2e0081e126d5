@@ -1,0 +1,4 @@
+[ver:1,total:780,branch:feature/FRONT-68]
+src/views/charts/tooltips/SubDirChartTooltip.tsx:630,1618077600:630,m
+src/models/data/timelineModel.ts:90,1618077600:90,m
+src/views/charts/SubDirsChart.tsx:60,1618077600:60,r
