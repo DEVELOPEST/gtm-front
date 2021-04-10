@@ -34,7 +34,7 @@ const exportData: ExportDataModel = {
     fetchGroupExportData: thunk(async (actions, _, {injections, getStoreState}) => {
         const api: IApi = injections.api;
     // @ts-ignore
-        const {startDate, endDate} = getStoreState().dashboardInputs;
+        const {startDate, endDate, depth} = getStoreState().leaderboardInputs;
     // @ts-ignore
         const {chosenGroup} = getStoreState().groups;
 
@@ -45,7 +45,7 @@ const exportData: ExportDataModel = {
             chosenGroup.name,
             Math.floor(startOfDay(startDate).getTime() / 1000),
             Math.floor(startOfDay(endDate).getTime() / 1000),
-            2
+            depth
             )
             .then(data => {
                 actions.setData(data);

@@ -44,7 +44,6 @@ const timeline: TimelineModel = {
         )
             .then(timeline => {
                 actions.setData(timeline)
-                console.log(timeline)
             })
             .catch((err: AxiosError<IError>) => {
                 actions.setError(err)
