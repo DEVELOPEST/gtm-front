@@ -1,0 +1,6 @@
+[ver:1,total:200,branch:develop]
+src/views/charts/TimelineComparisonChart.tsx:96,1618218000:96,m
+src/views/timelineComparison/timelineComparison.tsx:42,1618218000:42,r
+src/views/repositories/Repository.tsx:30,1618218000:30,r
+src/constants.ts:20,1618218000:20,m
+src/views/charts/SubDirsChart.tsx:12,1618218000:12,r
