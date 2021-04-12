@@ -7,13 +7,15 @@ import GitHubLogo from "../../assets/icons/GitHubLogo.png";
 import GitLabLogo from "../../assets/icons/GitLabLogo.png";
 import BitbucketLogo from "../../assets/icons/BitbucketLogo.png";
 import TalTechLogo from "../../assets/icons/TalTechLogo.png";
-import {useStoreActions} from "../../store/store";
+import {useStoreActions, useStoreState} from "../../store/store";
 import {IRepository} from "../../api/models/IRepository";
+import {CustomLoader} from "../../reusable";
 
 const Repository = (props: any) => {
     const [url, setUrl] = useState('');
     const [trackClicked, setTrackClicked] = useState(false);
 
+    const {loading} = useStoreState(state => state.repositories);
     const {postRepository} = useStoreActions(actions => actions.repositories);
 
     const getAccentColor = (stars: number) => {
@@ -93,8 +95,9 @@ const Repository = (props: any) => {
                                     <CIcon name="cil-check" className="float-right"/>
                                 </div>
                             )
-                            : (
-                                <CButton color="light" onClick={() => handleClickTrack(props.repo)}>Start tracking</CButton>
+                            : ( loading && trackClicked && !url
+                                    ? <CustomLoader />
+                                    : <CButton color="light" onClick={() => handleClickTrack(props.repo)}>Start tracking</CButton>
                             )
                         }
                     </div>
