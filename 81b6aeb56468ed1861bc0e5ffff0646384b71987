@@ -1,0 +1,15 @@
+[ver:1,total:2520,branch:develop]
+src/views/repositories/Repositories.tsx:1799,1618218000:1199,1618221600:600,m
+package.json:260,1618218000:120,1618221600:140,m
+src/api/index.ts:108,1618218000:108,m
+src/views/charts/TimelineComparisonChart.tsx:92,1618218000:92,r
+src/views/repositories/Repository.tsx:62,1618218000:42,1618221600:20,r
+src/models/repositoriesModel.ts:57,1618218000:57,m
+.gtm/com.intellij.javascript.nodejs.npm.InstallNodeLocalDependenciesAction$InstallDepsRunProfile@4e299c3.app:30,1618221600:30,r
+src/views/pages/login/Login.tsx:30,1618218000:30,r
+node_modules/react-debounce-input/src/index.d.ts:20,1618221600:20,r
+.gtm/com.intellij.javascript.nodejs.npm.InstallNodeLocalDependenciesAction$InstallDepsRunProfile@30d09bdd.app:15,1618221600:15,r
+.gtm/com.intellij.javascript.nodejs.npm.InstallNodeLocalDependenciesAction$InstallDepsRunProfile@7a5850.app:15,1618221600:15,r
+src/models/index.ts:12,1618218000:12,r
+src/views/pages/register/Register.tsx:10,1618218000:10,r
+src/views/leaderboard/Leaderboard.tsx:10,1618218000:10,r
