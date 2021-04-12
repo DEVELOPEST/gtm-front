@@ -1,0 +1,9 @@
+[ver:1,total:760,branch:develop]
+src/reusable/DashboardInputs.tsx:370,1618214400:370,m
+src/views/timelineComparison/timelineComparison.tsx:180,1617051600:180,r
+src/constants.ts:75,1618214400:75,r
+src/api/index.ts:40,1618214400:40,r
+src/models/index.ts:30,1618214400:30,r
+src/models/data/leaderboardModel.ts:30,1618214400:30,r
+src/models/repositoriesModel.ts:20,1618214400:20,r
+src/views/charts/ActivityChart.tsx:15,1618214400:15,r
