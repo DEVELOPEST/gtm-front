@@ -10,12 +10,15 @@ import {
 import {useStoreState} from "../../store/store";
 import React, {useEffect, useState} from "react";
 import {dateFormatter} from "../../utils/dateUtils";
+import {GRAPH_COLORS} from "../../constants";
 
 const TimelineComparisonChart = () => {
     const [dataKeys, setDataKeys] = useState<string[]>([])
     const [chartData, setChartData] = useState<{}[]>([])
     const {data} = useStoreState((state) => state.timelineComparison);
-
+    const getColor = (i: number) => {
+        return GRAPH_COLORS[i % GRAPH_COLORS.length];
+    };
     const mapData = () => {
         setDataKeys(data.map((obj) => {
             return obj.groupName
@@ -65,13 +68,13 @@ const TimelineComparisonChart = () => {
                     tickLine={false}
                     axisLine={false} />
                 {
-                    dataKeys.map((str) => {
+                    dataKeys.map((str, i) => {
                         return  <Area
                             key={str}
                                     yAxisId="left"
                                     type="monotoneX"
                                     dataKey={str}
-                                    stroke="#0f7dfa"
+                                    stroke={getColor(i)}
                                     fill="none"
                                     strokeWidth={2}
                                     animationDuration={300}

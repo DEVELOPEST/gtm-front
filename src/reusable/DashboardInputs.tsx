@@ -68,7 +68,7 @@ const DashboardInputs = () => {
                                     <SelectDropdown
                                         options={groupOptions}
                                         onChange={(value: IGroupOption[] ) => value && value.length > 0 && setChosenGroup(value[0].object)}
-                                        searchable={false}
+                                        searchable={true}
                                         values={groupOptions.filter((option) => (chosenGroup && option.object.id === chosenGroup.id))}
                                     />
                             }

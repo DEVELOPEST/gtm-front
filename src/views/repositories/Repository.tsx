@@ -7,11 +7,13 @@ import GitHubLogo from "../../assets/icons/GitHubLogo.png";
 import GitLabLogo from "../../assets/icons/GitLabLogo.png";
 import BitbucketLogo from "../../assets/icons/BitbucketLogo.png";
 import TalTechLogo from "../../assets/icons/TalTechLogo.png";
-import {useStoreActions} from "../../store/store";
+import {useStoreActions, useStoreState} from "../../store/store";
 import {IRepository} from "../../api/models/IRepository";
+import {CustomLoader} from "../../reusable";
 
 const Repository = (props: any) => {
-    const [url, setUrl] = useState('');
+    const [url, setUrl] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
     const [trackClicked, setTrackClicked] = useState(false);
 
     const {postRepository} = useStoreActions(actions => actions.repositories);
@@ -39,11 +41,13 @@ const Repository = (props: any) => {
     }
 
     const handleClickTrack = async (repo: IRepository) => {
-        let pushUrl = await postRepository(repo.cloneUrl);
         setTrackClicked(true);
+        setLoading(true);
+        let pushUrl = await postRepository(repo.cloneUrl);
         if (pushUrl) {
             setUrl(pushUrl)
         }
+        setLoading(false);
     }
 
     const getWebhookCreationUrlEnding = (provider: string) => {
@@ -66,7 +70,7 @@ const Repository = (props: any) => {
                 </CCardHeader>
                 <CCardBody>
                     {trackClicked && (
-                        url
+                        url!
                             ? (
                                 <CAlert color="info">
                                     Please add PUSH WEBHOOK to&nbsp;
@@ -93,8 +97,11 @@ const Repository = (props: any) => {
                                     <CIcon name="cil-check" className="float-right"/>
                                 </div>
                             )
-                            : (
-                                <CButton color="light" onClick={() => handleClickTrack(props.repo)}>Start tracking</CButton>
+                            : ( loading
+                                    ? (
+                                        <div className="col-2 float-right" ><CustomLoader /></div>
+                                    )
+                                    : <CButton color="light" onClick={() => handleClickTrack(props.repo)}>Start tracking</CButton>
                             )
                         }
                     </div>
