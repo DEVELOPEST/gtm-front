@@ -40,7 +40,7 @@ export interface IApi {
     removeRole: (params: Object) => Promise<AxiosResponse<Object>>
 
     // ===================================================== Repositories =========================================================
-    fetchRepositories: () => Promise<IRepository[]>
+    fetchRepositories: (searchable: string) => Promise<IRepository[]>
     postRepository: (params: Object) => Promise<ITrackedRepository>
 
     // ===================================================== Auth =========================================================
@@ -148,8 +148,8 @@ const Api: IApi =  {
 
     // ===================================================== Repositories =========================================================
 
-    fetchRepositories(): Promise<IRepository[]> {
-        return this.fetch({url: `/api/vcs/repositories`, method: 'GET'});
+    fetchRepositories(searchable : string): Promise<IRepository[]> {
+        return this.fetch({url: `/api/vcs/repositories?name=${searchable}`, method: 'GET'});
     },
 
     postRepository(params: Object): Promise<ITrackedRepository> {
