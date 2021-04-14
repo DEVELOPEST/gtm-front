@@ -14,11 +14,10 @@ const Repositories = () => {
         fetchRepositories('');
     }, [fetchRepositories])
 
-    const repos = repositories.filter(r => !r.tracked).map(repo => {
+    const repos = repositories.sort(o => o.tracked ? 1: -1 ).map(repo => {
             return <Repository repo={repo} key={repo.url}/>
         }
     );
-
 
     const handleChange = (value: string) => {
         setSearchable(value)
