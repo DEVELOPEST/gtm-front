@@ -1,0 +1,14 @@
+[ver:1,total:2820,branch:feature/FRONT-71]
+src/views/repositories/Repository.tsx:1259,1618387200:678,1618390800:581,m
+src/views/charts/TimelineChart.tsx:540,1618308000:540,r
+src/views/repositories/Repositories.tsx:274,1618387200:135,1618390800:139,m
+src/constants.ts:240,1618221600:180,1618387200:60,r
+src/models/authModel.ts:180,1618311600:180,r
+src/utils/setSessionToken.ts:180,1618315200:180,r
+src/views/profile/Profile.tsx:75,1618387200:75,m
+src/containers/_nav.tsx:15,1618390800:15,m
+src/routes/routes.ts:15,1618390800:15,m
+src/views/users/User.tsx:12,1618387200:12,r
+src/models/repositoriesModel.ts:10,1618390800:10,r
+src/models/index.ts:10,1618390800:10,r
+src/api/models/IRepository.ts:10,1618390800:10,r
