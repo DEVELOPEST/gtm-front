@@ -11,7 +11,7 @@ export interface RepositoriesModel {
     setRepositories: Action<RepositoriesModel, IRepository[]>
     setError: Action<RepositoriesModel, AxiosError<IError> | null>
     setLoading: Action<RepositoriesModel, boolean>
-    fetchRepositories: Thunk<RepositoriesModel>
+    fetchRepositories: Thunk<RepositoriesModel, string>
     postRepository: Thunk<RepositoriesModel, string>
 }
 
@@ -28,10 +28,10 @@ const repositories: RepositoriesModel = {
     setLoading: action((store, payload) => {
         store.loading = payload;
     }),
-    fetchRepositories: thunk(async (actions, _, { injections }) => {
+    fetchRepositories: thunk(async (actions, searchable, { injections }) => {
         const api: IApi = injections.api;
         actions.setLoading(true)
-        await api.fetchRepositories()
+        await api.fetchRepositories(searchable)
             .then(repositories => {
                 actions.setRepositories(repositories);
             })

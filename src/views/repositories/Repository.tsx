@@ -1,5 +1,5 @@
 import {CCard, CCardBody, CAlert, CCol, CButton, CCardHeader, CLink} from '@coreui/react';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import CIcon from '@coreui/icons-react'
@@ -7,12 +7,20 @@ import GitHubLogo from "../../assets/icons/GitHubLogo.png";
 import GitLabLogo from "../../assets/icons/GitLabLogo.png";
 import BitbucketLogo from "../../assets/icons/BitbucketLogo.png";
 import TalTechLogo from "../../assets/icons/TalTechLogo.png";
-import {useStoreActions} from "../../store/store";
+import {useStoreActions, useStoreState} from "../../store/store";
 import {IRepository} from "../../api/models/IRepository";
+import {CustomLoader} from "../../reusable";
 
 const Repository = (props: any) => {
-    const [url, setUrl] = useState('');
+    const [url, setUrl] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
     const [trackClicked, setTrackClicked] = useState(false);
+
+    useEffect(() => {
+        setUrl('');
+        setLoading(false);
+        setTrackClicked(false);
+    }, [])
 
     const {postRepository} = useStoreActions(actions => actions.repositories);
 
@@ -39,11 +47,13 @@ const Repository = (props: any) => {
     }
 
     const handleClickTrack = async (repo: IRepository) => {
-        let pushUrl = await postRepository(repo.cloneUrl);
         setTrackClicked(true);
+        setLoading(true);
+        let pushUrl = await postRepository(repo.cloneUrl);
         if (pushUrl) {
             setUrl(pushUrl)
         }
+        setLoading(false);
     }
 
     const getWebhookCreationUrlEnding = (provider: string) => {
@@ -57,17 +67,38 @@ const Repository = (props: any) => {
     }
 
     return (
-        <CCol xs="12" sm="6" md="4">
+        <CCol xs="12" sm="12" md="12">
             <CCard accentColor={getAccentColor(props.repo.stars)}>
                 <CCardHeader>
                     <CIcon width="20px" src={getImage(props.repo.repoCredentials.provider)} />
                     <CLink className="alert-link color-black" href={props.repo.url}> {props.repo.fullName} </CLink>
-                    <span className="float-right"><CIcon name="cil-star" /> {props.repo.stars} </span>
-                </CCardHeader>
-                <CCardBody>
-                    {trackClicked && (
-                        url
+                    <span><CIcon name="cil-star" /> {props.repo.stars} </span>
+                    <div className="float-right" >
+                        {trackClicked && url
                             ? (
+                                <div className="card-header-actions">
+                                    <CIcon name="cil-check" className="float-right"/>
+                                </div>
+                            )
+                            : ( loading
+                                    ? (
+                                        <div className="col-2 float-right" ><CustomLoader /></div>
+                                    )
+                                    : (
+                                        <CButton color={props.repo.tracked ? 'light' : 'success'} onClick={() => handleClickTrack(props.repo)}>
+                                            {props.repo.tracked ? "Initialize again" : "Start tracking"}
+                                        </CButton>
+                                    )
+                            )
+                        }
+                    </div>
+
+                </CCardHeader>
+
+                    {trackClicked && !loading && (
+                        url!
+                            ? (
+                                <CCardBody>
                                 <CAlert color="info">
                                     Please add PUSH WEBHOOK to&nbsp;
                                     <CLink className="alert-link"
@@ -78,27 +109,17 @@ const Repository = (props: any) => {
                                         {url}
                                     </SyntaxHighlighter> url to complete tracking initialization.
                                 </CAlert>
+                                </CCardBody>
                             )
                             : (
+                                    <CCardBody>
                                 <CAlert color="danger">
                                     Something went wrong! Please try again later.
                                 </CAlert>
+                                    </CCardBody>
                             )
                     )}
-                    {props.repo.description}
-                    <div className="float-right" >
-                        {trackClicked && url
-                            ? (
-                                <div className="card-header-actions">
-                                    <CIcon name="cil-check" className="float-right"/>
-                                </div>
-                            )
-                            : (
-                                <CButton color="light" onClick={() => handleClickTrack(props.repo)}>Start tracking</CButton>
-                            )
-                        }
-                    </div>
-                </CCardBody>
+
             </CCard>
         </CCol>
     )

@@ -7,7 +7,6 @@ const ChangePassword = React.lazy(() => import('../views/profile/ChangePassword'
 const Profile = React.lazy(() => import('../views/profile/Profile'));
 const Users = React.lazy(() => import('../views/users/Users'));
 const User = React.lazy(() => import('../views/users/User'));
-const Repositories = React.lazy(() => import('../views/repositories/Repositories'));
 const TimelineComparison = React.lazy(() => import('../views/timelineComparison/timelineComparison'));
 
 const routes = [
@@ -16,7 +15,6 @@ const routes = [
   { path: '/leaderboard', name: 'Leaderboard', component: Leaderboard, authority: USER },
   { path: '/profile/password', name: 'Change password', component: ChangePassword, authority: USER },
   { path: '/profile', name: 'Profile', component: Profile, authority: USER },
-  { path: '/repositories', name: 'Repositories', component: Repositories, authority: USER },
   { path: '/timeline-comparison', name: 'Timeline Comparison', component: TimelineComparison, authority: USER },
   { path: '/users/:id', name: 'User', component: User, authority: ADMIN },
   { path: '/users', name: 'Users', component: Users, authority: ADMIN },

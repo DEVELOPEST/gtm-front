@@ -30,7 +30,6 @@ const ActivityChart = () => {
                         strokeWidth={2}
                         animationDuration={300}/>
                     <Area
-
                         yAxisId="right-lines"
                         type="monotoneX"
                         dataKey="linesAdded"
