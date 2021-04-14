@@ -1,0 +1,95 @@
+[ver:1,total:11640,branch:feature/FRONT-73]
+src/views/charts/ActivityChart.tsx:1278,1618408800:132,1618416000:112,1618419600:1034,r
+src/containers/TheLayout.test.tsx:805,1618412400:693,1618416000:99,1618437600:13,m
+src/App.test.tsx:692,1618412400:692,m
+src/containers/TheSidebar.test.tsx:550,1618412400:242,1618416000:303,1618437600:5,m
+src/Auth.test.tsx:536,1618437600:536,m
+src/views/charts/ActivityChart.test.tsx:523,1618408800:358,1618412400:59,1618416000:106,d
+src/containers/TheLayout.test.tsx:509,1618412400:509,r
+src/views/leaderboard/Leaderboard.test.tsx:453,1618419600:157,1618434000:278,1618437600:18,m
+src/views/dashboard/Dashboard.test.tsx:429,1618416000:10,1618419600:411,1618437600:8,m
+src/containers/TheHeaderSettingsDropdown.tsx:367,1618416000:367,m
+src/views/leaderboard/Leaderboard.tsx:259,1618419600:234,1618434000:25,m
+src/views/leaderboard/UsersLeaderboard.tsx:256,1618419600:256,r
+src/containers/TheLayout.tsx:244,1618412400:197,1618416000:47,m
+src/containers/TheHeaderSettingsDropdown.test.tsx:212,1618416000:202,1618437600:10,m
+src/views/pages/login/Login.test.tsx:211,1618434000:89,1618437600:122,m
+node_modules/@coreui/react/src/index.d.ts:200,1618419600:200,r
+src/containers/TheContent.test.tsx:190,1618416000:172,1618434000:10,1618437600:8,m
+src/utils/dateUtils.ts:180,1618394400:180,r
+src/containers/_nav.tsx:157,1618412400:157,m
+src/views/dashboard/Dashboard.tsx:155,1618416000:10,1618419600:145,m
+src/containers/TheHeader.tsx:154,1618416000:154,m
+src/containers/TheContent.tsx:151,1618412400:19,1618416000:132,m
+src/views/pages/login/Login.tsx:150,1618434000:35,1618437600:115,m
+src/views/users/GroupAccess.test.tsx:136,1618437600:136,m
+src/Auth.tsx:130,1618437600:130,r
+src/views/profile/OauthLinking.tsx:116,1618437600:116,m
+.gtm/Jest-> renders without crashing (3).app:107,1618412400:107,r
+src/views/profile/ChangePassword.test.tsx:107,1618437600:107,m
+.gtm/Jest-> Dashboard tests.has content.app:106,1618419600:106,r
+src/views/users/GroupAccess.tsx:106,1618437600:106,m
+src/views/profile/OauthLinking.test.tsx:106,1618437600:106,m
+src/routes/routes.ts:100,1618412400:25,1618416000:75,m
+src/constants.ts:99,1618419600:36,1618437600:63,m
+.gtm/Jest-> renders without crashing.app:94,1618408800:94,r
+src/views/profile/AccountDelete.test.tsx:92,1618437600:92,m
+src/views/repositories/Repository.tsx:85,1618412400:45,1618437600:40,m
+.gtm/Jest-> Rerun Failed Tests.app:84,1618412400:35,1618416000:19,1618419600:30,r
+src/containers/TheSidebar.tsx:72,1618412400:52,1618416000:20,m
+src/containers/TheHeader.test.tsx:70,1618416000:65,1618437600:5,m
+src/views/pages/register/Register.test.tsx:67,1618437600:67,m
+.gtm/Jest-> Leaderboard tests.has content.app:67,1618419600:42,1618434000:25,r
+src/views/pages/register/Register.tsx:66,1618437600:66,m
+src/views/repositories/Repositories.test.tsx:59,1618437600:59,d
+.gtm/Jest-> renders without crashing (1).app:58,1618412400:58,r
+src/views/profile/ChangePassword.tsx:56,1618437600:56,m
+src/views/profile/AccountDelete.tsx:54,1618437600:54,m
+package.json:53,1618412400:53,m
+src/App.tsx:51,1618412400:51,r
+src/containers/TheFooter.test.tsx:45,1618416000:37,1618437600:8,m
+src/views/users/Users.test.tsx:43,1618437600:43,d
+.gtm/Jest-> Dashboard tests.app:43,1618419600:43,r
+src/setupTests.tsx:39,1618437600:39,m
+.gtm/Jest-> renders without crashing (2).app:36,1618412400:36,r
+.gtm/Jest-> TheLayout tests.has content.app:33,1618412400:33,r
+.gtm/Jest-> Repositories tests.app:30,1618437600:30,r
+src/views/users/Users.tsx:30,1618437600:30,r
+src/containers/TheFooter.tsx:26,1618416000:26,m
+.gtm/Jest-> GroupAccess tests.app:25,1618437600:25,r
+src/reusable/LeaderboardInputs.tsx:24,1618419600:24,m
+src/views/repositories/Repositories.tsx:24,1618437600:24,m
+src/reusable/DashboardInputs.tsx:21,1618419600:21,m
+src/views/leaderboard/FilesLeaderboard.tsx:21,1618419600:21,m
+.gtm/Jest-> TheHeaderSettingsDropdown tests.has admin content.app:21,1618416000:21,r
+.gtm/Jest-> TheHeaderSettingsDropdown tests.app:21,1618416000:21,r
+.gtm/Jest-> Your test.renders without crashing.app:20,1618412400:20,r
+.gtm/Jest-> ActivityChart tests.app:20,1618416000:20,r
+.gtm/Jest-> OAuthLinking tests.app:20,1618437600:20,r
+.gtm/Jest-> active tab is first.app:18,1618412400:18,r
+src/views/profile/Profile.tsx:17,1618437600:17,r
+package-lock.json:17,1618412400:17,r
+.gtm/Jest-> TheLayout tests.has content (1).app:16,1618416000:16,r
+.gtm/Jest-> Login tests.has content.app:16,1618437600:16,r
+.gtm/Jest-> renders learn react link.app:15,1618412400:15,r
+node_modules/@testing-library/dom/types/queries.d.ts:15,1618412400:15,r
+.gtm/Jest-> Your test.app:14,1618412400:14,r
+.gtm/Jest-> Login tests.app:13,1618434000:13,r
+src/index.tsx:12,1618412400:12,r
+.gtm/Jest-> ActivityChart tests.has content.app:12,1618416000:12,r
+.gtm/Jest-> ChangePassword tests.has content.app:12,1618437600:12,r
+.gtm/Jest-> TheHeaderSettingsDropdown tests.has content.app:12,1618416000:12,r
+.gtm/Jest-> AccountDelete tests.has content.app:12,1618437600:12,r
+.gtm/Jest-> GroupAccess tests.hasAnyRole.app:10,1618437600:10,r
+src/containers/index.ts:10,1618416000:10,r
+.gtm/Jest-> TheContent tests.has content.app:10,1618416000:10,r
+.gtm/Jest-> TheFooter tests.has content.app:10,1618416000:10,r
+src/models/data/activityTimelineModel.ts:9,1618408800:9,r
+src/api/models/ITimeline.ts:7,1618408800:7,r
+.gtm/Jest-> TheContent tests.app:7,1618416000:7,r
+.gtm/Jest-> Register tests.app:7,1618437600:7,r
+src/models/index.ts:6,1618412400:6,r
+.gtm/Jest-> Leaderboard tests (1).app:5,1618434000:5,r
+.gtm/Jest-> TheLayout tests.has content (2).app:5,1618416000:5,r
+.gtm/Jest-> ChangePassword tests.app:5,1618437600:5,r
+.gtm/Jest-> OAuthLinking tests.has content.app:4,1618437600:4,r
