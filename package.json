@@ -1,6 +1,6 @@
 {
   "name": "testapp",
-  "version": "0.1.0",
+  "version": "0.2.3",
   "homepage": "/services/gtm/front/",
   "private": true,
   "dependencies": {
