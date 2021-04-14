@@ -1,5 +1,5 @@
 import {CCard, CCardBody, CAlert, CCol, CButton, CCardHeader, CLink} from '@coreui/react';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import CIcon from '@coreui/icons-react'
@@ -15,6 +15,12 @@ const Repository = (props: any) => {
     const [url, setUrl] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const [trackClicked, setTrackClicked] = useState(false);
+
+    useEffect(() => {
+        setUrl('');
+        setLoading(false);
+        setTrackClicked(false);
+    }, [])
 
     const {postRepository} = useStoreActions(actions => actions.repositories);
 
@@ -61,35 +67,12 @@ const Repository = (props: any) => {
     }
 
     return (
-        <CCol xs="12" sm="6" md="4">
+        <CCol xs="12" sm="12" md="12">
             <CCard accentColor={getAccentColor(props.repo.stars)}>
                 <CCardHeader>
                     <CIcon width="20px" src={getImage(props.repo.repoCredentials.provider)} />
                     <CLink className="alert-link color-black" href={props.repo.url}> {props.repo.fullName} </CLink>
-                    <span className="float-right"><CIcon name="cil-star" /> {props.repo.stars} </span>
-                </CCardHeader>
-                <CCardBody>
-                    {trackClicked && (
-                        url!
-                            ? (
-                                <CAlert color="info">
-                                    Please add PUSH WEBHOOK to&nbsp;
-                                    <CLink className="alert-link"
-                                           href={props.repo.url + getWebhookCreationUrlEnding(props.repo.repoCredentials.provider)}
-                                    >{props.repo.repoCredentials.provider}</CLink>
-                                    &nbsp;with
-                                    <SyntaxHighlighter language="http" wrapLines={true} style={github}>
-                                        {url}
-                                    </SyntaxHighlighter> url to complete tracking initialization.
-                                </CAlert>
-                            )
-                            : (
-                                <CAlert color="danger">
-                                    Something went wrong! Please try again later.
-                                </CAlert>
-                            )
-                    )}
-                    {props.repo.description}
+                    <span><CIcon name="cil-star" /> {props.repo.stars} </span>
                     <div className="float-right" >
                         {trackClicked && url
                             ? (
@@ -101,11 +84,42 @@ const Repository = (props: any) => {
                                     ? (
                                         <div className="col-2 float-right" ><CustomLoader /></div>
                                     )
-                                    : <CButton color="light" onClick={() => handleClickTrack(props.repo)}>Start tracking</CButton>
+                                    : (
+                                        <CButton color={props.repo.tracked ? 'light' : 'success'} onClick={() => handleClickTrack(props.repo)}>
+                                            {props.repo.tracked ? "Initialize again" : "Start tracking"}
+                                        </CButton>
+                                    )
                             )
                         }
                     </div>
-                </CCardBody>
+
+                </CCardHeader>
+
+                    {trackClicked && !loading && (
+                        url!
+                            ? (
+                                <CCardBody>
+                                <CAlert color="info">
+                                    Please add PUSH WEBHOOK to&nbsp;
+                                    <CLink className="alert-link"
+                                           href={props.repo.url + getWebhookCreationUrlEnding(props.repo.repoCredentials.provider)}
+                                    >{props.repo.repoCredentials.provider}</CLink>
+                                    &nbsp;with
+                                    <SyntaxHighlighter language="http" wrapLines={true} style={github}>
+                                        {url}
+                                    </SyntaxHighlighter> url to complete tracking initialization.
+                                </CAlert>
+                                </CCardBody>
+                            )
+                            : (
+                                    <CCardBody>
+                                <CAlert color="danger">
+                                    Something went wrong! Please try again later.
+                                </CAlert>
+                                    </CCardBody>
+                            )
+                    )}
+
             </CCard>
         </CCol>
     )

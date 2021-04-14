@@ -21,12 +21,6 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Repositories',
-    to: '/repositories',
-    icon: 'cil-folder-open',
-  },
-  {
-    _tag: 'CSidebarNavItem',
     name: 'Timeline Comparison',
     to: '/timeline-comparison',
     icon: 'cil-folder-open',
