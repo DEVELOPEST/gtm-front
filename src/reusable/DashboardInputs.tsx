@@ -57,7 +57,7 @@ const DashboardInputs = () => {
         })
 
     return <>
-        <CCard>
+        <CCard data-testid="dashboard-inputs">
             <CCardBody>
                 <CRow className="justify-content-between">
                     <CCol className="col-12 col-sm-12 col-md-3 col-lg-3">

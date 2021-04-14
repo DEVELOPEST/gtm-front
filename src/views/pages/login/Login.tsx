@@ -116,7 +116,9 @@ const Login = (props: any) => {
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeUsername(e.target.value)}
                           type="text"
                           onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e)}
-                          placeholder="Username"/>
+                          placeholder="Username"
+                          data-testid="username-input"
+                      />
                     </CInputGroup>
                     {usernameErrors.map((value) => {
                       return <small className="form-text text-muted color-red mb-2">{value}</small>
@@ -133,7 +135,8 @@ const Login = (props: any) => {
                           onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e)}
                           type="password"
                           placeholder="Password"
-                          autoComplete="current-password" />
+                          autoComplete="current-password"
+                          data-testid="password-input"/>
                     </CInputGroup>
                     {passwordErrors.map((value) => {
                       return <div><small className="form-text text-muted color-red mb-3">{value}</small></div>
@@ -147,7 +150,7 @@ const Login = (props: any) => {
                                   <CustomLoader />
                                 </div>
 
-                              : <CButton onClick={onClickLogin}  color="primary" className="px-4">Login</CButton>
+                              : <CButton onClick={onClickLogin}  color="primary" className="px-4" data-testid="login-button">Login</CButton>
                         }
                       </CCol>
                       <CCol xs="6" className="text-right">
@@ -157,27 +160,27 @@ const Login = (props: any) => {
                     <p className="mt-4 mb-1 font-weight-bold">Sign in with</p>
                     <CRow className="mt-1 justify-content-around" >
 
-                      <a onClick={() => redirect(GITHUB_OAUTH_URL)} className="btn mt-3 border-dark col-5">
+                      <a onClick={() => redirect(GITHUB_OAUTH_URL)} className="btn mt-3 border-dark col-5" data-testid="github-button">
                         <CIcon width="17px" src={GitHubLogo} />
                         <span className="ml-2">GitHub</span>
                       </a>
 
-                      <a onClick={() => redirect(GITLAB_OAUTH_URL)} className="btn mt-3 border-dark col-5">
+                      <a onClick={() => redirect(GITLAB_OAUTH_URL)} className="btn mt-3 border-dark col-5" data-testid="gitlab-button">
                         <CIcon width="17px" src={GitLabLogo} />
                         <span className="ml-2">GitLab</span>
                       </a>
 
-                      <a onClick={() => redirect(MICROSOFT_OAUTH_URL)} className="btn mt-3 border-dark col-5">
+                      <a onClick={() => redirect(MICROSOFT_OAUTH_URL)} className="btn mt-3 border-dark col-5" data-testid="microsoft-button">
                         <CIcon width="17px" src={MicrosoftLogo} />
                         <span className=""> Microsoft</span>
                       </a>
 
-                      <a onClick={() => redirect(TALTECH_OAUTH_URL)} className="btn mt-3 border-dark col-5">
+                      <a onClick={() => redirect(TALTECH_OAUTH_URL)} className="btn mt-3 border-dark col-5" data-testid="taltech-button">
                         <CIcon width="17px" src={TalTechLogo} />
                         <span className=""> TalTech</span>
                       </a>
 
-                      <a onClick={() => redirect(BITBUCKET_OAUTH_URL)} className="btn mt-3 border-dark col-5">
+                      <a onClick={() => redirect(BITBUCKET_OAUTH_URL)} className="btn mt-3 border-dark col-5" data-testid="bitbucket-button">
                         <CIcon width="17px" src={BitbucketLogo} />
                         <span className=""> BitBucket</span>
                       </a>
@@ -196,7 +199,7 @@ const Login = (props: any) => {
                     <p>Login to GTM Dashboard.</p>
                     <p>Or register if you don't have an account yet!</p>
                     <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>Register Now!</CButton>
+                      <CButton color="primary" className="mt-3" active tabIndex={-1} data-testid="register-button">Register Now!</CButton>
                     </Link>
                   </div>
                 </CCardBody>

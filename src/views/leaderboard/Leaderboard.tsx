@@ -15,9 +15,9 @@ const Leaderboard = () => {
         return () => setData(null);  // cleanup
     });
 
-    return <>
+    return <div data-testid="leaderboard">
         <LeaderboardInputs />
-        <CCard>
+        <CCard data-testid="users-card">
             <CCardHeader>
                 <h3>Users</h3>
             </CCardHeader>
@@ -25,7 +25,7 @@ const Leaderboard = () => {
                 <UsersLeaderboard/>
             </CCardBody>
         </CCard>
-        <CCard>
+        <CCard data-testid="files-card">
             <CCardHeader>
                 <h3>Files</h3>
             </CCardHeader>
@@ -33,15 +33,15 @@ const Leaderboard = () => {
                 <FilesLeaderboard/>
             </CCardBody>
         </CCard>
-        <CCard>
+        <CCard data-testid="export-data-card">
             <CCardBody>
                 <div className="text-right">
-                    <CButton color="info" onClick={() => fetchGroupExportData()}>Export Data</CButton>
+                    <CButton color="info" onClick={() => fetchGroupExportData()} data-testid="export-data-button">Export Data</CButton>
                     {dataDownloaded ? <CSVDownload data={data!} target="_blank" /> : null }
                 </div>
             </CCardBody>
         </CCard>
-    </>
+    </div>
 }
 
 export default Leaderboard;

@@ -37,12 +37,12 @@ const TheLayout = () => {
     }
 
     return (
-    <div className="c-app c-default-layout">
+    <div className="c-app c-default-layout" data-testid="the-layout">
       <IdleTimer onAction={() => onAction()}/>
-      <TheSidebar/>
-      <div className="c-wrapper">
+      <TheSidebar />
+      <div className="c-wrapper" data-testid="wrapper">
         <TheHeader/>
-        <div className="c-body">
+        <div className="c-body" data-testid="body">
           <TheContent/>
         </div>
         <TheFooter/>

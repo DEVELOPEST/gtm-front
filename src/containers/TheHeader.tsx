@@ -33,7 +33,7 @@ const TheHeader = () => {
   }
 
   return (
-    <CHeader withSubheader>
+    <CHeader withSubheader data-testid="the-header">
       <CToggler
         inHeader
         className="ml-md-3 d-lg-none"
@@ -48,7 +48,7 @@ const TheHeader = () => {
 
       <CHeaderNav className="d-md-down-none mr-auto">
         <CHeaderNavItem className="px-3" >
-          <CHeaderNavLink to="/dashboard">Dashboard</CHeaderNavLink>
+          <CHeaderNavLink to="/dashboard" data-testid="dashboard-link">Dashboard</CHeaderNavLink>
         </CHeaderNavItem>
 
       </CHeaderNav>

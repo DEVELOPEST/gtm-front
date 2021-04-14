@@ -90,7 +90,8 @@ const ChangePassword = () => {
                                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setOldPassword(e.target.value)}
                                         valid={getOldPasswordValid()}
                                         type="password"
-                                        placeholder="Insert old password" />
+                                        placeholder="Insert old password"
+                                        data-testid="old-password-input"/>
                                     <CInputGroupAppend>
                                         <CInputGroupText><CIcon name="cil-asterisk" /></CInputGroupText>
                                     </CInputGroupAppend>
@@ -106,7 +107,8 @@ const ChangePassword = () => {
                                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewPassword(e.target.value)}
                                         valid={getNewPasswordValid()}
                                         type="password"
-                                        placeholder="Insert new password" />
+                                        placeholder="Insert new password"
+                                        data-testid="new-password-input"/>
                                     <CInputGroupAppend>
                                         <CInputGroupText><CIcon name="cil-asterisk" /></CInputGroupText>
                                     </CInputGroupAppend>
@@ -121,7 +123,8 @@ const ChangePassword = () => {
                                         invalid={getNewPasswordRepeatValid(false)}
                                         valid={getNewPasswordRepeatValid(true)}
                                         type="password"
-                                        placeholder="Repeat new password" />
+                                        placeholder="Repeat new password"
+                                        data-testid="new-password-repeat-input"/>
                                     <CInputGroupAppend>
                                         <CInputGroupText><CIcon name="cil-asterisk" /></CInputGroupText>
                                     </CInputGroupAppend>
@@ -129,7 +132,7 @@ const ChangePassword = () => {
                             </CFormGroup>
 
                             <CFormGroup className="form-actions">
-                                <CButton onClick={() => onClickChange()} size="sm" color="primary">Submit</CButton>
+                                <CButton onClick={() => onClickChange()} size="sm" color="primary" data-testid="change-password-button">Submit</CButton>
                             </CFormGroup>
                     </CCardBody>
                 </CCard>
