@@ -1,0 +1,80 @@
+[ver:1,total:9600,branch:feature/FRONT-73]
+src/models/repositoriesModel.test.ts:3293,1618480800:1224,1618484400:889,1618488000:755,1618491600:425,m
+src/models/authModel.test.ts:781,1618488000:458,1618491600:323,m
+src/models/exportDataModel.test.ts:598,1618488000:574,1618491600:24,m
+src/models/data/timelineComparisonModel.test.ts:510,1618491600:197,1618495200:313,m
+src/models/authModel.ts:507,1618484400:210,1618488000:250,1618491600:47,m
+src/models/data/leaderboardModel.test.ts:295,1618491600:295,m
+src/models/repositoriesModel.ts:287,1618480800:152,1618484400:69,1618488000:8,1618491600:58,r
+src/models/data/groupsModel.test.ts:266,1618491600:266,m
+src/models/data/subDirsTimelineModel.test.ts:241,1618491600:241,m
+.gtm/Jest-> repositoriesModel tests.fetchRepositories.app:227,1618480800:88,1618484400:139,r
+src/models/data/activityTimelineModel.test.ts:160,1618491600:160,m
+src/setupTests.tsx:160,1618437600:160,r
+src/models/data/timelineModel.ts:147,1618491600:120,1618495200:27,r
+.gtm/Jest-> repositoriesModel tests.get_logins success.app:140,1618488000:140,r
+src/models/data/timelineModel.test.ts:131,1618495200:131,m
+.gtm/Jest-> leaderboardModel tests.fetchGroupStats error.app:131,1618491600:131,r
+.gtm/Jest-> timelineComparisonModel tests.fetchTimelines success.app:127,1618491600:5,1618495200:122,r
+src/models/data/subDirsTimelineModel.ts:108,1618491600:108,m
+src/models/sidebarModel.test.ts:93,1618488000:93,m
+src/api/models/IGroup.ts:91,1618488000:42,1618491600:49,r
+src/models/data/timelineComparisonModel.ts:90,1618491600:68,1618495200:22,m
+.gtm/Jest-> repositoriesModel tests.repositories works correctly.app:86,1618480800:86,r
+src/models/data/groupsModel.ts:84,1618488000:15,1618491600:69,r
+src/api/models/ITimeline.ts:83,1618491600:75,1618495200:8,r
+src/models/exportDataModel.ts:76,1618488000:76,r
+src/models/data/activityTimelineModel.ts:66,1618491600:66,r
+node_modules/axios/index.d.ts:56,1618480800:56,r
+.gtm/Jest-> repositoriesModel tests.has content.app:54,1618480800:54,r
+src/models/data/leaderboardModel.ts:50,1618491600:50,r
+.gtm/Jest-> repositoriesModel tests.fetchRepositories success.app:44,1618484400:44,r
+src/api/index.ts:31,1618484400:10,1618491600:21,r
+.gtm/Jest-> repositoriesModel tests.get_logins error.app:31,1618488000:31,r
+src/views/dashboard/Dashboard.test.tsx:30,1618480800:30,r
+.gtm/Jest-> exportDataModel tests.fetchGroupExportData success.app:29,1618488000:29,r
+.gtm/Jest-> exportDataModel tests.fetchGroupExportData error.app:25,1618488000:25,r
+.gtm/Jest-> authModel tests.delete_account success.app:24,1618488000:24,r
+.gtm/Jest-> activityTimelineModel tests.chosenGroup.app:20,1618491600:20,r
+.gtm/Jest-> repositoriesModel tests.app:20,1618480800:20,r
+src/Auth.tsx:20,1618437600:20,r
+src/models/sidebarModel.ts:20,1618480800:10,1618488000:10,r
+.gtm/Jest-> timelineModel tests.fetchTimeline success.app:20,1618495200:20,r
+.gtm/Jest-> authModel tests.delete_account error.app:18,1618488000:18,r
+.gtm/Jest-> repositoriesModel tests.fetchRepositories error.app:17,1618484400:7,1618491600:10,r
+.gtm/Jest-> authModel tests.fetchToken success.app:17,1618491600:17,r
+.gtm/Jest-> repositoriesModel tests.getPassword error.app:15,1618488000:15,r
+src/api/models/IRepository.ts:15,1618480800:15,r
+.gtm/Jest-> SidebarModel tests.sidebar.app:15,1618488000:15,r
+.gtm/Jest-> repositoriesModel tests.getPassword success.app:14,1618488000:14,r
+.gtm/Jest-> activityTimelineModel tests.fetchGroups success.app:13,1618491600:13,r
+.gtm/Jest-> timelineComparisonModel tests.data.app:12,1618491600:12,r
+.gtm/Jest-> authModel tests.delete_login success.app:12,1618488000:12,r
+.gtm/Jest-> repositoriesModel tests.postRepository error.app:12,1618484400:12,r
+.gtm/Jest-> repositoriesModel tests.hasPassword.app:12,1618488000:12,r
+.gtm/Jest-> leaderboardModel tests.fetchGroupStats success.app:11,1618491600:11,r
+.gtm/Jest-> authModel tests.delete_login error.app:10,1618488000:10,r
+.gtm/Jest-> repositoriesModel tests.repositories.app:10,1618491600:10,r
+.gtm/Jest-> authModel tests.fetchToken error.app:9,1618491600:9,r
+.gtm/Jest-> subDirsTimelineModel tests.data.app:8,1618491600:8,r
+.gtm/Jest-> activityTimelineModel tests.groups.app:8,1618491600:8,r
+.gtm/Jest-> repositoriesModel tests.errors.app:8,1618488000:8,r
+.gtm/Jest-> leaderboardModel tests.files.app:7,1618491600:7,r
+src/api/models/IUser.ts:7,1618491600:7,r
+.gtm/Jest-> subDirsTimelineModel tests.fetchSubDirsTimeline error.app:6,1618491600:6,r
+.gtm/Jest-> authModel tests.login error.app:6,1618491600:6,r
+.gtm/Jest-> subDirsTimelineModel tests.fetchSubDirsTimeline success.app:6,1618491600:6,r
+.gtm/Jest-> activityTimelineModel tests.fetchActivityTimeline success.app:6,1618491600:6,r
+.gtm/Jest-> activityTimelineModel tests.fetchActivityTimeline error.app:6,1618491600:6,r
+.gtm/Jest-> subDirsTimelineModel tests.paths.app:6,1618491600:6,r
+.gtm/Jest-> timelineComparisonModel tests.chosenGroups.app:6,1618491600:6,r
+.gtm/Jest-> repositoriesModel tests.logins.app:6,1618488000:6,r
+.gtm/Jest-> activityTimelineModel tests.fetchGroups error.app:6,1618491600:6,r
+.gtm/Jest-> timelineModel tests.fetchTimeline error.app:6,1618495200:6,r
+.gtm/Jest-> repositoriesModel tests.postRepository success.app:6,1618491600:6,r
+.gtm/Jest-> authModel tests.login success.app:6,1618491600:6,r
+.gtm/Jest-> authModel tests.register error.app:6,1618491600:6,r
+.gtm/Jest-> timelineComparisonModel tests.fetchTimelines error.app:6,1618495200:6,r
+.gtm/Jest-> Rerun Failed Tests.app:5,1618495200:5,r
+.gtm/Jest-> repositoriesModel tests.error works correctly.app:5,1618480800:5,r
+.gtm/Jest-> leaderboardModel tests.users.app:4,1618491600:4,r
