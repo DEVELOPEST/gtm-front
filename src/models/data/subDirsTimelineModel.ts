@@ -11,6 +11,7 @@ export interface SubDirsTimelineModel {
     loading: boolean;
     setData: Action<SubDirsTimelineModel, ISubDirLevelTimelineData[]>
     setPaths: Action<SubDirsTimelineModel, string[]>
+    setDepth: Action<SubDirsTimelineModel, number>
     setError: Action<SubDirsTimelineModel, Error | null>
     setLoading: Action<SubDirsTimelineModel, boolean>
     fetchSubDirsTimeline: Thunk<SubDirsTimelineModel>
@@ -27,6 +28,9 @@ const subDirsTimeline: SubDirsTimelineModel = {
     }),
     setPaths: action((store, payload) => {
        store.paths = payload;
+    }),
+    setDepth: action((store, payload) => {
+        store.depth = payload;
     }),
     setError: action((store, payload) => {
         store.error = payload;
