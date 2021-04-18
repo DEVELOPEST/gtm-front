@@ -11,7 +11,7 @@ export interface UsersModel {
     setUsers: Action<UsersModel, IUser[]>;
     setError: Action<UsersModel, AxiosError<IError> | null>;
     setLoading: Action<UsersModel, boolean>;
-    fetchUsers: Thunk<UsersModel, string>;
+    fetchUsers: Thunk<UsersModel>;
 }
 
 const users: UsersModel = {
