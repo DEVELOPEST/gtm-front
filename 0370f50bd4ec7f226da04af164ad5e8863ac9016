@@ -1,0 +1,13 @@
+[ver:1,total:1740,branch:feature/FRONT-76]
+src/views/repositories/Repository.tsx:583,1618984800:583,m
+src/models/profile/groupAccessModel.test.ts:390,1618750800:180,1618898400:180,1618984800:30,r
+src/models/repositoriesModel.test.ts:253,1618984800:253,m
+src/api/index.ts:204,1618984800:204,m
+src/constants.ts:90,1618984800:90,r
+src/models/repositoriesModel.ts:80,1618984800:80,m
+src/assets/icons/index.ts:70,1618984800:70,r
+src/api/models/IRepository.ts:32,1618984800:32,m
+.gtm/Jest-> repositoriesModel tests.app:12,1618984800:12,r
+src/models/index.ts:10,1618984800:10,r
+.gtm/Jest-> repositoriesModel tests.deleteRepository error.app:9,1618984800:9,r
+.gtm/Jest-> repositoriesModel tests.deleteRepository success.app:7,1618984800:7,r
