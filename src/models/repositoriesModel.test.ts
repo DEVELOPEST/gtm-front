@@ -30,6 +30,7 @@ describe("repositoriesModel tests", () => {
 
     test('repositories', async() => {
         const repos = [getData()]
+        // @ts-ignore
         store.dispatch.repositories.setRepositories(repos)
         expect(store.getState().repositories.repositories).toEqual(repos);
 
@@ -61,7 +62,7 @@ describe("repositoriesModel tests", () => {
             injections: { api: api },
         });
 
-        await store.dispatch.repositories.fetchRepositories();
+        await store.dispatch.repositories.fetchRepositories("");
 
         expect(api.fetchRepositories).toHaveBeenCalled();
         expect(store.getState().repositories.error).toEqual(error);
@@ -88,15 +89,44 @@ describe("repositoriesModel tests", () => {
             injections: { api: api },
         });
 
-        await store.dispatch.repositories.postRepository();
+        await store.dispatch.repositories.postRepository("");
 
         expect(api.postRepository).toHaveBeenCalled();
+        expect(store.getState().repositories.error).toEqual(error);
+    })
+
+    test('deleteRepository success', async() => {
+
+        const api = {
+            deleteRepository: jest.fn(() => Promise.resolve()),
+        };
+        const store = createStore(storeModel, {
+            injections: { api: api },
+        });
+
+        await store.dispatch.repositories.deleteRepository(1);
+
+        expect(api.deleteRepository).toHaveBeenCalled();
+    })
+
+    test('deleteRepository error', async() => {
+        const api = {
+            deleteRepository: jest.fn(() => Promise.reject(error)),
+        };
+        const store = createStore(storeModel, {
+            injections: { api: api },
+        });
+
+        await store.dispatch.repositories.deleteRepository(1);
+
+        expect(api.deleteRepository).toHaveBeenCalled();
         expect(store.getState().repositories.error).toEqual(error);
     })
 })
 
 const getData = () => {
     return {
+        id: 1,
         user: 'user',
         provider: 'provider',
         repository: 'repository',
