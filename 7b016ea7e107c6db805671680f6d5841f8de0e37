@@ -1,0 +1,4 @@
+[ver:1,total:120,branch:feature/FRONT-76]
+src/views/repositories/Repository.tsx:72,1618988400:72,m
+src/models/repositoriesModel.ts:36,1618988400:36,m
+src/models/index.ts:12,1618988400:12,r
