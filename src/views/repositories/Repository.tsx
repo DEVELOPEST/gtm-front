@@ -60,7 +60,6 @@ const Repository = (props: any) => {
         setLoading(true);
         await deleteRepository(repo.id!);
         setLoading(false);
-        fetchRepositories('')
     }
 
     const getWebhookCreationUrlEnding = (provider: string) => {

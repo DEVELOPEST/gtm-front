@@ -61,6 +61,7 @@ const repositories: RepositoriesModel = {
         actions.setLoading(true)
         await api.deleteRepository(id)
             .then(() => {
+                actions.fetchRepositories('')
             })
             .catch((err: AxiosError<IError>) => {
                 actions.setError(err);
