@@ -58,7 +58,7 @@ const Repository = (props: any) => {
 
     const handleClickDelete = async (repo: IRepository) => {
         setLoading(true);
-        deleteRepository(+repo.id);
+        await deleteRepository(repo.id!);
         setLoading(false);
         fetchRepositories('')
     }
