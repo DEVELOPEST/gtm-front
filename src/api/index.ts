@@ -41,6 +41,7 @@ export interface IApi {
 
     // ===================================================== Repositories =========================================================
     fetchRepositories: (searchable: string) => Promise<IRepository[]>
+    deleteRepository: (id: number) => Promise<IRepository>
     postRepository: (params: Object) => Promise<ITrackedRepository>
 
     // ===================================================== Auth =========================================================
@@ -150,6 +151,10 @@ const Api: IApi =  {
 
     fetchRepositories(searchable : string): Promise<IRepository[]> {
         return this.fetch({url: `/api/vcs/repositories?name=${searchable}`, method: 'GET'});
+    },
+
+    deleteRepository(id : number): Promise<IRepository> {
+        return this.fetch({url: `/api/repositories/${id}`, method: 'DELETE'});
     },
 
     postRepository(params: Object): Promise<ITrackedRepository> {

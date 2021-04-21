@@ -27,6 +27,7 @@ const TheSidebar = () => {
     <CSidebar
       show={sidebarShow}
       onShowChange={(val: '' | true | false | 'responsive') => setSidebarShow(val)}
+      data-testid="the-sidebar"
     >
       <CSidebarBrand className="d-md-down-none" to="/">
         <CIcon

@@ -56,7 +56,7 @@ const TheContent = () => {
     }
 
   return (
-    <main className="c-main">
+    <main className="c-main" data-testid="the-content">
       <CContainer fluid>
         <Suspense fallback={loading}>
           <Switch>

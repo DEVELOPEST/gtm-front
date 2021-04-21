@@ -51,7 +51,7 @@ const timelineComparison: TimelineComparisonModel = {
         // @ts-ignore
         const {startDate, endDate, interval} = getStoreState().timelineComparisonInputs;
         // @ts-ignore
-        const {chosenGroups, data} = getStoreState().timelineComparison;
+        const {chosenGroups} = getStoreState().timelineComparison;
 
         actions.setLoading(true)
         await chosenGroups.forEach((group: IGroupWithAccess) => {

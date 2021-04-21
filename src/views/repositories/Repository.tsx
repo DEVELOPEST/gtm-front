@@ -22,7 +22,7 @@ const Repository = (props: any) => {
         setTrackClicked(false);
     }, [])
 
-    const {postRepository} = useStoreActions(actions => actions.repositories);
+    const {postRepository, deleteRepository, fetchRepositories} = useStoreActions(actions => actions.repositories);
 
     const getAccentColor = (stars: number) => {
         if (stars < 2) {
@@ -56,6 +56,12 @@ const Repository = (props: any) => {
         setLoading(false);
     }
 
+    const handleClickDelete = async (repo: IRepository) => {
+        setLoading(true);
+        await deleteRepository(repo.id!);
+        setLoading(false);
+    }
+
     const getWebhookCreationUrlEnding = (provider: string) => {
         switch (provider) {
             case 'gitlab.com': return '/hooks'
@@ -84,10 +90,16 @@ const Repository = (props: any) => {
                                     ? (
                                         <div className="col-2 float-right" ><CustomLoader /></div>
                                     )
-                                    : (
+                                    : (  <>
                                         <CButton color={props.repo.tracked ? 'light' : 'success'} onClick={() => handleClickTrack(props.repo)}>
                                             {props.repo.tracked ? "Initialize again" : "Start tracking"}
                                         </CButton>
+                                            {props.repo.tracked &&
+                                                <CButton className="ml-1 btn-danger" onClick={() => handleClickDelete(props.repo)}>
+                                                    <CIcon name="cil-trash" />
+                                                </CButton>
+                                            }
+                                        </>
                                     )
                             )
                         }
@@ -125,4 +137,5 @@ const Repository = (props: any) => {
     )
 }
 
+// @ts-ignore
 export default Repository;

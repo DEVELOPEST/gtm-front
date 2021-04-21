@@ -8,6 +8,7 @@ const _nav =  [
     name: 'Dashboard',
     to: '/dashboard',
     icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
+    "data-testid": "dashboard"
   },
   {
     _tag: 'CSidebarNavDivider',
@@ -18,12 +19,14 @@ const _nav =  [
     name: 'Leaderboard',
     to: '/leaderboard',
     icon:'cil-diamond',
+    "data-testid": "leaderboard"
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Timeline Comparison',
-    to: '/timeline-comparison',
+    name: 'Comparison',
+    to: '/comparison',
     icon: 'cil-folder-open',
+    "data-testid": "comparison"
   }
 ]
 

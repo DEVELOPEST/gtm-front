@@ -16,6 +16,7 @@ const FilesLeaderboard = ()  => {
             itemsPerPage={15}
             pagination
             sorter
+            data-testid="files-leaderboard"
             sorterValue={{ column: 'totalTime', desc: 'true' }}
             scopedSlots={{
                 'totalTime': (item: any) => getBadge(item, 'totalTime', files),

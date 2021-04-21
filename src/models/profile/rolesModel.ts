@@ -8,8 +8,8 @@ export interface RolesModel {
     loading: boolean;
     setError: Action<RolesModel, AxiosError<IError> | null>;
     setLoading: Action<RolesModel, boolean>;
-    addRole: Thunk<RolesModel, boolean>;
-    removeRole: Thunk<RolesModel, boolean>;
+    addRole: Thunk<RolesModel, number>;
+    removeRole: Thunk<RolesModel, number>;
 }
 
 

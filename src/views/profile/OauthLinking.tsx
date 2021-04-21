@@ -57,31 +57,61 @@ const OAuthLinking = () => {
                             </CCol>
                             <CCol>
                                 <CRow className="mt-1 justify-content-around" >
-                                    <CCol xs="10" sm="10" md="5" onClick={() => redirect(GITHUB_OAUTH_URL, GITHUB_OAUTH_TYPE_STRING)} className="btn mt-3 border-dark">
+                                    <CCol
+                                        xs="10"
+                                        sm="10"
+                                        md="5"
+                                        onClick={() => redirect(GITHUB_OAUTH_URL, GITHUB_OAUTH_TYPE_STRING)}
+                                        className="btn mt-3 border-dark"
+                                        data-testid="github-button">
                                         <CIcon width="20px" src={GitHubLogo} />
                                         <span className="ml-2">GitHub </span>
                                         <small>{logins.includes(GITHUB_OAUTH_TYPE_STRING) ? "(connected)" : "(not connected)"}</small>
                                     </CCol>
 
-                                    <CCol xs="10" sm="10" md="5" onClick={() => redirect(GITLAB_OAUTH_URL, GITLAB_OAUTH_TYPE_STRING)} className="btn mt-3 border-dark">
+                                    <CCol
+                                        xs="10"
+                                        sm="10"
+                                        md="5"
+                                        onClick={() => redirect(GITLAB_OAUTH_URL, GITLAB_OAUTH_TYPE_STRING)}
+                                        className="btn mt-3 border-dark"
+                                        data-testid="gitlab-button">
                                         <CIcon width="20px" src={GitLabLogo} />
                                         <span className="ml-2">GitLab </span>
                                         <small>{logins.includes(GITLAB_OAUTH_TYPE_STRING) ? "(connected)" : "(not connected)"}</small>
                                     </CCol>
 
-                                    <CCol xs="10" sm="10" md="5" onClick={() => redirect(MICROSOFT_OAUTH_URL, MICROSOFT_OAUTH_TYPE_STRING)} className="btn mt-3 border-dark">
+                                    <CCol
+                                        xs="10"
+                                        sm="10"
+                                        md="5"
+                                        onClick={() => redirect(MICROSOFT_OAUTH_URL, MICROSOFT_OAUTH_TYPE_STRING)}
+                                        className="btn mt-3 border-dark"
+                                        data-testid="microsoft-button">
                                         <CIcon width="20px" src={MicrosoftLogo} />
                                         <span className="ml-2">Microsoft </span>
                                         <small>{logins.includes(MICROSOFT_OAUTH_TYPE_STRING) ? "(connected)" : "(not connected)"}</small>
                                     </CCol>
 
-                                    <CCol xs="10" sm="10" md="5" onClick={() => redirect(TALTECH_OAUTH_URL, TALTECH_OAUTH_TYPE_STRING)} className="btn mt-3 border-dark">
+                                    <CCol
+                                        xs="10"
+                                        sm="10"
+                                        md="5"
+                                        onClick={() => redirect(TALTECH_OAUTH_URL, TALTECH_OAUTH_TYPE_STRING)}
+                                        className="btn mt-3 border-dark"
+                                        data-testid="taltech-button">
                                         <CIcon width="20px" src={TalTechLogo} />
                                         <span className="ml-2">TalTech </span>
                                         <small>{logins.includes(TALTECH_OAUTH_TYPE_STRING) ? "(connected)" : "(not connected)"}</small>
                                     </CCol>
 
-                                    <CCol xs="10" sm="10" md="5" onClick={() => redirect(BITBUCKET_OAUTH_URL, BITBUCKET_OAUTH_TYPE_STRING)} className="btn mt-3 border-dark">
+                                    <CCol
+                                        xs="10"
+                                        sm="10"
+                                        md="5"
+                                        onClick={() => redirect(BITBUCKET_OAUTH_URL, BITBUCKET_OAUTH_TYPE_STRING)}
+                                        className="btn mt-3 border-dark"
+                                        data-testid="bitbucket-button">
                                         <CIcon width="20px" src={BitbucketLogo} />
                                         <span className="ml-2">BitBucket </span>
                                         <small>{logins.includes(BITBUCKET_OAUTH_TYPE_STRING) ? "(connected)" : "(not connected)"}</small>
