@@ -8,7 +8,7 @@ import {IError} from "../api/models/IError";
 export interface AuthModel {
     logins: string[],
     hasPassword: boolean | null,
-    errors: [],
+    errors: string[],
     error: AxiosError<IError> | null,
     loading: boolean,
     setHasPassword: Action<AuthModel, boolean | null>
@@ -109,7 +109,6 @@ const auth: AuthModel = {
                 window.location.reload()
             })
             .catch(err => {
-                console.log(err.response)
                 actions.setError(err);
             })
         actions.setLoading(false)

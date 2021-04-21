@@ -125,4 +125,5 @@ const Repository = (props: any) => {
     )
 }
 
+// @ts-ignore
 export default Repository;

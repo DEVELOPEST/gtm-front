@@ -39,7 +39,7 @@ const AccountDelete: React.FC = () => {
                     <CCardBody>
                         <CForm className={username === inputValue ? "was-validated" : ''}>
                             <CFormGroup>
-                                <CLabel htmlFor="inputWarning2i">
+                                <CLabel htmlFor="inputWarning2i" data-testid="deletion-confirmation-label">
                                     Please write
                                     <span className="font-weight-bold"> {username} </span>
                                     to confirm deletion
@@ -47,9 +47,10 @@ const AccountDelete: React.FC = () => {
                                 <CInput
                                     value={inputValue}
                                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
-                                    id="inputWarning2i" />
+                                    id="inputWarning2i"
+                                    data-testid="deletion-confirmation-input"/>
                             </CFormGroup>
-                            <CButton onClick={handleClick} type="reset" size="sm" color="danger">
+                            <CButton onClick={handleClick} type="reset" size="sm" color="danger" data-testid="deletion-confirmation-button">
                                 <CIcon name="cil-ban" /> Delete
                             </CButton>
                         </CForm>

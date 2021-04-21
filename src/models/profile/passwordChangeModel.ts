@@ -48,7 +48,7 @@ const passwordChange: PasswordChangeModel = {
     changePassword: thunk(async (actions, _, { injections, getState }) => {
         const api: IApi = injections.api;
         // @ts-ignore
-        const {oldPassword, newPassword, newPasswordRepeat} = getState(state => state.password);
+        const {oldPassword, newPassword, newPasswordRepeat} = getState(state => state.passwordChange);
         if (newPassword === newPasswordRepeat && newPassword.length >= 8) {
             let dto = {
                 old_password: oldPassword,
@@ -72,7 +72,7 @@ const passwordChange: PasswordChangeModel = {
     createPassword: thunk(async (actions, _, { injections, getState }) => {
         const api: IApi = injections.api;
         // @ts-ignore
-        const {newPassword, newPasswordRepeat} = getState(state => state.password);
+        const {newPassword, newPasswordRepeat} = getState(state => state.passwordChange);
         if (newPassword === newPasswordRepeat && newPassword.length >= 8) {
             let dto = {
                 new_password: newPassword

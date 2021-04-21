@@ -96,7 +96,8 @@ const Register = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeUsername(e.target.value)}
                         onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e)}
                         type="text"
-                        placeholder="Username" />
+                        placeholder="Username"
+                    data-testid="username-input"/>
 
                   </CInputGroup>
                   {usernameErrors.map((value) => {
@@ -114,7 +115,8 @@ const Register = () => {
                         onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e)}
                         type="password"
                         placeholder="Password"
-                        autoComplete="new-password" />
+                        autoComplete="new-password"
+                        data-testid="password-input"/>
 
                   </CInputGroup>
                   {passwordErrors.map((value) => {
@@ -132,7 +134,8 @@ const Register = () => {
                         onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e)}
                         type="password"
                         placeholder="Repeat password"
-                        autoComplete="new-password" />
+                        autoComplete="new-password"
+                        data-testid="password-repeat-input"/>
 
                   </CInputGroup>
                   {passwordRepeatErrors.map((value) => {
@@ -146,7 +149,7 @@ const Register = () => {
                                 <CustomLoader />
                               </div>
                             </div>
-                            : <CButton onClick={onClickRegister} color="primary" block>Create Account</CButton>
+                            : <CButton onClick={onClickRegister} color="primary" block data-testid="create-account-button">Create Account</CButton>
                       }
                 </CForm>
               </CCardBody>

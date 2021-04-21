@@ -33,9 +33,10 @@ const Repositories = () => {
                             debounceTimeout={300}
                             className="w-75"
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e.target.value)}
+                            data-testid="debounce-input"
                         />
                         <CInputGroupAppend>
-                            <CButton onClick={() => handleChange(searchable)} type="button" color="primary"> Search</CButton>
+                            <CButton onClick={() => handleChange(searchable)} type="button" color="primary" data-testid="search-button"> Search</CButton>
                         </CInputGroupAppend>
                     </CInputGroup>
                 </CCol>

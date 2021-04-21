@@ -7,7 +7,7 @@ const ChangePassword = React.lazy(() => import('../views/profile/ChangePassword'
 const Profile = React.lazy(() => import('../views/profile/Profile'));
 const Users = React.lazy(() => import('../views/users/Users'));
 const User = React.lazy(() => import('../views/users/User'));
-const TimelineComparison = React.lazy(() => import('../views/timelineComparison/timelineComparison'));
+const Comparison = React.lazy(() => import('../views/timelineComparison/timelineComparison'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -15,7 +15,7 @@ const routes = [
   { path: '/leaderboard', name: 'Leaderboard', component: Leaderboard, authority: USER },
   { path: '/profile/password', name: 'Change password', component: ChangePassword, authority: USER },
   { path: '/profile', name: 'Profile', component: Profile, authority: USER },
-  { path: '/timeline-comparison', name: 'Timeline Comparison', component: TimelineComparison, authority: USER },
+  { path: '/comparison', name: 'Comparison', component: Comparison, authority: USER },
   { path: '/users/:id', name: 'User', component: User, authority: ADMIN },
   { path: '/users', name: 'Users', component: Users, authority: ADMIN },
 ];

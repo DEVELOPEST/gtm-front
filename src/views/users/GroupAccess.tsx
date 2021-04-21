@@ -49,11 +49,12 @@ const GroupAccess = (params: any) => {
                         onChange={() => setShowSubDirs(!showSubDirs)}
                         type="checkbox"
                         className="float-right ml-3 mt-1"
+                        data-testid="show-sub-dirs-checkbox"
                     />
                     <label className="float-right">Show sub dirs:</label>
                 </CCardHeader>
                 <CCardBody>
-                    <CFormGroup>
+                    <CFormGroup data-testid="groups-dropdown">
                         <label>Groups:</label>
                         <SelectDropdown
                             options={getIntervalOptions()}
@@ -62,14 +63,15 @@ const GroupAccess = (params: any) => {
                             multi={true}
                             className="mb-4"
                             values={rightsToGroups}
+
                         />
                         <button
                             onClick={() => handleClickGiveRights()}
-                            className="btn btn-primary float-right mb-3">Give rights!</button>
+                            className="btn btn-primary float-right mb-3" data-testid="give-rights-button">Give rights!</button>
                     </CFormGroup>
 
                     {accessibleGroups &&
-                        <table className="table table-striped table-hover">
+                        <table className="table table-striped table-hover" >
                             <thead>
                             <tr>
                                 <td className="mt-2">Group name</td>
