@@ -1,0 +1,7 @@
+[ver:1,total:1020,branch:feature/FRONT-76]
+src/views/repositories/Repository.tsx:338,1618988400:338,m
+src/constants.ts:320,1618394400:180,1618988400:140,r
+.gtm/com.intellij.javascript.nodejs.npm.InstallNodeLocalDependenciesAction$InstallDepsRunProfile@5ca5f393.app:150,1618988400:150,r
+src/models/repositoriesModel.ts:140,1618988400:140,r
+src/api/models/IRepository.ts:42,1618988400:42,m
+src/api/index.ts:30,1618988400:30,r
