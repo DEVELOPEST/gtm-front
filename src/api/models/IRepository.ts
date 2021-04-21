@@ -1,4 +1,5 @@
 export interface IRepository {
+    id: string,
     fullName: string,
     description: string,
     url: string,

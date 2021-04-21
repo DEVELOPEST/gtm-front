@@ -12,6 +12,7 @@ export interface RepositoriesModel {
     setError: Action<RepositoriesModel, AxiosError<IError> | null>
     setLoading: Action<RepositoriesModel, boolean>
     fetchRepositories: Thunk<RepositoriesModel, string>
+    deleteRepository: Thunk<RepositoriesModel, number>
     postRepository: Thunk<RepositoriesModel, string>
 }
 
@@ -54,6 +55,17 @@ const repositories: RepositoriesModel = {
             })
         actions.setLoading(false)
         return pushHookUrl
+    }),
+    deleteRepository: thunk(async (actions, id, { injections }) => {
+        const api: IApi = injections.api;
+        actions.setLoading(true)
+        await api.deleteRepository(id)
+            .then(() => {
+            })
+            .catch((err: AxiosError<IError>) => {
+                actions.setError(err);
+            })
+        actions.setLoading(false)
     }),
 };
 
