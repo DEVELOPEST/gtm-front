@@ -22,7 +22,7 @@ const Repository = (props: any) => {
         setTrackClicked(false);
     }, [])
 
-    const {postRepository, deleteRepository} = useStoreActions(actions => actions.repositories);
+    const {postRepository, deleteRepository, fetchRepositories} = useStoreActions(actions => actions.repositories);
 
     const getAccentColor = (stars: number) => {
         if (stars < 2) {
@@ -60,6 +60,7 @@ const Repository = (props: any) => {
         setLoading(true);
         deleteRepository(+repo.id);
         setLoading(false);
+        fetchRepositories('')
     }
 
     const getWebhookCreationUrlEnding = (provider: string) => {
