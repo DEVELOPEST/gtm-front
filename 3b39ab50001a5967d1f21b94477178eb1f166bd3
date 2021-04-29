@@ -1,0 +1,6 @@
+[ver:1,total:540,branch:feature/FRONT-77]
+src/models/repositoriesModel.ts:360,1618988400:180,1618995600:180,r
+src/views/pages/login/Login.tsx:135,1619697600:135,m
+src/api/index.ts:15,1619697600:15,r
+src/views/repositories/Repository.tsx:15,1619697600:15,r
+src/setupTests.tsx:15,1619697600:15,r
