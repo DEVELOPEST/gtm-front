@@ -153,9 +153,7 @@ const Login = (props: any) => {
                               : <CButton onClick={onClickLogin}  color="primary" className="px-4" data-testid="login-button">Login</CButton>
                         }
                       </CCol>
-                      <CCol xs="6" className="text-right">
-                        <CButton color="link" className="px-0">Forgot password?</CButton>
-                      </CCol>
+                      <CCol xs="6" className="text-right" />
                     </CRow>
                     <p className="mt-4 mb-1 font-weight-bold">Sign in with</p>
                     <CRow className="mt-1 justify-content-around" >
