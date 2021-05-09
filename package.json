@@ -1,7 +1,7 @@
 {
-  "name": "Gtm-front",
-  "version": "0.2.3",
-  "homepage": "/services/gtm/front/",
+  "name": "gtm-front",
+  "version": "0.2.4",
+  "homepage": "https://cs.ttu.ee/services/gtm/front/",
   "private": true,
   "dependencies": {
     "@coreui/chartjs": "^2.0.0",
