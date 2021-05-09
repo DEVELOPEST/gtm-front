@@ -13,9 +13,9 @@ export interface IApi {
     fetch<T> (opts: any): Promise<T>
 
     // ===================================================== Timeline =========================================================
-    getTimeline: (group: string, start: number, end: number, interval: string, timezone?: string) => Promise<ITimeline[]>
+    getTimeline: (group: string, start: number, end: number, interval: string, cumulative: boolean, timezone?: string) => Promise<ITimeline[]>
     getActivityTimeline: (group: string, start: number, end: number, interval: string, timezone?: string) => Promise<IActivityTimeline[]>
-    getSubDirsTimeline: (group: string, start: number, end: number, interval: string, depth: number, timezone?: string) => Promise<ISubDirLevelTimelineWrapper>
+    getSubDirsTimeline: (group: string, start: number, end: number, interval: string, depth: number, cumulative: boolean, timezone?: string) => Promise<ISubDirLevelTimelineWrapper>
 
     // ===================================================== Leaderboards =========================================================
     getGroupStats: (group: string, start: number, end: number, depth: number) => Promise<IGroupStats>
@@ -76,17 +76,17 @@ const Api: IApi =  {
 
     // ===================================================== Timeline =========================================================
 
-    getTimeline(group: string, start: number, end: number, interval: string, timezone: string = TALLINN_TIMEZONE): Promise<ITimeline[]> {
-        return this.fetch({url: `/api/${group}/timeline?start=${start}&end=${end}&interval=${interval}&timezone=${timezone}`, method: 'GET'});
+    getTimeline(group: string, start: number, end: number, interval: string, cumulative: boolean, timezone: string = TALLINN_TIMEZONE): Promise<ITimeline[]> {
+        return this.fetch({url: `/api/${group}/timeline?start=${start}&end=${end}&interval=${interval}&timezone=${timezone}&cumulative=${cumulative}`, method: 'GET'});
     },
 
     getActivityTimeline(group: string, start: number, end: number, interval: string, timezone: string = TALLINN_TIMEZONE): Promise<IActivityTimeline[]> {
         return this.fetch({url: `/api/${group}/activity?start=${start}&end=${end}&interval=${interval}&timezone=${timezone}`, method: 'GET'});
     },
 
-    getSubDirsTimeline(group: string, start: number, end: number, interval: string, depth: number, timezone: string = TALLINN_TIMEZONE): Promise<ISubDirLevelTimelineWrapper> {
+    getSubDirsTimeline(group: string, start: number, end: number, interval: string, depth: number, cumulative: boolean, timezone: string = TALLINN_TIMEZONE): Promise<ISubDirLevelTimelineWrapper> {
         return this.fetch(
-            {url: `/api/${group}/subdirs-timeline?start=${start}&end=${end}&interval=${interval}&timezone=${timezone}&depth=${depth}`, method: 'GET'});
+            {url: `/api/${group}/subdirs-timeline?start=${start}&end=${end}&interval=${interval}&timezone=${timezone}&depth=${depth}&cumulative=${cumulative}`, method: 'GET'});
     },
 
     // ===================================================== Leaderboards =========================================================

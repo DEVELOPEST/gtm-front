@@ -9,16 +9,25 @@ export interface TimelineModel {
     data: ITimeline[];
     error: AxiosError<IError> | null;
     loading: boolean;
+    settings: TimelineSettings;
     setData: Action<TimelineModel, ITimeline[]>
     setError: Action<TimelineModel, AxiosError<IError> | null>;
     setLoading: Action<TimelineModel, boolean>;
+    setSettings: Action<TimelineModel, TimelineSettings>;
     fetchTimeline: Thunk<TimelineModel>
+}
+
+export interface TimelineSettings {
+    cumulative: boolean
 }
 
 const timeline: TimelineModel = {
     data: [],
     error: null,
     loading: false,
+    settings: {
+        cumulative: false
+    },
     setData: action((store, payload) => {
         store.data = payload;
     }),
@@ -28,19 +37,25 @@ const timeline: TimelineModel = {
     setLoading: action((store, payload) => {
         store.loading = payload;
     }),
+    setSettings: action((store, payload) => {
+        store.settings = payload;
+    }),
     fetchTimeline: thunk(async (actions, _, {injections, getStoreState}) => {
         const api: IApi = injections.api;
         // @ts-ignore
         const {startDate, endDate, interval} = getStoreState().dashboardInputs;
         // @ts-ignore
         const {chosenGroup} = getStoreState().groups;
+        // @ts-ignore
+        const {settings} = getStoreState().timeline;
 
         actions.setLoading(true)
         await api.getTimeline(
             chosenGroup.name,
             Math.floor(startOfDay(startDate).getTime() / 1000),
             Math.floor(startOfDay(endDate).getTime() / 1000),
-            interval.toUpperCase()
+            interval.toUpperCase(),
+            settings.cumulative
         )
             .then(timeline => {
                 actions.setData(timeline)

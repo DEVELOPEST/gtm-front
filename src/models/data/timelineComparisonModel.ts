@@ -6,19 +6,25 @@ import {AxiosError} from "axios";
 import {IError} from "../../api/models/IError";
 import {IGroupWithAccess} from "../../api/models/IGroup";
 import groups from "./groupsModel";
+import {TimelineSettings} from "./timelineModel";
 
 export interface TimelineComparisonModel {
     data: dataObject[];
     error: AxiosError<IError> | null;
     loading: boolean;
+    settings: TimelineComparisonSettings;
     chosenGroups: IGroupWithAccess[];
     addData: Action<TimelineComparisonModel, dataObject>
     setData: Action<TimelineComparisonModel, dataObject[]>
-
     setChosenGroups: Action<TimelineComparisonModel, IGroupWithAccess[]>
     setError: Action<TimelineComparisonModel, AxiosError<IError> | null>;
     setLoading: Action<TimelineComparisonModel, boolean>;
+    setSettings: Action<TimelineComparisonModel, TimelineComparisonSettings>;
     fetchTimelines: Thunk<TimelineComparisonModel>
+}
+
+export interface TimelineComparisonSettings {
+    cumulative: boolean
 }
 
 export interface dataObject {
@@ -31,6 +37,9 @@ const timelineComparison: TimelineComparisonModel = {
     chosenGroups: [],
     error: null,
     loading: false,
+    settings: {
+        cumulative: false
+    },
     addData: action((store, payload) => {
         store.data.push(payload);
     }),
@@ -46,12 +55,15 @@ const timelineComparison: TimelineComparisonModel = {
     setLoading: action((store, payload) => {
         store.loading = payload;
     }),
+    setSettings: action((store, payload) => {
+        store.settings = payload;
+    }),
     fetchTimelines: thunk(async (actions, _, {injections, getStoreState}) => {
         const api: IApi = injections.api;
         // @ts-ignore
         const {startDate, endDate, interval} = getStoreState().timelineComparisonInputs;
         // @ts-ignore
-        const {chosenGroups} = getStoreState().timelineComparison;
+        const {chosenGroups, settings} = getStoreState().timelineComparison;
 
         actions.setLoading(true)
         await chosenGroups.forEach((group: IGroupWithAccess) => {
@@ -59,7 +71,8 @@ const timelineComparison: TimelineComparisonModel = {
                 group.name,
                 Math.floor(startOfDay(startDate).getTime() / 1000),
                 Math.floor(startOfDay(endDate).getTime() / 1000),
-                interval.toUpperCase()
+                interval.toUpperCase(),
+                settings.cumulative
             ).then(timeline => {
                 actions.addData({groupName: group.name, timeline: timeline})
             })
