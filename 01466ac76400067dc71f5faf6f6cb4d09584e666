@@ -1,0 +1,10 @@
+[ver:1,total:1570,branch:feature/FRONT-81]
+src/views/repositories/Repository.tsx:345,1618988400:180,1619020800:165,r
+package.json:330,1619020800:30,1620550800:240,1620554400:60,r
+src/views/charts/TimelineChart.tsx:240,1620324000:240,r
+src/models/repositoriesModel.ts:210,1618988400:180,1619020800:30,r
+src/models/data/timelineModel.ts:180,1620324000:180,r
+src/views/charts/SubDirsChart.tsx:160,1620324000:160,r
+LICENCE:60,1620554400:60,m
+.git/MERGE_MSG:30,1619020800:30,d
+.git/TAG_EDITMSG:15,1619020800:15,d
