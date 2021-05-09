@@ -28,10 +28,14 @@ const TimelineComparisonInputs = () => {
     const {startDate, endDate, interval} = useStoreState(state => state.timelineComparisonInputs)
     const {setInterval, setStartDate, setEndDate} = useStoreActions(actions => actions.timelineComparisonInputs)
 
-    const {data, chosenGroups} = useStoreState(state => state.timelineComparison)
+    const {settings, chosenGroups} = useStoreState(state => state.timelineComparison)
     const {fetchTimelines, setChosenGroups, setData} = useStoreActions((actions) => actions.timelineComparison)
 
     registerLocale('enGB', enGB)
+
+    useEffect(() => {
+        setChosenGroups([]);
+    }, [])
 
     useEffect(() => {
         if (groups.length === 0) fetchGroups();
@@ -42,7 +46,7 @@ const TimelineComparisonInputs = () => {
             setData([])
             fetchTimelines();
         }
-    }, [startDate, chosenGroups, interval, endDate])
+    }, [startDate, chosenGroups, interval, endDate, settings])
 
 
     const getIntervalOptions = () => {

@@ -6,6 +6,7 @@ import {
 
 import TimelineComparisonInputs from '../../reusable/timelineComparisonInputs';
 import TimelineComparisonChart from "../charts/TimelineComparisonChart";
+import TimelineComparisonChartSettingsDropdown from "../charts/TimelineComparisonChartSettingsDropdown";
 
 const timelineComparison = () => {
 
@@ -14,7 +15,14 @@ const timelineComparison = () => {
             <TimelineComparisonInputs />
             <CCard>
                 <CCardBody>
-                    <h3>Timeline Comparison</h3>
+                    <div className="row">
+                        <div className="col-11">
+                            <h3>Timeline Comparison</h3>
+                        </div>
+                        <div className="col-1">
+                            <TimelineComparisonChartSettingsDropdown />
+                        </div>
+                    </div>
                     <TimelineComparisonChart />
                 </CCardBody>
             </CCard>
