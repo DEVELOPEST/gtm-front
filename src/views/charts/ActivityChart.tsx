@@ -1,5 +1,5 @@
 import {
-    Area, Bar,
+    Area,
     ComposedChart,
     ResponsiveContainer,
     Tooltip,
@@ -13,7 +13,7 @@ const ActivityChart = () => {
     const {data} = useStoreState(state => state.activityTimeline)
     return (
         <ResponsiveContainer width="100%" height={400} >
-                <ComposedChart data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+                <ComposedChart data={data} margin={{top: 5, right: 0, left: 0, bottom: 5}}>
                     <defs>
                     </defs>
                     <Tooltip />
