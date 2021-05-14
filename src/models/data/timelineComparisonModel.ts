@@ -5,8 +5,6 @@ import {IApi} from "../../api";
 import {AxiosError} from "axios";
 import {IError} from "../../api/models/IError";
 import {IGroupWithAccess} from "../../api/models/IGroup";
-import groups from "./groupsModel";
-import {TimelineSettings} from "./timelineModel";
 
 export interface TimelineComparisonModel {
     data: dataObject[];
@@ -24,6 +22,7 @@ export interface TimelineComparisonModel {
 }
 
 export interface TimelineComparisonSettings {
+    average: boolean
     cumulative: boolean
 }
 
@@ -38,6 +37,7 @@ const timelineComparison: TimelineComparisonModel = {
     error: null,
     loading: false,
     settings: {
+        average: false,
         cumulative: false
     },
     addData: action((store, payload) => {

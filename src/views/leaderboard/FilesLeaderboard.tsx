@@ -1,7 +1,6 @@
 import {CDataTable} from '@coreui/react'
 import {useStoreState} from "../../store/store";
 import {getBadge} from '../../utils/badgeUtils';
-import {IGroupFileStats} from "../../api/models/IGroup";
 
 const FilesLeaderboard = ()  => {
     const {files} = useStoreState(state => state.leaderboard);

@@ -1,7 +1,7 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
 import setSessionToken from "../utils/setSessionToken";
 import {IApi} from "../api";
-import {IUser, IUserCredentials} from "../api/models/IUser";
+import {IUserCredentials} from "../api/models/IUser";
 import {AxiosError} from "axios";
 import {IError} from "../api/models/IError";
 

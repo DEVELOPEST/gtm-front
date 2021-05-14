@@ -1,6 +1,6 @@
 import {Action, action, Thunk, thunk} from 'easy-peasy';
 import {IApi} from "../api";
-import {IRepository, ITrackedRepository} from "../api/models/IRepository";
+import {IRepository} from "../api/models/IRepository";
 import {AxiosError} from "axios";
 import {IError} from "../api/models/IError";
 

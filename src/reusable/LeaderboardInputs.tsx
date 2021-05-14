@@ -1,11 +1,10 @@
 import "react-datepicker/dist/react-datepicker.css";
 
-import {CCard, CCardBody, CCol, CRow, CButton} from '@coreui/react';
+import {CCard, CCardBody, CCol, CRow} from '@coreui/react';
 import SelectDropdown from 'react-dropdown-select';
 import ReactDatePicker, {registerLocale} from 'react-datepicker';
 import {useStoreActions, useStoreState} from "../store/store";
 import React, {useEffect} from 'react'
-import CIcon from '@coreui/icons-react'
 import enGB from 'date-fns/locale/en-GB';
 import {IGroupWithAccess} from "../api/models/IGroup";
 

@@ -1,9 +1,8 @@
 import {CCard, CCardBody, CCardHeader, CButton} from '@coreui/react';
 import UsersLeaderboard from './UsersLeaderboard';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useStoreActions, useStoreState} from '../../store/store';
 import FilesLeaderboard from './FilesLeaderboard';
-import {DashboardInputs} from '../../reusable';
 import { CSVDownload } from "react-csv";
 import LeaderboardInputs from "../../reusable/LeaderboardInputs";
 

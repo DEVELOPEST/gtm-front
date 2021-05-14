@@ -8,7 +8,6 @@ import React, {useEffect} from 'react'
 import enGB from 'date-fns/locale/en-GB';
 import {IGroupWithAccess} from "../api/models/IGroup";
 import {INTERVALS} from "../constants";
-import {ITimeline} from "../api/models/ITimeline";
 
 interface IGroupOption {
     label: string,
@@ -16,10 +15,6 @@ interface IGroupOption {
     object: IGroupWithAccess
 }
 
-interface IIntervalOption {
-    label: string,
-    value: string,
-}
 
 const TimelineComparisonInputs = () => {
     const {groups, loading} = useStoreState(state => state.groups)
@@ -46,7 +41,7 @@ const TimelineComparisonInputs = () => {
             setData([])
             fetchTimelines();
         }
-    }, [startDate, chosenGroups, interval, endDate, settings])
+    }, [startDate, chosenGroups, interval, endDate, settings.cumulative])
 
 
     const getIntervalOptions = () => {
@@ -114,7 +109,6 @@ const TimelineComparisonInputs = () => {
                             <SelectDropdown
                                 options={getIntervalOptions()}
                                 onChange={value => setInterval(value[0].value)}
-                                searchable={false}
                                 values={getIntervalOptions().filter(option => option.label === interval)}
                             />
                         </div>

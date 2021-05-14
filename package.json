@@ -1,6 +1,6 @@
 {
   "name": "gtm-front",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "homepage": "https://cs.ttu.ee/services/gtm/front/",
   "private": true,
   "dependencies": {

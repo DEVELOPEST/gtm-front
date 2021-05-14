@@ -8,7 +8,6 @@ import {
 
 import CIcon from '@coreui/icons-react'
 import {useStoreActions, useStoreState} from "../../store/store";
-import setAuthHeader from "../../utils/setAuthHeader";
 
 const TimelineChartSettingsDropdown = () => {
     const {settings} = useStoreState((state) => state.timeline);
