@@ -1,9 +1,6 @@
 import {createStore, EasyPeasyConfig, Store} from "easy-peasy";
 import storeModel, {StoreModel} from "../index";
 import {cleanup} from "@testing-library/react";
-import {IGroupAccess} from "../../api/models/IGroup";
-import {ITimeline} from "../../api/models/ITimeline";
-import timeline from "./timelineModel";
 
 let store: Store<StoreModel, EasyPeasyConfig<{}, any>>;
 describe("timelineComparisonModel tests", () => {

@@ -1,7 +1,6 @@
 import {
     Area,
-    Bar,
-    ComposedChart,
+    ComposedChart, Legend,
     ResponsiveContainer,
     Tooltip,
     XAxis,
@@ -15,7 +14,8 @@ import {GRAPH_COLORS} from "../../constants";
 const TimelineComparisonChart = () => {
     const [dataKeys, setDataKeys] = useState<string[]>([])
     const [chartData, setChartData] = useState<{}[]>([])
-    const {data} = useStoreState((state) => state.timelineComparison);
+    const {data, chosenGroups, settings} = useStoreState((state) => state.timelineComparison);
+
     const getColor = (i: number) => {
         return GRAPH_COLORS[i % GRAPH_COLORS.length];
     };
@@ -30,8 +30,13 @@ const TimelineComparisonChart = () => {
             for (let i = 0; i < timelineLength; i++) {
                 let chartObject = {}
                 data.forEach((data) => {
-                    // @ts-ignore
-                    chartObject[data.groupName] = data.timeline[i].time
+                    if (settings.average && data.timeline[i].users) {
+                        // @ts-ignore
+                        chartObject[data.groupName] = data.timeline[i].time / data.timeline[i].users
+                    } else {
+                        // @ts-ignore
+                        chartObject[data.groupName] = data.timeline[i].time
+                    }
                     // @ts-ignore
                     chartObject.start = data.timeline[i].start
                 })
@@ -43,8 +48,10 @@ const TimelineComparisonChart = () => {
     }
 
     useEffect(() => {
-        mapData();
-    }, [data]);
+        if (data.length === chosenGroups.length) {
+            mapData();
+        }
+    }, [data, settings.average]);
 
     return (
         <ResponsiveContainer width="100%" height={400} >
@@ -81,6 +88,7 @@ const TimelineComparisonChart = () => {
                                 />
                     })
                 }
+                <Legend />
             </ComposedChart>
         </ResponsiveContainer>
 

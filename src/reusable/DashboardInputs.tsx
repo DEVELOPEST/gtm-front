@@ -15,11 +15,6 @@ interface IGroupOption {
     object: IGroupWithAccess
 }
 
-interface IIntervalOption {
-    label: string,
-    value: string,
-}
-
 const DashboardInputs = () => {
     const {groups, chosenGroup, loading} = useStoreState(state => state.groups)
     const {fetchGroups, setChosenGroup} = useStoreActions(actions => actions.groups)

@@ -3,7 +3,7 @@ import {
     BASE_URL,
     TALLINN_TIMEZONE
 } from "../constants";
-import {IGroup, IGroupExportDataEntry, IGroupStats, IGroupWithAccess} from "./models/IGroup";
+import {IGroupExportDataEntry, IGroupStats, IGroupWithAccess} from "./models/IGroup";
 import {IJsonWebToken, IUser, IUserCredentials} from "./models/IUser";
 import {IActivityTimeline, ISubDirLevelTimelineWrapper, ITimeline} from "./models/ITimeline";
 import {IRepository, ITrackedRepository} from "./models/IRepository";

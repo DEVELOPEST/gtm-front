@@ -18,6 +18,7 @@ export interface TimelineModel {
 }
 
 export interface TimelineSettings {
+    average: boolean
     cumulative: boolean
 }
 
@@ -26,6 +27,7 @@ const timeline: TimelineModel = {
     error: null,
     loading: false,
     settings: {
+        average: false,
         cumulative: false
     },
     setData: action((store, payload) => {

@@ -30,7 +30,6 @@ const Register = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordRepeat, setPasswordRepeat] = useState('');
   const [usernameErrors, setUsernameErrors] = useState<string[]>([]);
   const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
   const [passwordRepeatErrors, setPasswordRepeatErrors] = useState<string[]>([]);
@@ -56,7 +55,6 @@ const Register = () => {
   }
 
   const handleChangePasswordRepeat = (value: string) => {
-    setPasswordRepeat(value)
     setPasswordRepeatErrors(passwordRepeatValidation(password, value))
   }
 

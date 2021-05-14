@@ -21,7 +21,7 @@ export const LECTURER = 'LECTURER';
 export const ADMIN = 'ADMIN';
 
 export const TALLINN_TIMEZONE = 'Europe/Tallinn';
-export const INTERVALS = ["Day", "Week", "Month", "Year"];
+export const INTERVALS = ["Day", "Week", "Month"];
 
 export const GRAPH_COLORS = [
     "#0066cc",

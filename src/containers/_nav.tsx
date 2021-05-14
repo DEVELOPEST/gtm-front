@@ -1,6 +1,5 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
-import {cilDiamond} from '@coreui/icons'
 
 const _nav =  [
   {

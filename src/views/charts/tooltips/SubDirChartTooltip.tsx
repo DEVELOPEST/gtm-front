@@ -1,7 +1,7 @@
 import React from "react";
 import {dateFormatter} from "../../../utils/dateUtils";
 import {TooltipProps} from "recharts";
-import {NameType, ValueType} from "recharts/types/component/DefaultTooltipContent";
+import {NameType} from "recharts/types/component/DefaultTooltipContent";
 
 const SubDirChartTooltip = (props: TooltipProps<any, NameType>) => {
     const {active, payload} = props;

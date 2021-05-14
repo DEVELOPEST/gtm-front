@@ -1,4 +1,4 @@
-import {CInputGroup, CInputGroupAppend, CInput, CCol, CButton} from '@coreui/react';
+import {CInputGroup, CInputGroupAppend, CCol, CButton} from '@coreui/react';
 import {useStoreActions, useStoreState} from '../../store/store';
 import Repository from './Repository';
 import React, {useEffect, useState} from 'react';
