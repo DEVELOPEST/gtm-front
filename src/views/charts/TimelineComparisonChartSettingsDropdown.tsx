@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {
     CDropdown,
     CDropdownMenu,
@@ -28,6 +28,9 @@ const TimelineComparisonChartSettingsDropdown = () => {
                     className="text-center"
                 >
                     <strong>Settings</strong>
+                </CDropdownItem>
+                <CDropdownItem onClick={() => setSettings({...settings, average: !settings.average})} active={settings.average}>
+                    Average
                 </CDropdownItem>
                 <CDropdownItem onClick={() => setSettings({...settings, cumulative: !settings.cumulative})} active={settings.cumulative}>
                     Cumulative

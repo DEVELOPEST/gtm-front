@@ -11,8 +11,6 @@ import {
   CSubheader,
   CBreadcrumbRouter,
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import {hasAnyRole} from '../Auth';
 
 // routes config
 import routes from '../routes/routes'

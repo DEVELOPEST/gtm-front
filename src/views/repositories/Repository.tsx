@@ -7,7 +7,7 @@ import GitHubLogo from "../../assets/icons/GitHubLogo.png";
 import GitLabLogo from "../../assets/icons/GitLabLogo.png";
 import BitbucketLogo from "../../assets/icons/BitbucketLogo.png";
 import TalTechLogo from "../../assets/icons/TalTechLogo.png";
-import {useStoreActions, useStoreState} from "../../store/store";
+import {useStoreActions} from "../../store/store";
 import {IRepository} from "../../api/models/IRepository";
 import {CustomLoader} from "../../reusable";
 
@@ -22,7 +22,7 @@ const Repository = (props: any) => {
         setTrackClicked(false);
     }, [])
 
-    const {postRepository, deleteRepository, fetchRepositories} = useStoreActions(actions => actions.repositories);
+    const {postRepository, deleteRepository} = useStoreActions(actions => actions.repositories);
 
     const getAccentColor = (stars: number) => {
         if (stars < 2) {

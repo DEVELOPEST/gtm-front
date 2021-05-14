@@ -1,7 +1,7 @@
 import {Action, action, Thunk, thunk} from "easy-peasy";
 import {startOfDay} from "date-fns";
 import {IApi} from "../api";
-import {IGroupExportDataEntry, IGroupFileStats, IGroupUserStats} from "../api/models/IGroup";
+import {IGroupExportDataEntry} from "../api/models/IGroup";
 import {AxiosError} from "axios";
 import {IError} from "../api/models/IError";
 

@@ -4,7 +4,7 @@ import {
     CDropdown,
     CDropdownItem,
     CDropdownMenu,
-    CDropdownToggle, CHeaderNavItem, CHeaderNavLink,
+    CDropdownToggle
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {hasAnyRole} from "../Auth";
