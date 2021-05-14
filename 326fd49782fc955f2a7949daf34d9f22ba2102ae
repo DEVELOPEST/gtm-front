@@ -1,0 +1,15 @@
+[ver:1,total:6300,branch:master]
+src/views/charts/TimelineComparisonChart.tsx:1662,1624989600:1462,1625853600:200,m
+src/reusable/timelineComparisonInputs.tsx:1442,1624989600:40,1624993200:1162,1625853600:240,m
+src/models/data/timelineComparisonModel.ts:1133,1624986000:255,1624989600:734,1624993200:144,m
+src/models/inputGroup/timelineComparisonInputsModel.ts:1013,1624986000:378,1624989600:628,1624993200:7,r
+src/utils/setSessionToken.ts:340,1638986400:100,1638990000:240,r
+src/api/index.ts:287,1624986000:267,1624989600:20,m
+.env:160,1625853600:160,r
+src/api/models/ITimeline.ts:71,1624989600:71,r
+.git/COMMIT_EDITMSG:60,1643274000:60,r
+src/models/data/timelineComparisonModel.test.ts:60,1624986000:60,m
+src/views/charts/TimelineComparisonChartSettingsDropdown.tsx:35,1624989600:35,m
+src/utils/setAuthHeader.ts:20,1638986400:20,r
+src/views/timelineComparison/timelineComparison.tsx:10,1624989600:10,r
+src/models/index.ts:7,1624993200:7,r
