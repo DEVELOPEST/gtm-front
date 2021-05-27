@@ -1,0 +1,7 @@
+[ver:1,total:420,branch:feature/FRONT-82]
+src/views/charts/tooltips/SubDirChartTooltip.tsx:180,1620979200:180,r
+README.md:140,1622116800:140,m
+readme/logo.svg:40,1622116800:40,m
+.git/MERGE_MSG:30,1620979200:30,d
+.git/TAG_EDITMSG:15,1620979200:15,d
+package.json:15,1620979200:15,r
