@@ -5,3 +5,7 @@
 # GTM frontend
 Frontend application for GTM time tracking system.  
 The application is hosted at [https://cs.ttu.ee/services/gtm/front](https://cs.ttu.ee/services/gtm/front)
+
+## Contributing
+We are happy to welcome all contributions!  
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for more details.
