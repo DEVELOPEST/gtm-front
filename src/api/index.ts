@@ -5,46 +5,50 @@ import {
 } from "../constants";
 import {IGroupExportDataEntry, IGroupStats, IGroupWithAccess} from "./models/IGroup";
 import {IJsonWebToken, IUser, IUserCredentials} from "./models/IUser";
-import {IActivityTimeline, ISubDirLevelTimelineWrapper, ITimeline} from "./models/ITimeline";
+import {IActivityTimeline, ISubDirLevelTimelineWrapper, ITimeline, ITimelineComparison} from "./models/ITimeline";
 import {IRepository, ITrackedRepository} from "./models/IRepository";
 import applyCaseMiddleware from "axios-case-converter";
 
 export interface IApi {
-    fetch<T> (opts: any): Promise<T>
+    fetch<T>(opts: any): Promise<T>
 
-    // ===================================================== Timeline =========================================================
+    // =============================== Timeline ================================
     getTimeline: (group: string, start: number, end: number, interval: string, cumulative: boolean, timezone?: string) => Promise<ITimeline[]>
     getActivityTimeline: (group: string, start: number, end: number, interval: string, timezone?: string) => Promise<IActivityTimeline[]>
     getSubDirsTimeline: (group: string, start: number, end: number, interval: string, depth: number, cumulative: boolean, timezone?: string) => Promise<ISubDirLevelTimelineWrapper>
 
-    // ===================================================== Leaderboards =========================================================
+
+    // =========================== Timeline Comparison =========================
+    getTimelineComparison: (groups: string[], repos: string[], branches: string[], users: string[], start: number, end: number, interval: string, timezone?: string) => Promise<ITimelineComparison>
+
+    // ============================= Leaderboards ==============================
     getGroupStats: (group: string, start: number, end: number, depth: number) => Promise<IGroupStats>
 
-    // ===================================================== Groups =========================================================
+    // ================================ Group ==================================
     getGroups: () => Promise<IGroupWithAccess[]>
     fetchUserAccessibleGroups: (userId: number) => Promise<IGroupWithAccess[]>
     fetchUserNotAccessibleGroups: (userId: number) => Promise<IGroupWithAccess[]>
     fetchGroupExportData: (group: string, start: number, end: number, depth: number) => Promise<IGroupExportDataEntry[]>
 
-    // ===================================================== Groups rights add/remove =========================================================
+    // ====================== Groups rights add/remove =========================
     removeRights: (params: Object) => Promise<AxiosResponse<Object>>
     addRights: (params: Object) => Promise<AxiosResponse<Object>>
     toggleRecursiveRights: (params: Object) => Promise<AxiosResponse<Object>>
 
-    // ===================================================== Users =========================================================
+    // ================================= Users =================================
     getUsers: () => Promise<IUser[]>
     getUser: (userId: number) => Promise<IUser>
 
-    // ===================================================== Roles =========================================================
+    // ================================= Roles =================================
     addRole: (params: Object) => Promise<AxiosResponse<Object>>
     removeRole: (params: Object) => Promise<AxiosResponse<Object>>
 
-    // ===================================================== Repositories =========================================================
+    // ============================== Repositories =============================
     fetchRepositories: (searchable: string) => Promise<IRepository[]>
     deleteRepository: (id: number) => Promise<IRepository>
     postRepository: (params: Object) => Promise<ITrackedRepository>
 
-    // ===================================================== Auth =========================================================
+    // =================================== Auth ================================
     login: (params: IUserCredentials) => Promise<IJsonWebToken>
     logins: () => Promise<string[]>
     delete_login: (login_type: string) => Promise<void>
@@ -56,9 +60,9 @@ export interface IApi {
     getPassword: () => Promise<boolean>
 }
 
-const Api: IApi =  {
+const Api: IApi = {
 
-    fetch<Type>(opts: any): Promise<Type>{
+    fetch<Type>(opts: any): Promise<Type> {
         const options = {
             preservedKeys: (input: string) => {
                 return input.includes('/')
@@ -74,7 +78,7 @@ const Api: IApi =  {
             .then(response => (response.data));
     },
 
-    // ===================================================== Timeline =========================================================
+    // ============================ Timeline ===================================
 
     getTimeline(group: string, start: number, end: number, interval: string, cumulative: boolean, timezone: string = TALLINN_TIMEZONE): Promise<ITimeline[]> {
         return this.fetch({url: `/api/${group}/timeline?start=${start}&end=${end}&interval=${interval}&timezone=${timezone}&cumulative=${cumulative}`, method: 'GET'});
@@ -89,13 +93,22 @@ const Api: IApi =  {
             {url: `/api/${group}/subdirs-timeline?start=${start}&end=${end}&interval=${interval}&timezone=${timezone}&depth=${depth}&cumulative=${cumulative}`, method: 'GET'});
     },
 
-    // ===================================================== Leaderboards =========================================================
+    // ========================= Timeline Comparison ===========================
+
+    getTimelineComparison: (groups: string[], repos: string[], branches: string[], users: string[], start: number, end: number, interval: string, timezone: string = TALLINN_TIMEZONE): Promise<ITimelineComparison> {
+        return this.fetch({
+            url: `/api/comparison/timeline?groups=${groups.join(',')}&repo=${repos.join(',')}&branch=${branches.join(',')}&user=${users.join(',')}&start=${start}&end=${end}&interval=${interval}&timezone={timezone}`,
+            method: 'GET'
+        });
+    },
+
+    // ============================ Leaderboards ===============================
 
     getGroupStats(group: string, start: number, end: number, depth: number): Promise<IGroupStats> {
         return this.fetch({url: `/api/groups/${group}/stats?start=${start}&end=${end}&depth=${depth}`, method: 'GET'});
     },
 
-    // ===================================================== Groups =========================================================
+    // ================================ Groups =================================
 
     getGroups(): Promise<IGroupWithAccess[]> {
         return this.fetch({url: `/api/groups`, method: 'GET'});
@@ -113,7 +126,7 @@ const Api: IApi =  {
         return this.fetch({url: `/api/groups/${group}/export?start=${start}&end=${end}&depth=${depth}`, method: 'GET'});
     },
 
-    // ===================================================== Groups rights add/remove =========================================================
+    // ======================= Groups rights add/remove ========================
 
     removeRights(params: Object): Promise<AxiosResponse<Object>> {
         return this.fetch({url: `/api/group_accesses`, data: params, method: 'DELETE'});
@@ -140,20 +153,20 @@ const Api: IApi =  {
     // ===================================================== Roles =========================================================
 
     addRole(params: Object): Promise<AxiosResponse<Object>> {
-        return this.fetch({url: `/api/roles`, data: params,  method: 'POST'});
+        return this.fetch({url: `/api/roles`, data: params, method: 'POST'});
     },
 
     removeRole(params: Object): Promise<AxiosResponse<Object>> {
-        return this.fetch({url: `/api/roles`, data: params,  method: 'DELETE'});
+        return this.fetch({url: `/api/roles`, data: params, method: 'DELETE'});
     },
 
     // ===================================================== Repositories =========================================================
 
-    fetchRepositories(searchable : string): Promise<IRepository[]> {
+    fetchRepositories(searchable: string): Promise<IRepository[]> {
         return this.fetch({url: `/api/vcs/repositories?name=${searchable}`, method: 'GET'});
     },
 
-    deleteRepository(id : number): Promise<IRepository> {
+    deleteRepository(id: number): Promise<IRepository> {
         return this.fetch({url: `/api/repositories/${id}`, method: 'DELETE'});
     },
 
@@ -172,11 +185,11 @@ const Api: IApi =  {
     },
 
     delete_login(login_type: string): Promise<void> {
-        return this.fetch({url: `/api/auth/login`, data: {login_type: login_type},  method: 'DELETE'});
+        return this.fetch({url: `/api/auth/login`, data: {login_type: login_type}, method: 'DELETE'});
     },
 
     delete_account(): Promise<void> {
-        return this.fetch({url: `/api/auth/account`,  method: 'DELETE'});
+        return this.fetch({url: `/api/auth/account`, method: 'DELETE'});
     },
 
     register(userCredentials: IUserCredentials): Promise<IJsonWebToken> {

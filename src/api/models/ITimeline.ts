@@ -7,7 +7,7 @@ export interface ITimeline {
     users: number,
 }
 
-// ========================================= SubDirLevelTimeline =======================================
+// =========================== SubDirLevelTimeline =============================
 export interface ISubDirLevelTimelineWrapper {
     paths: string[],
     data: ISubDirLevelTimelineData[],
@@ -32,7 +32,7 @@ export interface IDictionary<TValue> {
     [id: string]: TValue;
 }
 
-// ========================================= ActivityTimeline =======================================
+// ============================= ActivityTimeline ==============================
 export interface IActivityTimeline {
     label: string,
     labelKey: number,
@@ -40,4 +40,41 @@ export interface IActivityTimeline {
     linesAdded: number,
     linesRemoved: number,
     users: number,
+}
+
+// ============================== Comparison ===================================
+
+export interface ITimelineComparison {
+    branches: string[],
+    users: string[],
+    repos: string[],
+    time: IComparisonStat,
+    commits: IComparisonStat,
+    linesAdded: IComparisonStat,
+    linesRemoved: IComparisonStat,
+    timeline: ITimelineComparisonEntry[],
+    filteredTimeline: ITimelineComparisonEntry[],
+
+}
+
+export interface IComparisonStat {
+    total: number,
+    highlighted: number,
+    rank: number,
+    data: IComparisonStatEntry[],
+}
+
+export interface ITimelineComparisonEntry {
+    start: Date,
+    end: Date,
+    time: number,
+    commits: number,
+    linesAdded: number,
+    linesRemoved: number,
+    users: number,
+}
+
+export interface IComparisonStatEntry {
+    rank: number,
+    value: number,
 }
